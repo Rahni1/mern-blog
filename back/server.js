@@ -28,9 +28,10 @@ app.use(passport.initialize())
 // pass passport as param to the function exported by this file
 require("./middleware/passport")(passport)
 
+
 // routes middleware
 app.use(userRoutes)
-app.use(postRoutes)
+app.use("/posts/", postRoutes)
 
 
 const port = 8000 
