@@ -4,6 +4,7 @@ const SECRET = process.env.SECRET
 const validateSignUpInput = require('../validation/signup')
 const validateSignInInput = require('../validation/signin')
 const User = require('../models/User')
+const { Router } = require('express')
 
 exports.signUp = (req, res) => {
     // validate user input 
@@ -45,4 +46,42 @@ newUser.save()
         }
     })
 
+}
+
+exports.signIn = (req, res) => {
+    const { errors, isValid } = validateSignInInput(req.body)
+    // check for invalid input, if invalid return appropriate error
+    if (!isValid) {
+        return res.status(400).json(errors)
+    }
+    // else, check for user in db
+    const { email, password } = req.body
+    User.findOne({ email }).then(user => {
+        if (!user) {
+            return res.status(404).json({email: "Email not found"})
+        }
+// if user exists, compare password with hashed password in db using bcrypt
+        bcrypt.compare(password, user.password).then(isMatch => {
+            if (isMatch) {
+                // create payload
+                const payload = {
+                    id: user.id,
+                    user_name: user.user_name
+                }
+                // sign it in with secret key, set expiry time for token 
+                // & send response to user
+                jwt.sign(payload, SECRET, { expiresIn: 3600 }, (err, token) => {
+                    if (err) {
+                        console.log(err)
+                    }
+                    return res.json({
+                        success: true,
+                        token: "Bearer " + token
+                    })
+                })
+            } else {
+                return res.status(400).json({password: "Password Incorrect"})
+            }
+        })
+    })
 }
