@@ -6,7 +6,7 @@ const passport = require("passport")
 
 // import routes
 const userRoutes = require('./routes/users')
-
+const postRoutes = require('./routes/posts')
 // app
 const app = express()
 
@@ -24,11 +24,13 @@ app.use(bodyParser.urlencoded({
 }))
 // initialize passport
 app.use(passport.initialize())
+
 // pass passport as param to the function exported by this file
 require("./middleware/passport")(passport)
+
 // routes middleware
 app.use(userRoutes)
-
+app.use(postRoutes)
 
 
 const port = 8000 
