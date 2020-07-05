@@ -4,7 +4,6 @@ const SECRET = process.env.SECRET
 const validateSignUpInput = require('../validation/signup')
 const validateSignInInput = require('../validation/signin')
 const User = require('../models/User')
-const { Router } = require('express')
 
 exports.signUp = (req, res) => {
     // validate user input 
@@ -60,7 +59,7 @@ exports.signIn = (req, res) => {
         if (!user) {
             return res.status(404).json({email: "Email not found"})
         }
-        
+
 // if user exists, compare password with hashed password in db using bcrypt
         bcrypt.compare(password, user.password).then(isMatch => {
             if (isMatch) {
