@@ -60,6 +60,7 @@ exports.signIn = (req, res) => {
         if (!user) {
             return res.status(404).json({email: "Email not found"})
         }
+        
 // if user exists, compare password with hashed password in db using bcrypt
         bcrypt.compare(password, user.password).then(isMatch => {
             if (isMatch) {
