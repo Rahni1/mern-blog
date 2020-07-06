@@ -23,17 +23,17 @@ app.use(bodyParser.urlencoded({
     extended: false
 }))
 // initialize passport
-app.use(passport.initialize())
+app.use(passport.initialize());
 
 // pass passport as param to the function exported by this file
-require("./middleware/passport")(passport)
+require("./middleware/passport")(passport);
 
 
 // routes middleware
-app.use(userRoutes)
+app.use("/users/", userRoutes)
 app.use("/posts/", postRoutes)
 
-
+ 
 const port = 8000 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
