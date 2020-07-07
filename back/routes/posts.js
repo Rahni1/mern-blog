@@ -13,7 +13,7 @@ router.get("/author/:author", getPostByAuthor)
 // create, delete, getPosts & update are user-specific so will be private APIs
 // authenticated APIs are in routes until I can use Passport.js in controllers
 
-router.get("/", 
+router.get("http://localhost:8000/posts", 
 // passport middleware authenticates user 
 // returns a user object (null, user) on successful authentication
 passport.authenticate("jwt", { session: false }),
