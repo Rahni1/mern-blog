@@ -47,6 +47,7 @@ axios
  // decode token & set current user (id, username) 
 // & reset posts before loading the new users session.
  const decoded = jwt_decode(token)
+ // dispatch setCurrentUser twice, once when user logs in sending userData
  dispatch(setCurrentUser(decoded))
  dispatch(toggleUserLoading())
 })
@@ -68,5 +69,6 @@ return {
 export const signoutUser = () => dispatch => {
 localStorage.removeItem("jwtToken")
 setAuthToken(false)
+// 2. dispatch setCurrentUser sending empty object
 dispatch(setCurrentUser({}))
 }
