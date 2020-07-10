@@ -1,0 +1,16 @@
+// 7-1 architecture pattern (without themes)
+@import 'abstracts/variables';
+// @import 'abstracts/mixins';
+
+// -- vendors --
+
+@import 'base/typography';
+@import 'base/base';
+
+@import 'layout/navigation';
+// @import 'layout/footer';
+// @import 'layout/form';
+
+// -- components --
+
+// @import 'pages/home';

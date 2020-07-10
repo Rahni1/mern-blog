@@ -30,11 +30,12 @@ require("./middleware/passport")(passport);
 
 
 // routes middleware
-app.use("/users/", userRoutes)
-app.use("/posts/", postRoutes)
+app.use("/user", userRoutes)
+app.use("/post", postRoutes)
 
  
-const port = 8000 
+const port = process.env.PORT || 8000
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })
