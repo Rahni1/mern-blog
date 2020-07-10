@@ -1,8 +1,12 @@
 const express = require('express')
-require("dotenv").config() // loads env variables
 const mongoose = require('mongoose')
+const morgan = require('morgan')
 const bodyParser = require('body-parser')
-const passport = require("passport")
+const cookieParser = require('cookie-parser')
+const cors = require('cors')
+const expressValidator = require('express-validator')
+
+require('dotenv').config()
 
 // import routes
 const userRoutes = require('./routes/users')
@@ -10,30 +14,26 @@ const postRoutes = require('./routes/posts')
 // app
 const app = express()
 
-// connect db
+// connect db - first arg is url (specified in .env)
 mongoose.connect(process.env.DATABASE || 'mongodb://localhost:27017/blog', {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-}).then(() => console.log("DB connected"))
+useNewUrlParser: true,
+useCreateIndex: true,
+useUnifiedTopology: true,
+useFindAndModify: false
+}).then(() => console.log('DB connected'))
 
+// middlewares 
+app.use(morgan('dev'))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-    extended: false
-}))
-// initialize passport
-app.use(passport.initialize());
-
-// pass passport as param to the function exported by this file
-require("./middleware/passport")(passport);
+// used to save users credentials
+app.use(cookieParser())
+app.use(cors())
 
 
 // routes middleware
-app.use("/user", userRoutes)
-app.use("/post", postRoutes)
+app.use(userRoutes)
+app.use(postRoutes)
 
- 
 const port = process.env.PORT || 8000
 
 app.listen(port, () => {

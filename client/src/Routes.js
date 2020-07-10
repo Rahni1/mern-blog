@@ -1,12 +1,11 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Home from "./core/Home";
+import Home from './core/Home'
 import Signin from "./user/Signin";
 import Signup from "./user/Signup";
 import Posts from "./core/Posts";
 import AdminDashboard from "./user/AdminDashboard";
-import Post from "./core/Post";
 import CreatePost from "./core/CreatePost";
 import UpdatePost from "./core/UpdatePost";
 
@@ -15,6 +14,7 @@ const Routes = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/signup" exact component={Signup} />
       </Switch>
     </BrowserRouter>
   );
@@ -23,7 +23,7 @@ const Routes = () => {
 export default Routes;
 
 // <Route path="/signin" exact component={Signin} />
-//         <Route path="/signup" exact component={Signup} />
+//        
 //         <Route path="/articles" exact component={Posts} />
 //         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
 //         <Route path="/blog/post/:id" exact component={Post} />

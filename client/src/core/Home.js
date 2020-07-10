@@ -1,11 +1,11 @@
 import React from 'react'
 import Navbar from './Navbar'
-
+import ListPosts from './ListPosts'
 const Home = () => {
     return (
         <div>
         <Navbar />
-    <div>This is the landing page</div>
+    <ListPosts />
     </div>
     )
 }
