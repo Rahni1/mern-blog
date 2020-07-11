@@ -1,87 +1,77 @@
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const SECRET = process.env.SECRET
-const validateSignUpInput = require('../validation/signup')
-const validateSignInInput = require('../validation/signin')
-const User = require('../models/User')
+const User = require('../models/User');
+const jwt = require('jsonwebtoken'); // to generate signed token
+const expressJwt = require('express-jwt'); // for authorization check
+const { errorHandler } = require('../helpers/dbErrorHandler');
 
-exports.signUp = (req, res) => {
-    // validate user input 
-    const {errors, isValid} = validateSignUpInput(req.body)
-    const {user_name, email, password} = req.body
-    // if input is invalid, return appropriate error
-    if (!isValid) {
-        return res.status(400).json(errors)
-    }
-    // otherwise, search db for same username or email
-    User.findOne({$or:[{email}, {user_name}]}).then(user => {
-        // if same username or email found, return appropriate error
-        if (user) {
-if (user.email === email) {
-    return res.status(400).json({ 
-        email: "Email already exists"
-    })
-} else {
-    return res.status(400).json({
-        user_name: "Username already exists"
-    })
-}
-// otherwise, create new user and store details in db
-        } else {
-const newUser = new User({user_name, email, password}) 
-// hash password using bcrypt
-bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-if (err) throw err
-newUser.password = hash
-// save details in db
-newUser.save()
-.then(user => res.json(user))
-.catch(err => {
-    console.log({ error: "Error creating a new user"})
-})
-    })
-})
+exports.signup = (req, res) => {
+    //console.log("req.body", req.body);
+    const user = new User(req.body);
+    user.save((err, user) => {
+        if (err) {
+            return res.status(400).json({
+                // error: errorHandler(err)
+                error: 'Email is taken'
+            });
         }
-    })
+        user.salt = undefined;
+        user.hashed_password = undefined;
+        res.json({
+            user
+        });
+    });
+};
 
-}
-
-exports.signIn = (req, res) => {
-    const { errors, isValid } = validateSignInInput(req.body)
-    // check for invalid input, if invalid return appropriate error
-    if (!isValid) {
-        return res.status(400).json(errors)
-    }
-    // else, check for user in db
-    const { email, password } = req.body
-    User.findOne({ email }).then(user => {
-        if (!user) {
-            return res.status(404).json({email: "Email not found"})
+exports.signin = (req, res) => {
+    // find the user based on email
+    const { email, password } = req.body;
+    User.findOne({ email }, (err, user) => {
+        if (err || !user) {
+            return res.status(400).json({
+                error: 'User with that email does not exist. Please signup'
+            });
         }
+        // if user is found make sure the email and password match
+        // create authenticate method in user model
+        if (!user.authenticate(password)) {
+            return res.status(401).json({
+                error: 'Email and password dont match'
+            });
+        }
+        // generate a signed token with user id and secret
+        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+        // persist the token as 't' in cookie with expiry date
+        res.cookie('t', token, { expire: new Date() + 9999 });
+        // return response with user and token to frontend client
+        const { _id, name, email, role } = user;
+        return res.json({ token, user: { _id, email, name, role } });
+    });
+};
+exports.signout = (req, res) => {
+    res.clearCookie('t');
+    res.json({ message: 'Signout success' });
+};
 
-// if user exists, compare password with hashed password in db using bcrypt
-        bcrypt.compare(password, user.password).then(isMatch => {
-            if (isMatch) {
-                // create payload
-                const payload = {
-                    id: user.id,
-                    user_name: user.user_name
-                }
-                // sign it in with secret key, set expiry time for token 
-                // & send response to user
-                jwt.sign(payload, SECRET, { expiresIn: 3600 }, (err, token) => {
-                    if (err) {
-                        console.log(err)
-                    }
-                    return res.json({
-                        success: true,
-                        token: "Bearer " + token
-                    })
-                })
-            } else {
-                return res.status(400).json({password: "Password Incorrect"})
-            }
-        })
-    })
-}
+exports.requireSignin = expressJwt({
+    secret: process.env.JWT_SECRET,
+    algorithms: ['HS256'],
+    userProperty: 'auth'
+});
+
+exports.isAuth = (req, res, next) => {
+    let user = req.profile && req.auth && req.profile._id == req.auth._id;
+    if (!user) {
+        return res.status(403).json({
+            error: 'Access denied'
+        });
+    }
+    next();
+};
+
+exports.isAdmin = (req, res, next) => {
+    if (req.profile.role === 0) {
+        return res.status(403).json({
+            error: 'Admin resourse! Access denied'
+        });
+    }
+    next();
+};

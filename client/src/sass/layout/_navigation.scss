@@ -1,0 +1,56 @@
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  background-color: $charcoal;
+  list-style-type: none;
+  margin-top: -10px;
+  display: flex;
+  font-size: 14px;
+  width: 100vw;
+  margin-left: -8px;
+  align-items: center;
+  height: 4rem;
+}
+
+.nav-link,
+.navbar-brand {
+  margin-right: 4rem;
+  color: $beige;
+}
+.nav-item {
+  position: relative;
+}
+.nav-link {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: $bold;
+  display: inline-block;
+  position: relative;
+}
+
+
+// underline transition
+.nav-link:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  color: $beige;
+  left: 50%;
+  position: absolute;
+  background: $beige;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.nav-link:hover:after {
+  width: 100%;
+  left: 0;
+}
+
+
+
