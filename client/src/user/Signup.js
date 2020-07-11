@@ -41,7 +41,7 @@ const Signup = () => {
         }
       })
       .catch((exc) => {
-        console.error("++ exc: ", exc);
+        console.error("exc: ", exc);
         setValues({ ...values, error: exc.message, success: false });
       });
   };

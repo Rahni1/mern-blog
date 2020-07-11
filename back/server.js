@@ -27,7 +27,9 @@ app.use(morgan('dev'))
 app.use(bodyParser.json())
 // used to save users credentials
 app.use(cookieParser())
+app.use(expressValidator())
 app.use(cors())
+
 
 
 // routes middleware

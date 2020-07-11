@@ -12,7 +12,7 @@ const Navbar = ({ history }) => {
 
       {/* ARTICLES */}
       <li className="nav-item">
-        <Link className="nav-link" to="/articles">
+        <Link className="nav-link" to="/blog">
           Articles
         </Link>
       </li>
