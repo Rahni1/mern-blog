@@ -10,7 +10,7 @@ const Signup = () => {
     error: "",
     success: false,
   });
-
+  const [passwordShown, setPasswordShown] = useState(false);
   const { name, email, password, success, error } = values;
 
   const handleChange = (name) => (event) => {
@@ -46,40 +46,57 @@ const Signup = () => {
       });
   };
 
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
   const signUpForm = () => (
     <form>
+    <div>
+    <h2 className="form-header">Sign Up</h2>
       <div className="form-group">
-        <label className="text-muted">Name</label>
+      <span className="input-icon">
+       <i aria-hidden="true" class="user circle icon"></i>
+       </span>
         <input
           onChange={handleChange("name")}
           type="text"
-          className="form-control"
+          className="form-input"
+          placeholder="Name"
           value={name}
         />
       </div>
 
       <div className="form-group">
-        <label className="text-muted">Email</label>
+      <span className="input-icon">
+      <i aria-hidden="true" class="mail icon"></i>
+      </span>
         <input
           onChange={handleChange("email")}
           type="email"
-          className="form-control"
+          placeholder="Email"
+          className="form-input"
           value={email}
         />
       </div>
 
       <div className="form-group">
-        <label className="text-muted">Password</label>
+      <span className="input-icon">
+      <i aria-hidden="true" class="lock icon"></i>
+      </span>
         <input
           onChange={handleChange("password")}
-          type="password"
-          className="form-control"
+          type={passwordShown ? "text" : "password"}
+          placeholder="Password"
+          className="form-input"
           value={password}
         />
+        <i onClick={togglePasswordVisiblity} aria-hidden="true" class="eye icon"></i>
       </div>
       <button onClick={clickSubmit} className="btn btn-color btn-primary">
         Submit
       </button>
+      </div>
     </form>
   );
 
