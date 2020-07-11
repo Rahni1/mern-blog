@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const { list } = require('../controllers/posts.js')
+const { requireSignin, isAuth } = require('../controllers/users')
 
 
-router.get('/', (list))
+router.get('/blog', ( isAuth, list))
 
 module.exports = router
 

@@ -10,13 +10,6 @@ const Navbar = ({ history }) => {
         <img className="logo" src={logo} width="70px" height="70px" />
       </a>
 
-      {/* ARTICLES */}
-      <li className="nav-item">
-        <Link className="nav-link" to="/blog">
-          Articles
-        </Link>
-      </li>
-
       {/* ADMIN DASHBOARD */}
       {isAuthenticated() && isAuthenticated().user.role === 1 && (
         <li className="nav-item">
@@ -30,12 +23,12 @@ const Navbar = ({ history }) => {
       {!isAuthenticated() && (
         <Fragment>
           <li className="nav-item">
-            <Link className="nav-link right" to="/signin">
+            <Link className="nav-link" to="/signin">
               Signin
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link right" to="/signup">
+            <Link className="nav-link" to="/signup">
               Signup
             </Link>
           </li>

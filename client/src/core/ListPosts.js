@@ -13,9 +13,9 @@ class ListPosts extends React.Component {
     componentDidMount = () => {
         this.getPost()
     }
-
+// fetch posts using axios
     getPost = () => {
-        axios.get('http://localhost:8000')
+        axios.get('http://localhost:8000/blog')
         .then((response) => {
             const data = response.data
             this.setState({posts: data})
@@ -52,3 +52,4 @@ class ListPosts extends React.Component {
 }
 
 export default ListPosts
+

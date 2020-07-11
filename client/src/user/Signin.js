@@ -91,11 +91,11 @@ const Signin = () => {
       if (user && user.role === 1) {
         return <Redirect to="/admin/dashboard" />;
       } else {
-        return <Redirect to="/user/dashboard" />;
+        return <Redirect to="/blog" />;
       }
     }
     if (isAuthenticated()) {
-      return <Redirect to="/" />;
+      return <Redirect to="/blog" />;
     }
   };
 

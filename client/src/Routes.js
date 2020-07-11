@@ -2,12 +2,12 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import AdminRoute from "./auth/AdminRoute";
-import PrivateRoute from "./auth/AdminRoute";
+import PrivateRoute from "./auth/PrivateRoute";
 import Home from './core/Home'
-import Blog from './core/Blog'
 import Signin from "./user/Signin";
 import Signup from "./user/Signup";
-import Posts from "./core/Posts";
+import Blog from './core/Blog'
+import ListPosts from "./core/ListPosts";
 import AdminDashboard from "./user/AdminDashboard";
 import CreatePost from "./core/CreatePost";
 import UpdatePost from "./core/UpdatePost";
@@ -19,7 +19,7 @@ const Routes = () => {
         <Route path="/" exact component={Home} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
-        <PrivateRoute exact path="/blog" component={Blog} />
+        <PrivateRoute path="/blog" exact component={ListPosts} />
       </Switch>
     </BrowserRouter>
   );
@@ -27,7 +27,8 @@ const Routes = () => {
 
 export default Routes;
       
-//         <Route path="/articles" exact component={Posts} />
+//         <PrivateRoute exact path="/blog" component={Blog} />
+
 //         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
 //         <Route path="/blog/post/:id" exact component={Post} />
 // <PrivateRoute

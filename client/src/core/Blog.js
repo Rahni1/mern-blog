@@ -1,12 +1,10 @@
 import React from 'react'
-import ListPosts from './ListPosts'
 
-class Blog extends React.Component {
-    render() {
-        return (
-            <ListPosts />
-        )
-    }
+const Blog = () => {
+  
+    return (
+    <div>This is the blog page</div>
+    )
 }
 
-export default ListPosts
+export default Blog
