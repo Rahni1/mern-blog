@@ -52,7 +52,7 @@ const Signup = () => {
 
   const signUpForm = () => (
     <form>
-    <div>
+    <div className="form-container">
     <h2 className="form-header">Sign Up</h2>
       <div className="form-group">
       <span className="input-icon">
@@ -93,16 +93,18 @@ const Signup = () => {
         />
         <i onClick={togglePasswordVisiblity} aria-hidden="true" class="eye icon"></i>
       </div>
-      <button onClick={clickSubmit} className="btn btn-color btn-primary">
+      <button onClick={clickSubmit} className="submit-auth">
         Submit
       </button>
       </div>
+      {showError()}
+      {showSuccess()}
     </form>
   );
 
   const showError = () => (
     <div
-      className="alert alert-danger"
+      className="auth-error"
       style={{ display: error ? "" : "none" }}>
       {error}
     </div>
@@ -110,16 +112,14 @@ const Signup = () => {
 
   const showSuccess = () => (
     <div
-      className="alert alert-info"
+      className="success"
       style={{ display: success ? "" : "none" }}>
-      New account is created. Please <Link to="/signin">Signin</Link>
+      New account is created. Please <Link className="success-link" to="/signin">Signin</Link>
     </div>
   );
 
   return (
  <div>
-      {showSuccess()}
-      {showError()}
       {signUpForm()}
       </div>
   );

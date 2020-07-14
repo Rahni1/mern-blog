@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../auth";
+import GoogleAuth from "./GoogleAuth";
 
 const Signin = () => {
   const [values, setValues] = useState({
-    email: "email@gmail.com",
-    password: "password",
+    email: "",
+    password: "",
     error: "",
     loading: false,
     redirectToReferrer: false,
@@ -48,7 +49,7 @@ const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
 
-  const signUpForm = () => (
+  const signInForm = () => (
     <form>
        <div>
     <h2 className="form-header">Sign In</h2>
@@ -59,6 +60,7 @@ const togglePasswordVisiblity = () => {
         <input
           onChange={handleChange("email")}
           type="email"
+          placeholder="Email"
           className="form-input"
           value={email}
         />
@@ -68,7 +70,8 @@ const togglePasswordVisiblity = () => {
       <span className="input-icon">
        <i aria-hidden="true" class="lock icon"></i>
        </span>
-        <input         
+        <input     
+        placeholder="Password"    
           onChange={handleChange("password")}
           type={passwordShown ? "text" : "password"}
           className="form-input"
@@ -77,17 +80,19 @@ const togglePasswordVisiblity = () => {
   <i onClick={togglePasswordVisiblity} aria-hidden="true" class="eye icon"></i>
       </div>
 
-      <button onClick={clickSubmit} className="signin">
+      <button onClick={clickSubmit} className="submit-auth">
         Submit
       </button>
           </div>
+          {showLoading()}
           {showError()}
+          <GoogleAuth />
     </form>
   )
 
   const showError = () => (
     <div
-      className="signin-error"
+      className="auth-error"
       style={{ display: error ? "" : "none" }}>
       {error}
     </div>
@@ -95,8 +100,7 @@ const togglePasswordVisiblity = () => {
 
   const showLoading = () =>
     loading && (
-      <div className="alert alert-info">
-        <h2>Loading...</h2>
+      <div className="loader">
       </div>
     );
 
@@ -115,8 +119,7 @@ const togglePasswordVisiblity = () => {
 
   return (
       <div>
-      {showLoading()}
-      {signUpForm()}
+      {signInForm()}
       {redirectUser()}
     </div>
   );

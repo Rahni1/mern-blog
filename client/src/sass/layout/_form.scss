@@ -1,28 +1,22 @@
-@import url("https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur");
-
-/* Start form  attributes */
+// form container 
 form {
     width: 450px;
     min-height: 500px;
     height: auto;
     border-radius: 5px;
-    margin: 2% auto;
     box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
     padding: 2%;
     background-image: linear-gradient(-225deg, $grey 50%, $green 50%);
-}
-
-/* form Container */
-form {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: space-around;
-    justify-content: space-around;
+    @include flex;
+    -webkit-justify-content: center;
+    align-items: center;
+    justify-content: center;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
     margin: 30px auto;
 }
-.signin-error {
+
+.auth-error {
     color: red;
     text-align: center;
 }
@@ -32,25 +26,24 @@ form {
     margin: 2% auto 10% auto;
     text-align: center;
     font-size: 200%;
-    font-family: "Playfair Display", serif;
-    color: #fff;
+    font-family: $playfair-display;
+    color: $white;
 }
-/*Change text in autofill textbox*/
-/* Change the white to any color ;) */
+// autocomplete style
 .form-input:-webkit-autofill,
 .form-input:-webkit-autofill:hover, 
 .form-input:-webkit-autofill:focus, 
 .form-input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
-    box-shadow: 0 0 0 30px white inset !important;
+    -webkit-box-shadow: 0 0 0 30px $white inset !important;
+    box-shadow: 0 0 0 30px $white inset !important;
 }
 
 /* Show/hide password Icon */
 .eye {
-    background: #fff;
-    color: #333;
+    background: $white;
+    color: $charcoal;
     margin-left: -20px;
-    padding: 15px 18px 32px 6px;
+    padding: 15px 8px 32px 6px;
     border-radius: 0px 5px 5px 0px;
     float: right;
     position: relative;
@@ -66,7 +59,7 @@ form {
     padding: 15px;
     width: 240px;
     font-size: 16px;
-    font-family: "Abel", sans-serif;
+    font-family: $abel;
     color: $charcoal;
     outline: none;
     border: none;
@@ -74,27 +67,33 @@ form {
     transition: 0.2s linear;
 }
 .form-input:focus {
+     -webkit-transform: translateX(-2px);
+        -ms-transform: translateX(-2px);
     transform: translateX(-2px);
 }
 
-// signin button
-.signin {
+.form-group {
+    margin-left: 12px;
+}
+
+// buttons
+.submit-auth {
     display: inline-block;
     color: $charcoal;
-    width: 280px;
+    width: 270px;
     height: 50px;
-    padding: 0 20px;
-    background: #fff;
+    padding: 0 0px;
+    background: $white;
     border-radius: 5px;
     outline: none;
     border: none;
     cursor: pointer;
     text-align: center;
     transition: all 0.2s linear;
-    margin: 15% auto;
+    margin: 15% 12px;
     letter-spacing: 0.05em;
     &:hover {
-        transform: translatey(3px);
+       @include transform;
         box-shadow: none;
     }
 }
@@ -108,23 +107,51 @@ form {
 .sign-up {
     background: #b8f2e6;
     &:hover {
+        -webkit-animation: ani9 0.4s ease-in-out infinite alternate;
         animation: ani9 0.4s ease-in-out infinite alternate;
     }
 }
 
 .input-icon {
-    background: #fff;
-    color: #333;
-    padding: 16px 0px 15.3px 19px;
+    background: $white;
+    color: $charcoal;
+    padding: 16px 0px 15.3px 10px;
     border-radius: 5px 0px 0px 5px;
 }
 /* buttons hover Animation */
-
 @keyframes ani9 {
     0% {
-        transform: translateY(3px);
+       @include transform;
     }
     100% {
+        -webkit-transform: translateY(5px);
+        -ms-transform: translateY(5px);
         transform: translateY(5px);
     }
+}
+
+// loader
+.loader {
+    border: 12px solid $white; 
+    border-top: 12px solid $grey;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .success, .success-link {
+      color: $white;
+  }
+  
+  .success-link {
+      text-decoration: underline;
+ &:hover {
+      color: $white;
+      text-decoration: underline;
+  }
 }

@@ -2,7 +2,7 @@
 
 // no styles, just mechanisms that help define styles
 @import 'abstracts/variables';
-// @import 'abstracts/mixins';
+ @import 'abstracts/mixins';
 
 // -- vendors --
 
@@ -16,7 +16,8 @@
 @import 'layout/form';
 
 // styles for small, reusable parts of site e.g buttons, 
- @import 'components/post'
+ @import 'components/post';
+ @import 'components/home';
 
 // page-specific styles e.g: styles that are only used on about page
 // @import 'pages/home';
