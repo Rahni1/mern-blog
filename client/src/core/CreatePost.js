@@ -19,8 +19,8 @@ import {API} from '../config'
 
      submitHandler = e => {
          e.preventDefault()
-         axios.post(`${API}/blog/post`, this.state)
-    // axios({ url: `${API}/blog/post`, method: 'POST', data: this.state})
+         //axios.post(`${API}/blog/post`, this.state)
+     axios({ url: `${API}/blog/post`, method: 'POST', data: this.state})
          .then(response => {
              console.log(response)
          }).catch(error => {

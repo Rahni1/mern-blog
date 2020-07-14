@@ -27,13 +27,25 @@ exports.list = (req, res) => {
  
 
 exports.create = (req, res) => {
-  let post = new Post()
-  post.save((err, result) => {
-    if(err) {
-    return res.status(400).json({
-        error: errorHandler(err)
-    })
-    }
-    res.send(result)
-    })
+  const {title, body, date, author} = req.body
+  let post = new Post({title, body, date, author})
+
+  post.save()
+  .then(response => {
+  res.send(response)
+    .catch(err => {
+      res.send(err)
+})
+})
 }
+
+// exports.create = (req, res) => {
+  // let post = new Post()
+  // post.save((err, result) => {
+  //   if(err) {
+  //   return res.status(400).json({
+  //       error: errorHandler(err)
+  //   })
+  //   }
+  //   res.json(result)
+  //   })
