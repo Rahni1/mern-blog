@@ -6,7 +6,7 @@ const { requireSignin, isAuth } = require('../controllers/users')
 
 
 router.get('/blog', ( isAuth, list))
-router.post('/blog/post', create);
+router.post('/blog/post', (isAuth, create))
 
 module.exports = router
 
