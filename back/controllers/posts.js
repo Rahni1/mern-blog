@@ -39,13 +39,8 @@ exports.create = (req, res) => {
 })
 }
 
-// exports.create = (req, res) => {
-  // let post = new Post()
-  // post.save((err, result) => {
-  //   if(err) {
-  //   return res.status(400).json({
-  //       error: errorHandler(err)
-  //   })
-  //   }
-  //   res.json(result)
-  //   })
+exports.readById = (req, res) => {
+  Post.findById(req.params.id)
+    .then(post => res.json(post))
+    .catch(err => res.status(400).json('Error: ' + err));
+}

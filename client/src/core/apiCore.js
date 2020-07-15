@@ -16,3 +16,13 @@ export const createPost = (post) => {
             console.log(err);
         });
 };
+
+export const read = id => {
+    return fetch(`${API}/post/${id}`, {
+        method: 'GET'
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => console.log(err))
+}

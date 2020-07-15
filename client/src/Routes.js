@@ -8,6 +8,7 @@ import Signin from "./user/Signin";
 import Signup from "./user/Signup";
 import Blog from "./core/Blog";
 import ListPosts from "./core/ListPosts";
+import Post from "./core/Post";
 import AdminDashboard from "./user/AdminDashboard";
 import CreatePost from "./core/CreatePost";
 import UpdatePost from "./core/UpdatePost";
@@ -20,6 +21,7 @@ const Routes = () => {
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
        <PrivateRoute path="/blog/post" exact component={CreatePost} />
+       <Route path="/post/:id" exact component={Post} />
       </Switch>
     </BrowserRouter>
   );
@@ -27,12 +29,7 @@ const Routes = () => {
 
 export default Routes;
 
-
-//         <PrivateRoute exact path="/blog" component={Blog} />
-
 //         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
-//         <Route path="/blog/post/:id" exact component={Post} />
-//
 // <PrivateRoute
 // exact
 // path="/blog/post/update/:id"

@@ -86,7 +86,7 @@ const togglePasswordVisiblity = () => {
           </div>
           {showLoading()}
           {showError()}
-          <GoogleAuth />
+          {/*<GoogleAuth />*/}
     </form>
   )
 
