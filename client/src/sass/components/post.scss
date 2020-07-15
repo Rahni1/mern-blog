@@ -1,3 +1,19 @@
+.post-container {
+    margin-top: 2rem;
+    width: 60%;
+    margin: 0 auto;
+}
 .post-title {
+    padding: 1.5rem 0 0 0;
+    font-size: 30px;
+    font-family: $playfair-display;
+}
+.post-date {
+    text-align: left;
+    color: $grey;
     font-family: $roboto;
+}
+
+.post-body {
+    margin-top: 30px;
 }

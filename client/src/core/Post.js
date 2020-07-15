@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { read } from "./apiCore";
+import Navbar from './Navbar';
 
 const Post = props => {
   const [post, setPost] = useState({});
@@ -23,10 +24,13 @@ const Post = props => {
   }, [props]);
 
   return (
-        <div>
-         <h3>{post && post.title}</h3>
-         <p>{post && post.body}</p>
-         <p>{post && post.date}</p>
+    <div>
+    <Navbar />
+        <div className="post-container">
+         <h3 className="post-title">{post && post.title}</h3>
+         <p className="post-date">{post && post.date}</p>
+         <p className="post-body">{post && post.body}</p>
+        </div>
         </div>
   )
 }
