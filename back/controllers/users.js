@@ -2,6 +2,9 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken'); // to generate signed token
 const expressJwt = require('express-jwt'); // for authorization check
 const { errorHandler } = require('../helpers/dbErrorHandler');
+const {OAuth2Client} = require('google-auth-library');
+
+const client = new OAuth2Client("715334328601-strku430pkh23o4c4fud19hetrj0djq9.apps.googleusercontent.com")
 
 exports.signup = (req, res) => {
     //console.log("req.body", req.body);
@@ -10,7 +13,7 @@ exports.signup = (req, res) => {
         if (err) {
             return res.status(400).json({
                 // error: errorHandler(err)
-                error: 'Email is taken'
+                error: 'This email is taken'
             });
         }
         user.salt = undefined;
@@ -27,14 +30,14 @@ exports.signin = (req, res) => {
     User.findOne({ email }, (err, user) => {
         if (err || !user) {
             return res.status(400).json({
-                error: 'User with that email does not exist. Please signup'
+                error: 'User with that email does not exist. Please sign up'
             });
         }
         // if user is found make sure the email and password match
         // create authenticate method in user model
         if (!user.authenticate(password)) {
             return res.status(401).json({
-                error: 'Email and password dont match'
+                error: "Email and password don't match"
             });
         }
         // generate a signed token with user id and secret
@@ -75,3 +78,47 @@ exports.isAdmin = (req, res, next) => {
     }
     next();
 };
+
+exports.googlelogin = (req, res) => {
+    const {tokenId} = req.body
+    
+    client.verifyIdToken({idToken: tokenId, audience: "715334328601-strku430pkh23o4c4fud19hetrj0djq9.apps.googleusercontent.com"})
+    .then(response => {
+        const {email_verified, name, email} = response.payload
+        if (email_verified) {
+            User.findOne({email}).exec((err, user) => {
+                if(err) {
+                    return res.status(400).json({
+                        error: "Something went wrong..."
+                    })
+                } else {
+                    if (user) {
+                        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+        // persist the token as 't' in cookie with expiry date
+        res.cookie('t', token, { expire: new Date() + 9999 });
+        // return response with user and token to client
+        const { _id, name, email, role } = user;
+        return res.json({ token, user: { _id, email, name, role } });
+                    } else {
+                        let password = email+process.env.JWT_SECRET
+                        let newUser = new User({name, email, password})
+                        newUser.save((err, data) => {
+                            if (err) {
+                                return res.status(400).json({
+                                    error: "Something went wrong..."
+                                })
+                            }
+                            const token = jwt.sign({ _id: data._id }, process.env.JWT_SECRET);
+                            res.cookie('t', token, { expire: new Date() + 9999 });
+                            // return response with user and token to client
+                            const { _id, name, email, role } = newUser;
+                             res.json({ token, user: { _id, email, name, role } });
+                        })
+                    }
+                }
+            })
+        }
+    })
+    
+    
+}

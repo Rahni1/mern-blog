@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../auth";
+import GoogleAuth from "./GoogleAuth";
 
 const Signin = () => {
   const [values, setValues] = useState({
-    email: "email@gmail.com",
-    password: "password",
+    email: "",
+    password: "",
     error: "",
     loading: false,
     redirectToReferrer: false,
   });
+  const [passwordShown, setPasswordShown] = useState(false);
 
   const { email, password, loading, error, redirectToReferrer } = values;
   const { user } = isAuthenticated();
@@ -43,37 +45,54 @@ const Signin = () => {
       });
   };
 
-  const signUpForm = () => (
+const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
+  const signInForm = () => (
     <form>
+       <div>
+    <h2 className="form-header">Sign In</h2>
       <div className="form-group">
-        <label className="text-muted">Email</label>
+     <span className="input-icon">
+       <i aria-hidden="true" class="user circle icon"></i>
+       </span>
         <input
           onChange={handleChange("email")}
           type="email"
-          className="form-control"
+          placeholder="Email"
+          className="form-input"
           value={email}
         />
       </div>
 
       <div className="form-group">
-        <label className="text-muted">password</label>
-        <input
+      <span className="input-icon">
+       <i aria-hidden="true" class="lock icon"></i>
+       </span>
+        <input     
+        placeholder="Password"    
           onChange={handleChange("password")}
-          type="password"
-          className="form-control"
+          type={passwordShown ? "text" : "password"}
+          className="form-input"
           value={password}
         />
+  <i onClick={togglePasswordVisiblity} aria-hidden="true" class="eye icon"></i>
       </div>
 
-      <button onClick={clickSubmit} className="btn btn-color btn-primary">
+      <button onClick={clickSubmit} className="submit-auth">
         Submit
       </button>
+          </div>
+          {showLoading()}
+          {showError()}
+          {/*<GoogleAuth />*/}
     </form>
-  );
+  )
 
   const showError = () => (
     <div
-      className="alert alert-danger"
+      className="auth-error"
       style={{ display: error ? "" : "none" }}>
       {error}
     </div>
@@ -81,8 +100,7 @@ const Signin = () => {
 
   const showLoading = () =>
     loading && (
-      <div className="alert alert-info">
-        <h2>Loading...</h2>
+      <div className="loader">
       </div>
     );
 
@@ -91,19 +109,17 @@ const Signin = () => {
       if (user && user.role === 1) {
         return <Redirect to="/admin/dashboard" />;
       } else {
-        return <Redirect to="/blog" />;
+        return <Redirect to="/" />;
       }
     }
     if (isAuthenticated()) {
-      return <Redirect to="/blog" />;
+      return <Redirect to="/" />;
     }
   };
 
   return (
       <div>
-      {showLoading()}
-      {showError()}
-      {signUpForm()}
+      {signInForm()}
       {redirectUser()}
     </div>
   );

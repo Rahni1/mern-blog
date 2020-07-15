@@ -1,0 +1,12 @@
+@mixin transform {
+    -webkit-transform: translateY(3px);
+    -ms-transform: translateY(3px);
+    transform: translateY(3px);
+}
+
+@mixin flex {
+      display: -webkit-box; 
+  display: -ms-flexbox;  
+    display: -webkit-flex;
+    display: flex;
+}

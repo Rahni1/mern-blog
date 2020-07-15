@@ -1,5 +1,5 @@
 .logo {
-  display: flex;
+ @include flex;
   justify-content: center;
   align-items: center;
 }
@@ -7,11 +7,10 @@
 .navbar {
   background-color: $charcoal;
   list-style-type: none;
-  margin-top: -10px;
-  display: flex;
+  margin: 0px;
+ @include flex;
   font-size: 14px;
   width: 100vw;
-  margin-left: -8px;
   align-items: center;
   height: 4rem;
 }
@@ -30,6 +29,9 @@
   font-weight: $bold;
   display: inline-block;
   position: relative;
+}
+.nav-link:hover {
+  color: $white;
 }
 
 

@@ -1,0 +1,157 @@
+// form container 
+form {
+    width: 450px;
+    min-height: 500px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+    padding: 2%;
+    background-image: linear-gradient(-225deg, $grey 50%, $green 50%);
+    @include flex;
+    -webkit-justify-content: center;
+    align-items: center;
+    justify-content: center;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 30px auto;
+}
+
+.auth-error {
+    color: red;
+    text-align: center;
+}
+
+// header
+.form-header {
+    margin: 2% auto 10% auto;
+    text-align: center;
+    font-size: 200%;
+    font-family: $playfair-display;
+    color: $white;
+}
+// autocomplete style
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover, 
+.form-input:-webkit-autofill:focus, 
+.form-input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px $white inset !important;
+    box-shadow: 0 0 0 30px $white inset !important;
+}
+
+/* Show/hide password Icon */
+.eye {
+    background: $white;
+    color: $charcoal;
+    margin-left: -20px;
+    padding: 15px 8px 32px 6px;
+    border-radius: 0px 5px 5px 0px;
+    float: right;
+    position: relative;
+    right: 10%;
+    bottom: -14px;
+    z-index: 5;
+    cursor: pointer;
+}
+// input
+.form-input {
+    height: 50px;
+    margin-top: 4%;
+    padding: 15px;
+    width: 240px;
+    font-size: 16px;
+    font-family: $abel;
+    color: $charcoal;
+    outline: none;
+    border: none;
+    border-radius: 0px 5px 5px 0px;
+    transition: 0.2s linear;
+}
+.form-input:focus {
+     -webkit-transform: translateX(-2px);
+        -ms-transform: translateX(-2px);
+    transform: translateX(-2px);
+}
+
+.form-group {
+    margin-left: 12px;
+}
+
+// buttons
+.submit-auth {
+    display: inline-block;
+    color: $charcoal;
+    width: 270px;
+    height: 50px;
+    padding: 0 0px;
+    background: $white;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s linear;
+    margin: 15% 12px;
+    letter-spacing: 0.05em;
+    &:hover {
+       @include transform;
+        box-shadow: none;
+    }
+}
+
+/*     Sign Up button  */
+.sign-up {
+    display: inline-block;
+    margin-left: 2%;
+}
+
+.sign-up {
+    background: #b8f2e6;
+    &:hover {
+        -webkit-animation: ani9 0.4s ease-in-out infinite alternate;
+        animation: ani9 0.4s ease-in-out infinite alternate;
+    }
+}
+
+.input-icon {
+    background: $white;
+    color: $charcoal;
+    padding: 15.3px 0px 15.3px 10px;
+    border-radius: 5px 0px 0px 5px;
+}
+/* buttons hover Animation */
+@keyframes ani9 {
+    0% {
+       @include transform;
+    }
+    100% {
+        -webkit-transform: translateY(5px);
+        -ms-transform: translateY(5px);
+        transform: translateY(5px);
+    }
+}
+
+// loader
+.loader {
+    border: 12px solid $white; 
+    border-top: 12px solid $grey;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .success, .success-link {
+      color: $white;
+  }
+  
+  .success-link {
+      text-decoration: underline;
+ &:hover {
+      color: $white;
+      text-decoration: underline;
+  }
+}
