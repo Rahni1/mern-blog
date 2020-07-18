@@ -48,20 +48,14 @@ const Navbar = ({ history }) => {
           </span>
         </li>
       )}
-
-      {isAuthenticated() && (
-        <li className="nav-item">
-          <span
-            className="nav-link"
-            onClick={() =>
-              signout(() => {
-                history.push("/");
-              })
-            }>
-            My Articles
-          </span>
-        </li>
-      )}
+     {/* MY ARTICLES */}
+     {isAuthenticated() && (
+      <li className="nav-item">
+        <Link className="nav-link" to="/myblog">
+          My Articles
+        </Link>
+      </li>
+    )}
     </ul>
   );
 };

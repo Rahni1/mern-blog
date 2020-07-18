@@ -12,6 +12,7 @@ import Post from "./core/Post";
 import AdminDashboard from "./user/AdminDashboard";
 import CreatePost from "./core/CreatePost";
 import UpdatePost from "./core/UpdatePost";
+import MyPosts from "./user/MyPosts";
 
 const Routes = () => {
   return (
@@ -22,6 +23,7 @@ const Routes = () => {
         <Route path="/signin" exact component={Signin} />
        <PrivateRoute path="/blog/post" exact component={CreatePost} />
        <Route path="/post/:id" exact component={Post} />
+       <PrivateRoute path="/myblog" exact component={MyPosts} />
       </Switch>
     </BrowserRouter>
   );

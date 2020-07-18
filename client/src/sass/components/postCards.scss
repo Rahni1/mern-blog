@@ -1,0 +1,22 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    grid-auto-rows: minmax(50px, auto);
+}
+.card {
+    color: black;
+    padding: 1rem;
+}
+.card:nth-child(5n + 1) {
+    grid-row-end: span 3;
+}
+.card:nth-child(5n + 3) {
+    grid-row-end: span 3;
+}
+
+ .card:not(:nth-child(5n + 3)).card:not(:nth-child(5n + 1)) {
+    .posts-body {
+        display: none;
+    } 
+ } 

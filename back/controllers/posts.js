@@ -1,6 +1,4 @@
 const Post = require("../models/Post");
-const moment  = require('moment');
-const bodyParser = require('body-parser')
 
 const {
   errorHandler
@@ -24,6 +22,19 @@ exports.list = (req, res) => {
     });
   };
 
+  exports.listPostsBySignedInUser = (req, res) => {
+    Post.find()
+        .populate('user', '_id name')
+        .sort('-created')
+        .exec((err, posts) => {
+            if (err) {
+                return res.status(400).json({
+                    error: errorHandler(error)
+                });
+            }
+            res.json(posts);
+        });
+};
  
 
 exports.create = (req, res) => {
@@ -44,3 +55,4 @@ exports.readById = (req, res) => {
     .then(post => res.json(post))
     .catch(err => res.status(400).json('Error: ' + err));
 }
+

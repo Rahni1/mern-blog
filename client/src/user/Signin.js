@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../auth";
-import GoogleAuth from "./GoogleAuth";
-
 const Signin = () => {
   const [values, setValues] = useState({
     email: "",
@@ -86,7 +84,6 @@ const togglePasswordVisiblity = () => {
           </div>
           {showLoading()}
           {showError()}
-          {/*<GoogleAuth />*/}
     </form>
   )
 
