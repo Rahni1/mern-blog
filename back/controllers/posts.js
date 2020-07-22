@@ -5,22 +5,26 @@ const {
 } = require("../helpers/dbErrorHandler");
 
 exports.list = (req, res) => {
-    Post.find({}, function (err, result) {
-      if (err) {
-        res.send(err);
-      } else {
-       res.send(result)
-       
-    //   const date = moment(result[1, 2, 3].date).format('ll')
-  
-        
+  const sort = { title: 1 };
+  Post.find()
+  .sort(sort)
+ .limit(5)
+ .exec((err, posts) => {
+    if (err) {
+      res.send(err);
+    } 
+     res.send(posts)
+     
+  //   const date = moment(result[1, 2, 3].date).format('ll')
+
+      
 //         let date = result.date 
 // for (date = 0; date < result.length; date++) {
 //   const formatDate = moment(result.date).format('ll');
 //   console.log(formatDate)
-      }
-    });
-  };
+});
+}
+
 
   exports.listPostsBySignedInUser = (req, res) => {
     Post.find()
