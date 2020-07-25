@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur");
+@import url("https://fonts.googleapis.com/css2?family=Asap&display=swap");
 * {
   font-family: "Open Sans", sans-serif;
   -webkit-box-sizing: border-box;
@@ -90,8 +90,13 @@ form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin: 30px auto;
@@ -121,9 +126,9 @@ form {
 /* Show/hide password Icon */
 .eye {
   background: #fff;
-  color: #333;
+  color: #4d4646;
   margin-left: -20px;
-  padding: 15px 18px 32px 6px;
+  padding: 15px 8px 32px 6px;
   border-radius: 0px 5px 5px 0px;
   float: right;
   position: relative;
@@ -153,12 +158,16 @@ form {
   transform: translateX(-2px);
 }
 
+.form-group {
+  margin-left: 12px;
+}
+
 .submit-auth {
   display: inline-block;
   color: #4d4646;
-  width: 280px;
+  width: 270px;
   height: 50px;
-  padding: 0 20px;
+  padding: 0 0px;
   background: #fff;
   border-radius: 5px;
   outline: none;
@@ -167,7 +176,7 @@ form {
   text-align: center;
   -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
-  margin: 15% auto;
+  margin: 15% 12px;
   letter-spacing: 0.05em;
 }
 
@@ -196,7 +205,7 @@ form {
 .input-icon {
   background: #fff;
   color: #4d4646;
-  padding: 16px 0px 15.3px 19px;
+  padding: 15.3px 0px 15.3px 10px;
   border-radius: 5px 0px 0px 5px;
 }
 
@@ -267,7 +276,79 @@ form {
   text-decoration: underline;
 }
 
+.post-container {
+  margin-top: 2rem;
+  width: 60%;
+  margin: 0 auto;
+}
+
 .post-title {
+  padding: 1.5rem 0 0 0;
+  font-size: 30px;
+  font-family: "Playfair Display", serif;
+}
+
+.post-date {
+  text-align: left;
+  color: #5b5656;
   font-family: "Roboto", sans-serif;
+}
+
+.post-body {
+  margin-top: 30px;
+}
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  grid-auto-rows: minmax(50px, auto);
+}
+
+.card,
+.card:hover {
+  color: black;
+  padding: 1rem 1rem 0 1rem;
+}
+
+.posts-title {
+  font-size: 20px;
+}
+
+.card:nth-child(5n + 1) {
+  -ms-grid-row-span: 3;
+      grid-row-end: span 3;
+}
+
+.card:nth-child(5n + 3) {
+  -ms-grid-row-span: 3;
+      grid-row-end: span 3;
+}
+
+.card:not(:nth-child(5n + 3)).card:not(:nth-child(5n + 1)) {
+  padding-bottom: 0;
+}
+
+.card:not(:nth-child(5n + 3)).card:not(:nth-child(5n + 1)) .posts-title {
+  font-size: 17px;
+}
+
+.card:not(:nth-child(5n + 3)).card:not(:nth-child(5n + 1)) .posts-body {
+  display: none;
+}
+
+.home-header, .header-para {
+  font-family: "Asap", sans-serif;
+  color: #4d4646;
+  text-align: center;
+  font-size: 16px;
+  display: block;
+  float: right;
+}
+
+.home-header {
+  font-size: 26px;
 }
 /*# sourceMappingURL=main.css.map */

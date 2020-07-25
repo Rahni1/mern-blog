@@ -1,56 +1,113 @@
-import React from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../auth";
-import { API } from "../config";
+import { createPost } from "./apiCore";
 
-class CreatePost extends React.Component {
-  constructor(props) {
-    super(props);
+const CreatePost = () => {
+  const [values, setValues] = useState({
+    title: "",
+    body: "",
+    photo: "",
+    error: "",
+    createdPost: "",
+    formData: "",
+  });
+  const { user, token } = isAuthenticated();
+  const {
+    title,
+    body,
+    error,
+    createdPost,
+    formData,
+  } = values;
 
-    this.state = {
-      title: "",
-      body: "",
-    };
-  }
-
-  changeHandler = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  // higher order function
+  const handleChange = (name) => (event) => {
+    const value = name === "photo" ? event.target.files[0] : event.target.value;
+    setValues({ ...values, [name]: value, formData: new FormData() });
   };
 
-  submitHandler = (e) => {
-    e.preventDefault();
-    //axios.post(`${API}/blog/post`, this.state)
-    axios({
-      url: `${API}/blog/post`, method: "POST", data: this.state})
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const clickSubmit = (event) => {
+    event.preventDefault();
+    setValues({ ...values, error: "" });
+
+    createPost(user._id, token, formData).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          title: "",
+          body: "",
+          photo: "",
+          createdPost: data.title,
+        });
+      }
+    });
   };
-  render() {
-    const { title, body } = this.state;
-    return (
-      <div>
-        <form onSubmit={this.submitHandler}>
+
+  const newPostForm = () => (
+    <form className="mb-3" onSubmit={clickSubmit}>
+      <h4>Post Photo</h4>
+      <div className="form-group">
+        <label className="btn btn-secondary">
           <input
-            type="text"
-            name="title"
-            onChange={this.changeHandler}
-            value={title}
+            onChange={handleChange("photo")}
+            type="file"
+            name="photo"
+            accept="image/*"
           />
-          <input
-            type="text"
-            name="body"
-            onChange={this.changeHandler}
-            value={body}
-          />
-          <button type="submit">Submit</button>
-        </form>
+        </label>
       </div>
-    );
-  }
-}
+
+      <div className="form-group">
+        <label className="text-muted">Title</label>
+        <input
+          onChange={handleChange("title")}
+          type="text"
+          className="form-control"
+          value={title}
+        />
+      </div>
+
+      <div className="form-group">
+        <label className="text-muted">Post body</label>
+        <textarea
+          onChange={handleChange("body")}
+          className="form-control"
+          value={body}
+        />
+      </div>
+
+      <button className="btn btn-dashboard btn-outline-primary">Create Post</button>
+    </form>
+  );
+  const showError = () => (
+    <div
+      className="alert alert-danger"
+      style={{ display: error ? "" : "none" }}>
+      {error}
+    </div>
+  );
+
+  const showSuccess = () => (
+    <div
+      className="alert alert-info"
+      style={{ display: createdPost ? "" : "none" }}>
+      <h2>{`${createdPost} is created!`}</h2>
+    </div>
+  );
+
+ 
+
+  return (
+      <div className="row">
+        <div className="col-md-8 offset-md-2">
+          {showSuccess()}
+          {showError()}
+          {newPostForm()}
+        </div>
+      </div>
+  );
+};
 
 export default CreatePost;

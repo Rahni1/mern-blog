@@ -1,18 +1,21 @@
 const express = require('express')
 const router = express.Router()
 
-const { list, create, readById } = require('../controllers/posts.js')
+const { list, create, readById, read } = require('../controllers/posts.js')
 const { requireSignin, isAuth } = require('../controllers/auth')
 const { userById } = require('../controllers/user')
-const { listPostsBySignedInUser } = require('../controllers/posts')
+const { listPostsBySignedInUser, photo } = require('../controllers/posts')
 
 router.get('/blog', ( isAuth, list))
-router.post('/blog/post', (isAuth, create))
-router.get('/post/:id', (readById))
+router.get('/post/:id', (readById, read))//  -> get single post 
+
+router.get('/blog/photo/:id', photo, readById) // -> get photo of single post 
+
+router.post('/blog/post/:userId', (isAuth, requireSignin, create)) // -> create single post
+
 //router.delete('/post/:id/:userId', requireSignin, isAuth, isAdmin, remove)
-router.get('/myblog/:userId', requireSignin, isAuth, listPostsBySignedInUser)
+router.get('/myblog/:userId', requireSignin, isAuth, listPostsBySignedInUser) 
 
 router.param("userId", userById);
 
 module.exports = router
-

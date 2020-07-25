@@ -56,6 +56,14 @@ const Navbar = ({ history }) => {
         </Link>
       </li>
     )}
+    {/* CREATE A POST */}
+    {isAuthenticated() && (
+      <li className="nav-item">
+        <Link className="nav-link" to="/blog/post">
+          Write a post
+        </Link>
+      </li>
+    )}
     </ul>
   );
 };

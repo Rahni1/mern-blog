@@ -10,14 +10,18 @@ const postSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        photo: {
+            data: Buffer,
+            contentType: String
+              },
         // author: {
         //     type: String,
         //     required: true
         // },
-        // date: {
-        //     type: Date,
-        //     default: Date.now
-        // },
+        date: {
+            type: Date,
+            default: Date.now
+        },
     }
 )
 
