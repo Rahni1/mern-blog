@@ -61,7 +61,10 @@ const CreatePost = () => {
     <form className="newpost_form" onSubmit={clickSubmit}>
      <div class="image-upload">
   <label for="file-input">
+  <div className="tooltip">
     <img className="img-upload-icon" src={imagesIcon} width="30px" height="30px" />
+  <span class="tooltiptext">Add an image</span>
+</div>
   </label>
 
 <input id="file-input" 
@@ -90,7 +93,7 @@ const CreatePost = () => {
         />
       </div>
 
-      <button className="btn btn-dashboard btn-outline-primary">Publish</button>
+      <button className="btn publish-post-btn">Publish</button>
     </form>
   );
   const showError = () => (

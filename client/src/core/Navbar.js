@@ -6,7 +6,7 @@ import logo from "../img/logo.png";
 const Navbar = ({ history }) => {
   return (
     <ul className="navbar">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img className="logo" src={logo} width="70px" height="70px" />
       </a>
 

@@ -4,14 +4,14 @@
     margin-top: 1rem;
 }
 .newpost_container {
-margin-left: 13rem;
+margin-left: 10.8rem;
 margin-top: 3rem;
 }
 .image-upload>input {
   display: none;
 }
 .img-upload-icon {
-margin-left: .8rem;
+margin-left: 1rem;
 }
 .newpost_field {
     font-family: $playfair-display;
@@ -28,6 +28,39 @@ margin-left: .8rem;
     resize: none;
     font-size: 16px;
     margin-top: 2rem;
-    height: 200px;
+    height: 190px;
     width: 500px;
 }
+
+.publish-post-btn {
+    margin-left: 1rem;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 80px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid $grey;
+    color: $grey;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 2px;
+    font-size: 10px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  
