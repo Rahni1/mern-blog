@@ -7,11 +7,11 @@ const { userById } = require('../controllers/user')
 const { listPostsBySignedInUser, photo } = require('../controllers/posts')
 
 router.get('/blog', ( isAuth, list))
-router.get('/post/:id', (readById, read))//  -> get single post 
+router.get('/blog/post/:id', (readById, read))//  -> get single post 
 
 router.get('/blog/photo/:id', photo, readById) // -> get photo of single post 
 
-router.post('/blog/post/:userId', (isAuth, requireSignin, create)) // -> create single post
+router.post('/new-post/:userId', (isAuth, requireSignin, create)) // -> create single post
 
 //router.delete('/post/:id/:userId', requireSignin, isAuth, isAdmin, remove)
 router.get('/myblog/:userId', requireSignin, isAuth, listPostsBySignedInUser) 

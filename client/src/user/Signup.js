@@ -51,8 +51,8 @@ const Signup = () => {
   };
 
   const signUpForm = () => (
-    <form>
-    <div className="form-container">
+    <form className="form-container">
+    <div>
     <h2 className="form-header">Sign Up</h2>
       <div className="form-group">
       <span className="input-icon">

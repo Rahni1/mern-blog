@@ -59,7 +59,7 @@ const Navbar = ({ history }) => {
     {/* CREATE A POST */}
     {isAuthenticated() && (
       <li className="nav-item">
-        <Link className="nav-link" to="/blog/post">
+        <Link className="nav-link" to="/new-post">
           Write a post
         </Link>
       </li>

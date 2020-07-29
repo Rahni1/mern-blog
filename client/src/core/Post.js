@@ -9,7 +9,8 @@ const Post = props => {
   const loadSinglePost = id => {
     read(id).then(data => {
       if (data.error) {
-        setError(data.error);
+        console.log(data.error)
+        setError(data.error);       
       } else {
         console.log(data)
         setPost(data);

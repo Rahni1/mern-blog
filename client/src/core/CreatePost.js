@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../auth";
 import { createPost } from "./apiCore";
+import Navbar from './Navbar'
+import imagesIcon from '../img/image.png'
+import { Link } from "react-router-dom";
 
 const CreatePost = () => {
   const [values, setValues] = useState({
@@ -19,6 +22,15 @@ const CreatePost = () => {
     createdPost,
     formData,
   } = values;
+
+  const init = () => {
+        setValues({ ...values, formData: new FormData() });
+  }
+
+  useEffect(() => {
+    init();
+  }, []);
+
 
   // higher order function
   const handleChange = (name) => (event) => {
@@ -46,39 +58,39 @@ const CreatePost = () => {
   };
 
   const newPostForm = () => (
-    <form className="mb-3" onSubmit={clickSubmit}>
-      <h4>Post Photo</h4>
-      <div className="form-group">
-        <label className="btn btn-secondary">
-          <input
-            onChange={handleChange("photo")}
+    <form className="newpost_form" onSubmit={clickSubmit}>
+     <div class="image-upload">
+  <label for="file-input">
+    <img className="img-upload-icon" src={imagesIcon} width="30px" height="30px" />
+  </label>
+
+<input id="file-input" 
+  onChange={handleChange("photo")}
             type="file"
             name="photo"
-            accept="image/*"
-          />
-        </label>
-      </div>
+            accept="image/*" />
+</div>
 
       <div className="form-group">
-        <label className="text-muted">Title</label>
         <input
           onChange={handleChange("title")}
           type="text"
-          className="form-control"
+          placeholder="Title"
+          className="newpost_field newpost_title"
           value={title}
         />
       </div>
 
       <div className="form-group">
-        <label className="text-muted">Post body</label>
         <textarea
           onChange={handleChange("body")}
-          className="form-control"
+          className="newpost_field newpost_textarea"
           value={body}
+          placeholder="Post Content"
         />
       </div>
 
-      <button className="btn btn-dashboard btn-outline-primary">Create Post</button>
+      <button className="btn btn-dashboard btn-outline-primary">Publish</button>
     </form>
   );
   const showError = () => (
@@ -100,13 +112,16 @@ const CreatePost = () => {
  
 
   return (
-      <div className="row">
+    <>
+    <Navbar />
+      <div className="newpost_container">
         <div className="col-md-8 offset-md-2">
           {showSuccess()}
           {showError()}
           {newPostForm()}
         </div>
       </div>
+      </>
   );
 };
 

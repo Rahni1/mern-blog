@@ -1,5 +1,6 @@
 const formidable = require('formidable')
 const _ = require('lodash')
+const moment = require('moment')
 const fs = require('fs')
 const Post = require("../models/Post");
 
@@ -25,14 +26,8 @@ exports.list = (req, res) => {
     } 
      res.send(posts)
      
-  //   const date = moment(result[1, 2, 3].date).format('ll')
-
-      
-//         let date = result.date 
-// for (date = 0; date < result.length; date++) {
-//   const formatDate = moment(result.date).format('ll');
-//   console.log(formatDate)
-});
+  // const date = moment(date).format('ll')
+  })
 }
 
 
@@ -52,11 +47,11 @@ exports.list = (req, res) => {
  
 
 exports.create = (req, res) => {
-  let form = new formidable()
+  let form = new formidable.IncomingForm()
   form.keepExtensions = true
   form.parse(req, (err, fields, files) => {
   if(err) {
-    console.log(fields, files)
+
     console.log(err)
       return res.status(400).json({
           error: 'Image could not be uploaded'
@@ -65,7 +60,6 @@ exports.create = (req, res) => {
   
   // check for all fields
   const { title, body } = fields
-  console.log(fields)
   if (!title || !body) {
   return res.status(400).json({
       error: "All fields are required"

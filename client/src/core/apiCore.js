@@ -1,7 +1,7 @@
 import {API} from '../config'
 
 export const createPost = (userId, post, token) => {
-    return fetch(`${API}/blog/post/${userId}`, {
+    return fetch(`${API}/new-post/${userId}`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
