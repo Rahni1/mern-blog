@@ -17,8 +17,13 @@
 
 .nav-link,
 .navbar-brand {
-  margin-right: 4rem;
+   margin-right: 4rem;
+   margin-left: auto;
   color: $beige;
+}
+
+.navbar-brand {
+ margin: 0 auto 0 0;
 }
 .nav-item {
   position: relative;
@@ -53,6 +58,3 @@
   width: 100%;
   left: 0;
 }
-
-
-

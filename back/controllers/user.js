@@ -8,7 +8,15 @@ exports.userById = (req, res, next, id) => {
                 error: 'User not found'
             });
         }
-        req.profile = user;
+    console.log('id retrieved')
         next();
     });
 };
+
+exports.listPostsBySignedInUser = (req, res) => {
+    Post.find({ user: req.profile.id })
+    .then(posts => res.status(200).json(posts))
+    .catch(err =>
+    console.log(err)
+    )
+}

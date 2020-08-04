@@ -18,7 +18,7 @@ export const createPost = (userId, post, token) => {
 };
 
 export const read = id => {
-    return fetch(`${API}/post/${id}`, {
+    return fetch(`${API}/blog/post/${id}`, {
         method: 'GET'
     })
     .then(response => {

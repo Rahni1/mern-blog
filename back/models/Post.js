@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const {ObjectId} = mongoose.Schema.Types
 const postSchema = new mongoose.Schema(
     {
         title: {
@@ -14,10 +14,10 @@ const postSchema = new mongoose.Schema(
             data: Buffer,
             contentType: String
               },
-        // author: {
-        //     type: String,
-        //     required: true
-        // },
+        postedBy: {
+            type: ObjectId,
+            ref: "User"
+        },
         date: {
             type: Date,
             default: Date.now

@@ -3,7 +3,6 @@ import { isAuthenticated } from "../auth";
 import { createPost } from "./apiCore";
 import Navbar from './Navbar'
 import imagesIcon from '../img/image.png'
-import { Link } from "react-router-dom";
 
 const CreatePost = () => {
   const [values, setValues] = useState({
@@ -98,7 +97,7 @@ const CreatePost = () => {
   );
   const showError = () => (
     <div
-      className="alert alert-danger"
+      className="create-post-error"
       style={{ display: error ? "" : "none" }}>
       {error}
     </div>
@@ -106,7 +105,7 @@ const CreatePost = () => {
 
   const showSuccess = () => (
     <div
-      className="alert alert-info"
+      className="create-post-success"
       style={{ display: createdPost ? "" : "none" }}>
       <h2>{`${createdPost} is created!`}</h2>
     </div>
@@ -119,9 +118,9 @@ const CreatePost = () => {
     <Navbar />
       <div className="newpost_container">
         <div className="col-md-8 offset-md-2">
+          {newPostForm()}
           {showSuccess()}
           {showError()}
-          {newPostForm()}
         </div>
       </div>
       </>

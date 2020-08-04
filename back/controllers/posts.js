@@ -17,6 +17,7 @@ exports.read = (req, res) => {
 exports.list = (req, res) => {
   const sort = { title: 1 };
   Post.find()
+  .populate("postedBy", "_id name")
   .select("-photo")
   .sort(sort)
  .limit(5)
@@ -25,68 +26,75 @@ exports.list = (req, res) => {
       res.send(err);
     } 
      res.send(posts)
-     
   // const date = moment(date).format('ll')
   })
 }
 
-
-  exports.listPostsBySignedInUser = (req, res) => {
-    Post.find()
-        .populate('user', '_id name')
-        .sort('-created')
-        .exec((err, posts) => {
-            if (err) {
-                return res.status(400).json({
-                    error: errorHandler(error)
-                });
-            }
-            res.json(posts);
-        });
-};
  
 
 exports.create = (req, res) => {
-  let form = new formidable.IncomingForm()
-  form.keepExtensions = true
-  form.parse(req, (err, fields, files) => {
-  if(err) {
+  const {title, body} = req.body
 
-    console.log(err)
-      return res.status(400).json({
-          error: 'Image could not be uploaded'
-      })
-  }
-  
-  // check for all fields
-  const { title, body } = fields
   if (!title || !body) {
-  return res.status(400).json({
-      error: "All fields are required"
-  })
+    return res.status(404).json({error: "Please fill out every field."})
   }
+
+  req.user.password = undefined
+
+  const post = new Post({
+    title,
+    body,
+    postedBy: req.user
+  })
+  post.save().then(result => {
+    res.json({post: result})
+  })
+.catch(err => {
+  console.log(err)
+})
+}
+
+//   let form = new formidable.IncomingForm()
+//   form.keepExtensions = true
+//   form.parse(req, (err, fields, files) => {
+//   if(err) {
+
+//     console.log(err)
+//       return res.status(400).json({
+//           error: 'Image could not be uploaded'
+//       })
+//   }
   
-  let post = new Post(fields)
+//   // check for all fields
+//  const { title, body } = fields
+//   if (!title || !body) {
+//   return res.status(400).json({
+//       error: "All fields are required"
+//   })
+//   }
   
-  if(files.photo) {
-      if (files.photo.size > 1000000) {
-          return res.status(400).json({
-              error: "Image should be less than 1MB in size."
-          })
-      }
-      post.photo.data = fs.readFileSync(files.photo.path)
-  post.photo.contentType = files.photo.type
-  }
-  post.save((err, result) => {
-  if(err) {
-  return res.status(400).json({
-      error: errorHandler(err)
-  })
-  }
-  res.json(result)
-  })
-  })
-  }
+//   let post = new Post({fields,
+//      postedBy: req.user})
+  
+//   if(files.photo) {
+//       if (files.photo.size > 1000000) {
+//           return res.status(400).json({
+//               error: "Image should be less than 1MB in size."
+//           })
+//       }
+//       post.photo.data = fs.readFileSync(files.photo.path)
+//   post.photo.contentType = files.photo.type
+//   }
+//   post.save((err, result) => {
+//   if(err) {
+//   return res.status(400).json({
+//       error: errorHandler(err)
+//   })
+//   }
+//   res.json(result)
+//   })
+//   })
+//   }
 
 exports.readById = (req, res) => {
   Post.findById(req.params.id)
@@ -95,10 +103,9 @@ exports.readById = (req, res) => {
 }
 
 
-exports.photo = (req, res, next) => {
-  if (req.post.photo.data) {
-      res.set('Content-Type', req.post.photo.contentType)
-      return res.send(req.post.photo.data)
-  }
-  next()
-}
+// exports.photo = (req, res, next) => {
+//   if (req.post.photo.data) {
+//       res.set('Content-Type', req.post.photo.contentType)
+//       return res.send(req.post.photo.data)
+//   }
+  // next()

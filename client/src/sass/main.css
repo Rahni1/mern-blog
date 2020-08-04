@@ -28,7 +28,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-size: 14px;
+  font-size: 12px;
   width: 100vw;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -39,7 +39,12 @@
 .nav-link,
 .navbar-brand {
   margin-right: 4rem;
+  margin-left: auto;
   color: #f5eaea;
+}
+
+.navbar-brand {
+  margin: 0 auto 0 0;
 }
 
 .nav-item {
@@ -78,7 +83,7 @@
   left: 0;
 }
 
-form {
+.form-container {
   width: 450px;
   min-height: 500px;
   height: auto;
@@ -274,6 +279,117 @@ form {
 .success-link:hover {
   color: #fff;
   text-decoration: underline;
+}
+
+.newpost_title {
+  font-size: 30px;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.newpost_container {
+  margin-left: 10.8rem;
+  margin-top: 3rem;
+}
+
+.image-upload > input {
+  display: none;
+}
+
+.img-upload-icon {
+  margin-left: 1rem;
+}
+
+.newpost_field {
+  font-family: "Playfair Display", serif;
+}
+
+.newpost_field::-webkit-input-placeholder {
+  color: #9e9e9e;
+}
+
+.newpost_field:-ms-input-placeholder {
+  color: #9e9e9e;
+}
+
+.newpost_field::-ms-input-placeholder {
+  color: #9e9e9e;
+}
+
+.newpost_field::placeholder {
+  color: #9e9e9e;
+}
+
+.newpost_field, .newpost_field:focus {
+  outline: none;
+  border: none;
+}
+
+.newpost_textarea {
+  resize: none;
+  font-size: 16px;
+  margin-top: 2rem;
+  height: 190px;
+  width: 500px;
+}
+
+.publish-post-btn {
+  background-color: #7fcd91;
+  border: 1px #7fcd91 solid;
+  padding: 5px 10px 5px 10px;
+  border-radius: 12%;
+  color: white;
+}
+
+.newpost_field::-moz-selection {
+  background-color: #7fcd91;
+}
+
+.newpost_field::selection {
+  background-color: #7fcd91;
+}
+
+.publish-post-btn {
+  float: right;
+  margin-right: 18rem;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: white;
+  border: 1px solid #5b5656;
+  color: #5b5656;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 2px;
+  font-size: 10px;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.create-post-error, .create-post-success {
+  margin-top: -4rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.create-post-error {
+  color: red;
+}
+
+.create-post-success {
+  color: #7fcd91;
 }
 
 .post-container {

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../auth";
+import Navbar from '../core/Navbar'
+
 const Signin = () => {
   const [values, setValues] = useState({
     email: "",
@@ -19,7 +21,6 @@ const Signin = () => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  // Signin.js
   const clickSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
@@ -38,7 +39,6 @@ const Signin = () => {
       })
       .catch(exc => {
         console.error("+++ exc signin: ", exc);
-        // we log error
         setValues({ ...values, error: exc.message, loading: false });
       });
   };

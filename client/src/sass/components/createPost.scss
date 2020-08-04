@@ -33,7 +33,18 @@ margin-left: 1rem;
 }
 
 .publish-post-btn {
-    margin-left: 1rem;
+  background-color: $green;
+  border: 1px $green solid;
+  padding: 5px 10px 5px 10px;
+  border-radius: 12%;
+  color: white;
+}
+.newpost_field::selection {
+  background-color: $green;
+}
+.publish-post-btn {
+    float: right;
+    margin-right: 18rem;
 }
 
 .tooltip {
@@ -52,15 +63,26 @@ margin-left: 1rem;
     margin-top: 20px;
     margin-left: 2px;
     font-size: 10px;
-   
-    /* Position the tooltip text - see examples below! */
     position: absolute;
     z-index: 1;
   }
-  
-  /* Show the tooltip text when you mouse over the tooltip container */
+
   .tooltip:hover .tooltiptext {
     visibility: visible;
   }
 
   
+  .create-post-error, .create-post-success {
+    margin-top: -4rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+  }
+
+  .create-post-error {
+      color: red;
+  }
+
+  .create-post-success {
+      color: $green;
+
+  }
