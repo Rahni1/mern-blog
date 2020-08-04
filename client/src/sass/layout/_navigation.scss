@@ -9,7 +9,7 @@
   list-style-type: none;
   margin: 0px;
  @include flex;
-  font-size: 14px;
+  font-size: 12px;
   width: 100vw;
   align-items: center;
   height: 4rem;
@@ -17,8 +17,13 @@
 
 .nav-link,
 .navbar-brand {
-  margin-right: 4rem;
+   margin-right: 4rem;
+   margin-left: auto;
   color: $beige;
+}
+
+.navbar-brand {
+ margin: 0 auto 0 0;
 }
 .nav-item {
   position: relative;
@@ -53,6 +58,3 @@
   width: 100%;
   left: 0;
 }
-
-
-

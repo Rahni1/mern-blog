@@ -1,13 +1,13 @@
 import {API} from '../config'
 
-export const createPost = (post) => {
-    return fetch(`${API}/blog/post/create`, {
+export const createPost = (userId, post, token) => {
+    return fetch(`${API}/new-post/${userId}`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/json'
+            Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(post)
+        body: post
     })
         .then(response => {
             return response.json();
@@ -18,7 +18,7 @@ export const createPost = (post) => {
 };
 
 export const read = id => {
-    return fetch(`${API}/post/${id}`, {
+    return fetch(`${API}/blog/post/${id}`, {
         method: 'GET'
     })
     .then(response => {

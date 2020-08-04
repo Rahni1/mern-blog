@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur");
+@import url("https://fonts.googleapis.com/css2?family=Asap&display=swap");
 * {
   font-family: "Open Sans", sans-serif;
   -webkit-box-sizing: border-box;
@@ -28,7 +28,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-size: 14px;
+  font-size: 12px;
   width: 100vw;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -39,7 +39,12 @@
 .nav-link,
 .navbar-brand {
   margin-right: 4rem;
+  margin-left: auto;
   color: #f5eaea;
+}
+
+.navbar-brand {
+  margin: 0 auto 0 0;
 }
 
 .nav-item {
@@ -78,7 +83,7 @@
   left: 0;
 }
 
-form {
+.form-container {
   width: 450px;
   min-height: 500px;
   height: auto;
@@ -90,8 +95,13 @@ form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin: 30px auto;
@@ -121,9 +131,9 @@ form {
 /* Show/hide password Icon */
 .eye {
   background: #fff;
-  color: #333;
+  color: #4d4646;
   margin-left: -20px;
-  padding: 15px 18px 32px 6px;
+  padding: 15px 8px 32px 6px;
   border-radius: 0px 5px 5px 0px;
   float: right;
   position: relative;
@@ -153,12 +163,16 @@ form {
   transform: translateX(-2px);
 }
 
+.form-group {
+  margin-left: 12px;
+}
+
 .submit-auth {
   display: inline-block;
   color: #4d4646;
-  width: 280px;
+  width: 270px;
   height: 50px;
-  padding: 0 20px;
+  padding: 0 0px;
   background: #fff;
   border-radius: 5px;
   outline: none;
@@ -167,7 +181,7 @@ form {
   text-align: center;
   -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
-  margin: 15% auto;
+  margin: 15% 12px;
   letter-spacing: 0.05em;
 }
 
@@ -196,7 +210,7 @@ form {
 .input-icon {
   background: #fff;
   color: #4d4646;
-  padding: 16px 0px 15.3px 19px;
+  padding: 15.3px 0px 15.3px 10px;
   border-radius: 5px 0px 0px 5px;
 }
 
@@ -267,7 +281,190 @@ form {
   text-decoration: underline;
 }
 
+.newpost_title {
+  font-size: 30px;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.newpost_container {
+  margin-left: 10.8rem;
+  margin-top: 3rem;
+}
+
+.image-upload > input {
+  display: none;
+}
+
+.img-upload-icon {
+  margin-left: 1rem;
+}
+
+.newpost_field {
+  font-family: "Playfair Display", serif;
+}
+
+.newpost_field::-webkit-input-placeholder {
+  color: #9e9e9e;
+}
+
+.newpost_field:-ms-input-placeholder {
+  color: #9e9e9e;
+}
+
+.newpost_field::-ms-input-placeholder {
+  color: #9e9e9e;
+}
+
+.newpost_field::placeholder {
+  color: #9e9e9e;
+}
+
+.newpost_field, .newpost_field:focus {
+  outline: none;
+  border: none;
+}
+
+.newpost_textarea {
+  resize: none;
+  font-size: 16px;
+  margin-top: 2rem;
+  height: 190px;
+  width: 500px;
+}
+
+.publish-post-btn {
+  background-color: #7fcd91;
+  border: 1px #7fcd91 solid;
+  padding: 5px 10px 5px 10px;
+  border-radius: 12%;
+  color: white;
+}
+
+.newpost_field::-moz-selection {
+  background-color: #7fcd91;
+}
+
+.newpost_field::selection {
+  background-color: #7fcd91;
+}
+
+.publish-post-btn {
+  float: right;
+  margin-right: 18rem;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: white;
+  border: 1px solid #5b5656;
+  color: #5b5656;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 2px;
+  font-size: 10px;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.create-post-error, .create-post-success {
+  margin-top: -4rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.create-post-error {
+  color: red;
+}
+
+.create-post-success {
+  color: #7fcd91;
+}
+
+.post-container {
+  margin-top: 2rem;
+  width: 60%;
+  margin: 0 auto;
+}
+
 .post-title {
+  padding: 1.5rem 0 0 0;
+  font-size: 30px;
+  font-family: "Playfair Display", serif;
+}
+
+.post-date {
+  text-align: left;
+  color: #5b5656;
   font-family: "Roboto", sans-serif;
+}
+
+.post-body {
+  margin-top: 30px;
+}
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  grid-auto-rows: minmax(50px, auto);
+}
+
+.card,
+.card:hover {
+  color: black;
+  padding: 1rem 1rem 0 1rem;
+}
+
+.posts-title {
+  font-size: 20px;
+}
+
+.card:nth-child(5n + 1) {
+  -ms-grid-row-span: 3;
+      grid-row-end: span 3;
+}
+
+.card:nth-child(5n + 3) {
+  -ms-grid-row-span: 3;
+      grid-row-end: span 3;
+}
+
+.card:not(:nth-child(5n + 3)).card:not(:nth-child(5n + 1)) {
+  padding-bottom: 0;
+}
+
+.card:not(:nth-child(5n + 3)).card:not(:nth-child(5n + 1)) .posts-title {
+  font-size: 17px;
+}
+
+.card:not(:nth-child(5n + 3)).card:not(:nth-child(5n + 1)) .posts-body {
+  display: none;
+}
+
+.home-header, .header-para {
+  font-family: "Asap", sans-serif;
+  color: #4d4646;
+  text-align: center;
+  font-size: 16px;
+  display: block;
+  float: right;
+}
+
+.home-header {
+  font-size: 26px;
 }
 /*# sourceMappingURL=main.css.map */

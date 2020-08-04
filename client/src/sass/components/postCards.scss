@@ -1,0 +1,31 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    grid-auto-rows: minmax(50px, auto);
+}
+.card,
+.card:hover {
+    color: black;
+    padding: 1rem 1rem 0 1rem;
+}
+.posts-title {
+    font-size: 20px;
+}
+.card:nth-child(5n + 1) {
+    grid-row-end: span 3;
+}
+.card:nth-child(5n + 3) {
+    grid-row-end: span 3;
+}
+
+.card:not(:nth-child(5n + 3)).card:not(:nth-child(5n + 1)) {
+    padding-bottom: 0;
+
+    .posts-title {
+        font-size: 17px;
+    }
+    .posts-body {
+        display: none;
+    }
+}

@@ -6,30 +6,29 @@ import PrivateRoute from "./auth/PrivateRoute";
 import Home from "./core/Home";
 import Signin from "./user/Signin";
 import Signup from "./user/Signup";
-import Blog from "./core/Blog";
-import ListPosts from "./core/ListPosts";
 import Post from "./core/Post";
 import AdminDashboard from "./user/AdminDashboard";
 import CreatePost from "./core/CreatePost";
 import UpdatePost from "./core/UpdatePost";
+import postsByUser from "./user/postsByUser";
 
-const Routes = () => {
-  return (
+const Routes = () => (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
-       <PrivateRoute path="/blog/post" exact component={CreatePost} />
-       <Route path="/post/:id" exact component={Post} />
+       <PrivateRoute path="/new-post/:userId" exact component={CreatePost} />
+       <Route path="/blog/post/:id" exact component={Post} />
+       <PrivateRoute path="/my/posts/:userId" exact component={postsByUser} />
+       <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
       </Switch>
     </BrowserRouter>
   );
-};
 
 export default Routes;
 
-//         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
+//        
 // <PrivateRoute
 // exact
 // path="/blog/post/update/:id"

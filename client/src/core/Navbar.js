@@ -4,36 +4,56 @@ import { signout, isAuthenticated } from "../auth";
 import logo from "../img/logo.png";
 
 const Navbar = ({ history }) => {
-  return (
+const {
+  user: { _id },
+} = isAuthenticated();
+return (
     <ul className="navbar">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img className="logo" src={logo} width="70px" height="70px" />
       </a>
 
-      {/* ADMIN DASHBOARD */}
-      {isAuthenticated() && isAuthenticated().user.role === 1 && (
-        <li className="nav-item">
-          <Link className="nav-link" to="/admin/dashboard">
-            Dashboard
-          </Link>
-        </li>
-      )}
-
+       {/* My Posts */}
+     {isAuthenticated() && (
+      <li className="nav-item">
+        <Link className="nav-link left-link" to={`/my/posts/${_id}`}>
+          My Posts
+        </Link>
+      </li>
+    )}
+    {/* CREATE A POST */}
+    {isAuthenticated() && (
+      <li className="nav-item">
+        <Link className="nav-link left-link" to={`/new-post/${_id}`}>
+          Write a post
+        </Link>
+      </li>
+    )}
+    
       {/* SIGNIN / SIGNUP */}
       {!isAuthenticated() && (
         <Fragment>
           <li className="nav-item">
             <Link className="nav-link" to="/signin">
-              Signin
+              Sign In
             </Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/signup">
-              Signup
+              Sign Up
             </Link>
           </li>
         </Fragment>
       )}
+        {/* ADMIN DASHBOARD */}
+        {isAuthenticated() && isAuthenticated().user.role === 1 && (
+          <li className="nav-item">
+            <Link className="nav-link left-link" to="/admin/dashboard">
+              Dashboard
+            </Link>
+          </li>
+        )}
+        
       {/* SIGNOUT */}
       {isAuthenticated() && (
         <li className="nav-item">
@@ -44,26 +64,13 @@ const Navbar = ({ history }) => {
                 history.push("/");
               })
             }>
-            Signout
+            Sign Out
           </span>
         </li>
       )}
-
-      {isAuthenticated() && (
-        <li className="nav-item">
-          <span
-            className="nav-link"
-            onClick={() =>
-              signout(() => {
-                history.push("/");
-              })
-            }>
-            My Articles
-          </span>
-        </li>
-      )}
+    
     </ul>
   );
-};
+          }
 
 export default withRouter(Navbar);
