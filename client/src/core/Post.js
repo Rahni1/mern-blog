@@ -12,7 +12,6 @@ const Post = props => {
         console.log(data.error)
         setError(data.error);       
       } else {
-        console.log(data)
         setPost(data);
       }
     });
@@ -20,7 +19,6 @@ const Post = props => {
 
   useEffect(() => {
     const id = props.match.params.id;
-    console.log(id)
     loadSinglePost(id);
   }, [props]);
 

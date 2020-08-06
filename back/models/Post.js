@@ -14,10 +14,13 @@ const postSchema = new mongoose.Schema(
             data: Buffer,
             contentType: String
               },
-        postedBy: {
+        author: {
+        //   id: { 
             type: ObjectId,
             ref: "User"
         },
+        // username: String
+    // },
         date: {
             type: Date,
             default: Date.now

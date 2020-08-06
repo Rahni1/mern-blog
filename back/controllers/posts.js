@@ -3,13 +3,14 @@ const _ = require('lodash')
 const moment = require('moment')
 const fs = require('fs')
 const Post = require("../models/Post");
+const User = require("../models/User")
 
 const {
   errorHandler
 } = require("../helpers/dbErrorHandler");
 
 exports.read = (req, res) => {
-  req.post.photo = undefined
+  // req.post.photo = undefined
   return res.json(req.post)
 }
 
@@ -17,7 +18,7 @@ exports.read = (req, res) => {
 exports.list = (req, res) => {
   const sort = { title: 1 };
   Post.find()
-  .populate("postedBy", "_id name")
+  // .populate("author", "_id name")
   .select("-photo")
   .sort(sort)
  .limit(5)
@@ -33,27 +34,20 @@ exports.list = (req, res) => {
  
 
 exports.create = (req, res) => {
-  const {title, body} = req.body
+ const {title, body, date } = req.body
+ let user = req.profile
 
-  if (!title || !body) {
-    return res.status(404).json({error: "Please fill out every field."})
-  }
+  const post = new Post({title, body, date, author: user})
 
-  req.user.password = undefined
+  post.save()
+  .then(response => {res.send(response)})
+    .catch(err => {
+      res.send(err)
+      })
+    }
 
-  const post = new Post({
-    title,
-    body,
-    postedBy: req.user
-  })
-  post.save().then(result => {
-    res.json({post: result})
-  })
-.catch(err => {
-  console.log(err)
-})
-}
 
+    // UPLOAD PHOTOS 
 //   let form = new formidable.IncomingForm()
 //   form.keepExtensions = true
 //   form.parse(req, (err, fields, files) => {
@@ -65,7 +59,7 @@ exports.create = (req, res) => {
 //       })
 //   }
   
-//   // check for all fields
+  // check for all fields
 //  const { title, body } = fields
 //   if (!title || !body) {
 //   return res.status(400).json({
@@ -74,7 +68,7 @@ exports.create = (req, res) => {
 //   }
   
 //   let post = new Post({fields,
-//      postedBy: req.user})
+//      author: req.user})
   
 //   if(files.photo) {
 //       if (files.photo.size > 1000000) {
@@ -85,16 +79,15 @@ exports.create = (req, res) => {
 //       post.photo.data = fs.readFileSync(files.photo.path)
 //   post.photo.contentType = files.photo.type
 //   }
-//   post.save((err, result) => {
-//   if(err) {
-//   return res.status(400).json({
-//       error: errorHandler(err)
-//   })
-//   }
-//   res.json(result)
-//   })
-//   })
-//   }
+  // post.save((err, result) => {
+  // if(err) {
+  // return res.status(400).json({
+  //     error: errorHandler(err)
+  // })
+  // }
+  // res.json(result)
+  // })
+
 
 exports.readById = (req, res) => {
   Post.findById(req.params.id)

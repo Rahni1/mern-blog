@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-import { API } from './ListPosts'
+import { API } from '../config'
 
 class ListPosts extends React.Component {
     state = {
@@ -18,7 +18,7 @@ class ListPosts extends React.Component {
 
 // fetch posts using axios
     getPost = () => {
-        axios.get('http://localhost:8000/blog')
+        axios.get(`${API}/blog`)
         .then((response) => {
             const data = response.data
             this.setState({posts: data})

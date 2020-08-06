@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Post = require("../models/Post")
 
 // get userId
 exports.userById = (req, res, next, id) => {
@@ -8,15 +9,31 @@ exports.userById = (req, res, next, id) => {
                 error: 'User not found'
             });
         }
-    console.log('id retrieved')
+        req.profile = user;
+        // res.json(req.profile._id)
         next();
     });
 };
 
-exports.listPostsBySignedInUser = (req, res) => {
-    Post.find({ user: req.profile.id })
-    .then(posts => res.status(200).json(posts))
-    .catch(err =>
-    console.log(err)
-    )
+exports.listPostsBySignedInUser = (req, res, id) => {
+User.findOne({id: req.profile._id})
+.select("-password")
+.then(user => {
+     Post.find({author: req.profile._id})
+     .populate("author","_id name")
+     .exec((err,posts) => {
+         if(err){
+            return res.status(422).json({error: err})
+         }
+         let user = req.profile 
+         return res.status(200).json({user, posts})
+     })
+}).catch(err=>{
+    return res.status(404).json({error:"User not found"})
+})
 }
+
+
+// exports.listPostsBySignedInUser = (req, res) => {
+//    res.json('authenticated')
+//     }

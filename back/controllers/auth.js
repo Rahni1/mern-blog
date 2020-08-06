@@ -44,6 +44,7 @@ exports.signin = (req, res) => {
         // return response with user and token to frontend client
         const { _id, name, email, role } = user;
         console.log({user: {_id}})
+        console.log({token})
         return res.json({ token, user: { _id, email, name, role } });
     });
 };
