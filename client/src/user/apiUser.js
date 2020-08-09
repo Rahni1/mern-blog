@@ -1,5 +1,4 @@
 import {API} from '../config'
-import axios from 'axios'
 
 export const postsByUser = (userId, token) => {
 return fetch(`${API}/my/posts/${userId}`, {

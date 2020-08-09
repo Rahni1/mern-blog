@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import {API} from '../config'
+import {isAuthenticated} from '../auth'
+
  class CreatePost extends React.Component {
      constructor(props) {
          super(props)
@@ -15,9 +17,12 @@ import {API} from '../config'
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    submitHandler = e => {
+    submitHandler = (e) => {
         e.preventDefault()
-        axios({ url: `${API}/new-post`, method: 'POST', data: this.state})
+        const {
+            user: { _id },
+          } = isAuthenticated();
+        axios({ url: `${API}/new-post/${_id}`, method: 'POST', data: this.state})
         .then(response => {
             console.log(response)
         }).catch(error => {
@@ -104,11 +109,11 @@ export default CreatePost
 
 //   const newPostForm = () => (
 //     <form className="newpost_form" onSubmit={clickSubmit}>
-//      <div class="image-upload">
+//      <div className="image-upload">
 //   <label for="file-input">
 //   <div className="tooltip">
 //     <img className="img-upload-icon" src={imagesIcon} width="30px" height="30px" />
-//   <span class="tooltiptext">Add an image</span>
+//   <span className="tooltiptext">Add an image</span>
 // </div>
 //   </label>
 

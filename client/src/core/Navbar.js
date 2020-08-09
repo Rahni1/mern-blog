@@ -9,14 +9,14 @@ const {
 } = isAuthenticated();
 return (
     <ul className="navbar">
-      <a class="navbar-brand" href="/">
-        <img className="logo" src={logo} width="70px" height="70px" />
+      <a className="navbar-brand" href="/">
+        <img className="logo" src={logo} alt="Logo" width="70px" height="70px" />
       </a>
 
        {/* My Posts */}
      {isAuthenticated() && (
       <li className="nav-item">
-        <Link className="nav-link left-link" to={`/my/posts/${_id}`}>
+        <Link className="nav-link left-link" to={`/my/posts`}>
           My Posts
         </Link>
       </li>

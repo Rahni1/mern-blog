@@ -15,12 +15,17 @@ const postSchema = new mongoose.Schema(
             contentType: String
               },
         author: {
-        //   id: { 
+         id: { 
             type: ObjectId,
-            ref: "User"
+            ref: "User",
+            required: true
         },
-        // username: String
-    // },
+          name: {
+            type: String,
+            ref: "User",
+            required: true
+        },
+     },
         date: {
             type: Date,
             default: Date.now

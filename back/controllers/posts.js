@@ -18,15 +18,15 @@ exports.read = (req, res) => {
 exports.list = (req, res) => {
   const sort = { title: 1 };
   Post.find()
-  // .populate("author", "_id name")
+   //  .populate("author", "id name")
   .select("-photo")
   .sort(sort)
  .limit(5)
  .exec((err, posts) => {
     if (err) {
-      res.send(err);
+      return res.send(err);
     } 
-     res.send(posts)
+     return res.send(posts)
   // const date = moment(date).format('ll')
   })
 }
@@ -35,10 +35,9 @@ exports.list = (req, res) => {
 
 exports.create = (req, res) => {
  const {title, body, date } = req.body
- let user = req.profile
-
-  const post = new Post({title, body, date, author: user})
-
+  const post = new Post({title, body, date, 
+    'author.id': req.profile._id, 'author.name': req.profile.name })
+  .populate("author", "_id name")
   post.save()
   .then(response => {res.send(response)})
     .catch(err => {

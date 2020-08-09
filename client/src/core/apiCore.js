@@ -1,5 +1,14 @@
 import {API} from '../config'
 
+export const read = id => {
+    return fetch(`${API}/blog/post/${id}`, {
+        method: 'GET'
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => console.log(err))
+}
 
 // export const createPost = (userId, post, token) => {
 //     return fetch(`${API}/new-post/${userId}`, {
@@ -17,13 +26,3 @@ import {API} from '../config'
 //             console.log(err);
 //         });
 // };
-
-export const read = id => {
-    return fetch(`${API}/blog/post/${id}`, {
-        method: 'GET'
-    })
-    .then(response => {
-        return response.json()
-    })
-    .catch(err => console.log(err))
-}

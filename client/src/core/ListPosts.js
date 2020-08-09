@@ -8,7 +8,6 @@ class ListPosts extends React.Component {
         title: '',
         body: '',
         date: '',
-        author: '',
         posts: []
     }
 
@@ -18,7 +17,7 @@ class ListPosts extends React.Component {
 
 // fetch posts using axios
     getPost = () => {
-        axios.get(`${API}/blog`)
+        axios.get(`${API}`)
         .then((response) => {
             const data = response.data
             this.setState({posts: data})
@@ -45,7 +44,6 @@ class ListPosts extends React.Component {
             <h3 className="posts-title">{post.title}</h3>
             <p className="posts-body">{post.body}</p>
             <p>{post.date}</p>
-            <p>{post.author}</p>
             </div>
             </Link>
         ))

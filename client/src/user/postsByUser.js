@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react'
-import {API} from '../config'
 import { isAuthenticated } from "../auth";
 import { postsByUser } from './apiUser';
      
