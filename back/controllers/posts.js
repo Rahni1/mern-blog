@@ -11,6 +11,7 @@ const {
 
 exports.read = (req, res) => {
   // req.post.photo = undefined
+  console.log(req.post)
   return res.json(req.post)
 }
 
@@ -18,7 +19,6 @@ exports.read = (req, res) => {
 exports.list = (req, res) => {
   const sort = { title: 1 };
   Post.find()
-   //  .populate("author", "id name")
   .select("-photo")
   .sort(sort)
  .limit(5)
@@ -37,7 +37,6 @@ exports.create = (req, res) => {
  const {title, body, date } = req.body
   const post = new Post({title, body, date, 
     'author.id': req.profile._id, 'author.name': req.profile.name })
-  .populate("author", "_id name")
   post.save()
   .then(response => {res.send(response)})
     .catch(err => {

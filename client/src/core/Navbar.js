@@ -16,7 +16,7 @@ return (
        {/* My Posts */}
      {isAuthenticated() && (
       <li className="nav-item">
-        <Link className="nav-link left-link" to={`/my/posts`}>
+        <Link className="nav-link left-link" to={`/my/posts/${_id}`}>
           My Posts
         </Link>
       </li>

@@ -21,7 +21,6 @@ class ListPosts extends React.Component {
         .then((response) => {
             const data = response.data
             this.setState({posts: data})
-            console.log('Data has been recieved')
         })
         .catch(() => {
             console.log('Error retrieving data')
