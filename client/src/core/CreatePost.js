@@ -24,7 +24,7 @@ import {isAuthenticated} from '../auth'
           } = isAuthenticated();
         axios({ url: `${API}/new-post/${_id}`, method: 'POST', data: this.state})
         .then(response => {
-            console.log(response)
+            return response
         }).catch(error => {
             console.log(error)
         })

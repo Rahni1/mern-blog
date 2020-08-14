@@ -38,10 +38,10 @@ class ListPosts extends React.Component {
 //   }
         if (!posts.length) return null;
         return posts.map((post, index) => (
-            <Link  className="card" to={`/blog/post/${post._id}`}>
+            <Link  className="card" to={`/post/${post._id}`}>
             <div key={index}>
             <h3 className="posts-title">{post.title}</h3>
-            <p className="posts-body">{post.body}</p>
+            <p className="posts-body">{post && post.body && post.body.substring(0, 25)}</p>
             <p>{post.date}</p>
             </div>
             </Link>

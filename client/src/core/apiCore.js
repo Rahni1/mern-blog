@@ -1,8 +1,10 @@
 import {API} from '../config'
 
 export const read = id => {
-    return fetch(`${API}/blog/post/${id}`, {
-        method: 'GET'
+    return fetch(`${API}/post/${id}`, {
+        method: 'GET',
+        Accept: "application/json",
+        "Content-Type": "application/json",
     })
     .then(response => {
         return response.json()
@@ -10,19 +12,3 @@ export const read = id => {
     .catch(err => console.log(err))
 }
 
-// export const createPost = (userId, post, token) => {
-//     return fetch(`${API}/new-post/${userId}`, {
-//         method: 'POST',
-//         headers: {
-//             Accept: 'application/json',
-//             Authorization: `Bearer ${token}`
-//         },
-//         body: post
-//     })
-//         .then(response => {
-//             return response.json();
-//         })
-//         .catch(err => {
-//             console.log(err);
-//         });
-// };
