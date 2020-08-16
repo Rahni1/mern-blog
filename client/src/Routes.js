@@ -11,7 +11,7 @@ import Post from "./core/Post";
 import AdminDashboard from "./user/AdminDashboard";
 import CreatePost from "./core/CreatePost";
 // import UpdatePost from "./core/UpdatePost";
-import postsByUser from "./user/postsByUser";
+import UserDashboard from "./user/UserDashboard";
 
 const Routes = () => (
   <BrowserRouter>
@@ -23,7 +23,7 @@ const Routes = () => (
       <Route path="/post/:id" exact component={Post} />
 
       <PrivateRoute exact path="/:userId/:id/edit" component={EditPost} />
-      <PrivateRoute path="/my/posts/:userId" exact component={postsByUser} />
+      <PrivateRoute path="/user" exact component={UserDashboard} />
       <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
     </Switch>
   </BrowserRouter>

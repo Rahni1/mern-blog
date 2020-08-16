@@ -30,15 +30,15 @@ exports.list = (req, res) => {
 }
 
 exports.readById = (req, res) => {
-  Post.findById(req.params.id)
-
+  const id = req.params.id
+  Post.findById(id)
     .then(post => res.json(post))
     .catch(err => res.status(400).json('Error: ' + err));
 }
 
 exports.create = (req, res) => {
  const {title, body, date } = req.body
-  const post = new Post({title, body, date, 
+  const post = new Post({title, body, date,
     'author.id': req.profile._id, 'author.name': req.profile.name })
   post.save()
   .then(response => {res.send(response)})
@@ -48,16 +48,17 @@ exports.create = (req, res) => {
     }
 
 exports.edit = (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
-        return res.status(400).send('No record with given id : ' + req.params.id)
-
+  const id = req.params.id
+  if (!ObjectID.isValid(id))
+        return res.status(400).send(`No post with given id: ${id}`)
+        console.log(id)
   const {title, body} = req.body
+console.log(id)
+  const updatedPost = {title, body}
 
-  const updatedPost = {title, body }
-
-  Post.findByIdAndUpdate(req.params.id, {
+  Post.findByIdAndUpdate(id, {
     $set: updatedPost
-  }, {new:true}, (error, data) => {
+  }, {new:true}, (error, data) => {1
     if (error) {
       return error
     } else {
@@ -70,6 +71,7 @@ exports.edit = (req, res) => {
 exports.deletePost = (req, res) => {
     Post.deleteOne({_id: req.params.id}).then(
       () => {
+        console.log(req.params.id)
         res.status(200).json({
           message: 'Deleted!'
         });

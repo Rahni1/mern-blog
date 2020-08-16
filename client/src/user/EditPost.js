@@ -64,27 +64,25 @@ if (data.error) {
   };
 
   const newPostForm = () => (
-    <form onSubmit={clickSubmit}>
+    <form className="newpost_form" onSubmit={clickSubmit}>
       <div className="form-group">
-        <label className="text-muted">Title</label>
         <input
-          onChange={handleChange("title")}
-          type="text"
-          className="form-control"
+          onChange={handleChange("title")} type="text"
+          name="title"
+          className="newpost_field newpost_title"
           value={title}
         />
       </div>
 
       <div className="form-group">
-        <label className="text-muted">Post Body</label>
         <textarea
           onChange={handleChange("body")}
-          className="form-control"
-          value={body}
+          className="newpost_field newpost_textarea"
+          value={body} name="body"
         />
       </div>
 
-      <button>Update Post</button>
+      <button className="btn publish-post-btn" type="submit">Publish</button>
     </form>
   );
   const showError = () => (
@@ -95,12 +93,10 @@ if (data.error) {
   );
 
   return (
-      <div>
-        <div>  
+        <div className="newpost_container">  
           {showError()}
           {newPostForm()}
         </div>
-      </div>
   );
 };
 

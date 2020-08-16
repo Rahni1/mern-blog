@@ -33,13 +33,19 @@ import {isAuthenticated} from '../auth'
     render() {
         const {title, body} = this.state
         return (
-            <div>
-                <form onSubmit={this.submitHandler}>
-                <input type="text" name="title" 
+            <div className="newpost_container">
+                <form className="newpost_form" onSubmit={this.submitHandler}>
+               <div className="form-group">
+                <input type="text" placeholder="Title" name="title"
+                className="newpost_field newpost_title"
                 onChange={this.changeHandler} value={title} />
-                <input type="text" name="body"
+                </div>
+                <div className="form-group">
+                <textarea placeholder="Post Content" name="body"
+                className="newpost_field newpost_textarea"
                 onChange={this.changeHandler} value={body}/>
-                <button type="submit">Submit</button>
+                </div>
+                <button className="btn publish-post-btn" type="submit">Publish</button>
                 </form>
             </div>
         )

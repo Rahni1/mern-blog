@@ -2,34 +2,36 @@ import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { signout, isAuthenticated } from "../auth";
 import logo from "../img/logo.png";
+import WritePostButton from "../user/WritePostLink";
 
-const Navbar = ({ history }) => {
-const {
-  user: { _id },
-} = isAuthenticated();
-return (
+const Navbar = ({ history, match }) => {
+  return (
     <ul className="navbar">
       <a className="navbar-brand" href="/">
-        <img className="logo" src={logo} alt="Logo" width="70px" height="70px" />
+        <img
+          className="logo"
+          src={logo}
+          alt="Logo"
+          width="70px"
+          height="70px"
+        />
       </a>
 
-       {/* My Posts */}
-     {isAuthenticated() && (
-      <li className="nav-item">
-        <Link className="nav-link left-link" to={`/my/posts/${_id}`}>
-          My Posts
-        </Link>
-      </li>
-    )}
-    {/* CREATE A POST */}
-    {isAuthenticated() && (
-      <li className="nav-item">
-        <Link className="nav-link left-link" to={`/new-post/${_id}`}>
-          Write a post
-        </Link>
-      </li>
-    )}
-    
+      {/* My Posts */}
+      {isAuthenticated() && (
+        <li className="nav-item">
+          <Link className="nav-link left-link" to={`/user`}>
+            Dashboard
+          </Link>
+        </li>
+      )}
+      {/* CREATE A POST */}
+      {isAuthenticated() && (
+        <li className="nav-item">
+         <WritePostButton />
+        </li>
+      )}
+
       {/* SIGNIN / SIGNUP */}
       {!isAuthenticated() && (
         <Fragment>
@@ -45,15 +47,15 @@ return (
           </li>
         </Fragment>
       )}
-        {/* ADMIN DASHBOARD */}
-        {isAuthenticated() && isAuthenticated().user.role === 1 && (
-          <li className="nav-item">
-            <Link className="nav-link left-link" to="/admin/dashboard">
-              Dashboard
-            </Link>
-          </li>
-        )}
-        
+      {/* ADMIN DASHBOARD */}
+      {isAuthenticated() && isAuthenticated().user.role === 1 && (
+        <li className="nav-item">
+          <Link className="nav-link left-link" to="/admin/dashboard">
+            Dashboard
+          </Link>
+        </li>
+      )}
+
       {/* SIGNOUT */}
       {isAuthenticated() && (
         <li className="nav-item">
@@ -68,9 +70,8 @@ return (
           </span>
         </li>
       )}
-    
     </ul>
   );
-          }
+};
 
 export default withRouter(Navbar);

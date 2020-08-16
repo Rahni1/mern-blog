@@ -7,9 +7,7 @@ import {Link} from 'react-router-dom'
 
 const PostsByUser = ({history, match}) => {
   const [posts, setPosts] = useState([]);
-    const {
-        user: { _id },
-      } = isAuthenticated();
+   const {user: {_id}} = isAuthenticated()
       const token = isAuthenticated().token;
 
       const init = (userId, token) => {

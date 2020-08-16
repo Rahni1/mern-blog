@@ -9,7 +9,6 @@ const Post = props => {
   const [error, setError] = useState(false);
 const id = props.match.params.id
 const {user, token} = isAuthenticated()
-  console.log(post)
 
   const loadSinglePost = id => {
     read(id).then(data => {
@@ -18,6 +17,7 @@ const {user, token} = isAuthenticated()
         setError(data.error);       
       } else {
         setPost(data);
+        console.log(data)
       }
     });
   };
@@ -46,7 +46,7 @@ const {user, token} = isAuthenticated()
          <p> {post && post.author ? post.author.name : ""}</p>
          <p className="post-body">{post && post.body}</p>
         </div>
-        {post ? <span onClick={() => destroy(id)}>Delete</span> : ''}
+        {post  ? <span onClick={() => destroy(id)}>Delete</span> : ''}
         
         </div>
   )
