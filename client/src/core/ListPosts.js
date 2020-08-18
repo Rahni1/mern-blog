@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import { API } from '../config'
+import Moment from 'react-moment';
+
 
 class ListPosts extends React.Component {
     state = {
@@ -41,8 +43,9 @@ class ListPosts extends React.Component {
             <Link  className="card" to={`/post/${post._id}`}>
             <div key={index}>
             <h3 className="posts-title">{post.title}</h3>
-            <p className="posts-body">{post && post.body && post.body.substring(0, 25)}</p>
-            <p>{post.date}</p>
+            <p className="posts-body">{post && post.body && post.body.substring(0, 30)}...</p>
+            <p className="post-author list-author">{post && post.author ? post.author.name : ""}</p> 
+             <Moment className="post-date list-date" format="D MMM YYYY">{post.date}</Moment>
             </div>
             </Link>
         ))

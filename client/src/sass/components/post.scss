@@ -2,6 +2,10 @@
     margin-top: 2rem;
     width: 60%;
     margin: 0 auto;
+    font-family: $roboto;
+}
+.post-title::selection, .post-body::selection {
+    background-color: $green;
 }
 .post-title {
     padding: 1.5rem 0 0 0;
@@ -12,9 +16,20 @@
 .post-date {
     text-align: left;
     color: $grey;
-    font-family: $roboto;
+    font-size: 12px;
+    float: center;
+}
+.author-date {
+   overflow: hidden;
 }
 
+.post-author {
+    font-size: 11px;
+    float: left;
+    color: $green;
+    font-weight: $bold;
+    margin-right: 1rem;
+}
 .post-body {
     margin-top: 30px;
 }

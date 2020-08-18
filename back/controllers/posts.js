@@ -19,13 +19,15 @@ exports.list = (req, res) => {
   Post.find()
   .select("-photo")
   .sort(sort)
-//  .limit(5)
+// .limit(5)
  .exec((err, posts) => {
     if (err) {
       return res.send(err);
     } 
-     return res.send(posts)
-  // const date = moment(date).format('ll')
+    // const date = moment(posts[0].date).format('ll')
+    // console.log(date)
+     return res.send(posts) 
+  
   })
 }
 

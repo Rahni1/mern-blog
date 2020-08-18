@@ -3,12 +3,19 @@ import { read } from "./apiCore";
 import Navbar from './Navbar';
 import { deletePost } from '../user/apiUser';
 import { isAuthenticated } from "../auth";
+import {Link} from 'react-router-dom'
+import UserDashboard from "../user/UserDashboard";
+import Moment from 'react-moment';
+
 
 const Post = props => {
   const [post, setPost] = useState({});
   const [error, setError] = useState(false);
 const id = props.match.params.id
+
 const {user, token} = isAuthenticated()
+const {user: {_id}} = isAuthenticated()
+
 
   const loadSinglePost = id => {
     read(id).then(data => {
@@ -22,15 +29,6 @@ const {user, token} = isAuthenticated()
     });
   };
 
-  const destroy = id => {
-    deletePost(id, user._id, token).then(data => {
-      if (data.error) {
-        console.log(data.error)
-      } else {
-        loadSinglePost(id);
-      }
-    })
-  }
 
   useEffect(() => {
     loadSinglePost(id);
@@ -42,12 +40,11 @@ const {user, token} = isAuthenticated()
     <Navbar />
         <div className="post-container">
          <h3 className="post-title">{post && post.title}</h3>
-         <p className="post-date">{post && post.date}</p>
-         <p> {post && post.author ? post.author.name : ""}</p>
+         <div className="author-date">
+         <p className="post-author">{post && post.author ? post.author.name : ""}</p> 
+         <p className="post-date"><Moment className="post-date" format="D MMM YYYY">{post && post.date}</Moment></p></div>
          <p className="post-body">{post && post.body}</p>
         </div>
-        {post  ? <span onClick={() => destroy(id)}>Delete</span> : ''}
-        
         </div>
   )
 }
