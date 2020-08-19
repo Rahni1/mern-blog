@@ -1,6 +1,9 @@
 .mypost_title {
     margin-left: 20%;
 }
+.mypost_title::selection, .mypost_btn::selection {
+    background-color: $green;
+}
 
 .mypost_btn {
     float: right;
@@ -18,4 +21,18 @@
     background-color: lightgrey;
     border: none;
     height: 1px;
+}
+
+.mypost {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+}
+.mypost_title {
+    flex: 50%;
+    font-family: $playfair-display;
+    color: $charcoal;
 }

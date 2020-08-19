@@ -43,9 +43,11 @@ class ListPosts extends React.Component {
             <Link  className="card" to={`/post/${post._id}`}>
             <div key={index}>
             <h3 className="posts-title">{post.title}</h3>
-            <p className="posts-body">{post && post.body && post.body.substring(0, 30)}...</p>
-            <p className="post-author list-author">{post && post.author ? post.author.name : ""}</p> 
-             <Moment className="post-date list-date" format="D MMM YYYY">{post.date}</Moment>
+            <p className="posts-body">{post && post.body && post.body.substring(0, 28)}...</p>
+            <span className="author-date">
+            <p className="post-author">{post && post.author ? post.author.name : ""}</p> 
+            <p className="post-date"><Moment className="post-date" format="D MMM YYYY">{post.date}</Moment></p>
+             </span>
             </div>
             </Link>
         ))

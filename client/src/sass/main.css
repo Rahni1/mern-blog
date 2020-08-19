@@ -352,6 +352,7 @@
 .publish-post-btn {
   float: right;
   margin-right: 18rem;
+  cursor: pointer;
 }
 
 .tooltip {
@@ -392,10 +393,42 @@
   color: #7fcd91;
 }
 
+.mypost_title {
+  margin-left: 20%;
+}
+
+.mypost_btn {
+  float: right;
+  margin-right: 20px;
+}
+
+.delete_btn {
+  color: red;
+}
+
+.edit_btn {
+  color: #4d4646;
+}
+
+.hr {
+  background-color: lightgrey;
+  border: none;
+  height: 1px;
+}
+
 .post-container {
   margin-top: 2rem;
   width: 60%;
   margin: 0 auto;
+  font-family: "Roboto", sans-serif;
+}
+
+.post-title::-moz-selection, .post-body::-moz-selection {
+  background-color: #7fcd91;
+}
+
+.post-title::selection, .post-body::selection {
+  background-color: #7fcd91;
 }
 
 .post-title {
@@ -407,7 +440,20 @@
 .post-date {
   text-align: left;
   color: #5b5656;
-  font-family: "Roboto", sans-serif;
+  font-size: 11px;
+  float: center;
+}
+
+.author-date {
+  overflow: hidden;
+}
+
+.post-author {
+  font-size: 11px;
+  float: left;
+  color: #7fcd91;
+  font-weight: 700;
+  margin-right: 1rem;
 }
 
 .post-body {
@@ -453,6 +499,19 @@
 
 .card:not(:nth-child(5n + 3)).card:not(:nth-child(5n + 1)) .posts-body {
   display: none;
+}
+
+.list-date {
+  font-size: 11px;
+  color: #5b5656;
+  font-family: "Roboto", sans-serif;
+}
+
+.list-author {
+  font-size: 11px;
+  color: #5b5656;
+  font-weight: normal;
+  float: left;
 }
 
 .home-header, .header-para {
