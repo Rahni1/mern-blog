@@ -24,10 +24,7 @@ exports.list = (req, res) => {
     if (err) {
       return res.send(err);
     } 
-    // const date = moment(posts[0].date).format('ll')
-    // console.log(date)
      return res.send(posts) 
-  
   })
 }
 
@@ -85,4 +82,17 @@ exports.deletePost = (req, res) => {
         });
       }
     );
+}
+
+exports.like = (req, res) => {
+  Post.findByIdAndUpdate(req.body._id, {
+    $push: {likes: req.profile._id}
+  }, {new: true}).exec((err, result) => {
+    console.log(req.profile._id)
+    if (err) {
+      return res.status(422).json({error: err})
+    } else {
+      return res.json(result)
+    }
+  })
 }

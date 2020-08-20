@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import {API} from '../config'
 import {isAuthenticated} from '../auth'
+import Navbar from './Navbar'
+
 
  class CreatePost extends React.Component {
      constructor(props) {
@@ -24,6 +26,7 @@ import {isAuthenticated} from '../auth'
           } = isAuthenticated();
         axios({ url: `${API}/new-post/${_id}`, method: 'POST', data: this.state})
         .then(response => {
+            console.log(response)
             return response
         }).catch(error => {
             console.log(error)
@@ -33,6 +36,8 @@ import {isAuthenticated} from '../auth'
     render() {
         const {title, body} = this.state
         return (
+            <>
+            <Navbar />
             <div className="newpost_container">
                 <form className="newpost_form" onSubmit={this.submitHandler}>
                <div className="form-group">
@@ -48,6 +53,7 @@ import {isAuthenticated} from '../auth'
                 <button className="btn publish-post-btn" type="submit">Publish</button>
                 </form>
             </div>
+            </>
         )
     }
 }
@@ -58,7 +64,6 @@ export default CreatePost
 // import React, { useState, useEffect } from "react";
 // import { isAuthenticated } from "../auth";
 // import { createPost } from "./apiCore";
-// import Navbar from './Navbar'
 // import imagesIcon from '../img/image.png'
 
 // const CreatePost = () => {

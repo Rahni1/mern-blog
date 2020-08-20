@@ -39,7 +39,7 @@ const PostsByUser = ({ history, match }) => {
       <>
       <div className="mypost">
         <Link className="mypost_title" to={`/post/${post._id}`}>
-          <h2 className="mypost_title">{post.title}</h2>
+          <h2 className="mypost_title title1">{post.title}</h2>
         </Link>
         <Link className="mypost_btn edit_btn" to={`/${_id}/${post._id}/edit`}>
           Edit

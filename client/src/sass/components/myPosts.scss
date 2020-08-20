@@ -1,28 +1,3 @@
-.mypost_title {
-    margin-left: 20%;
-}
-.mypost_title::selection, .mypost_btn::selection {
-    background-color: $green;
-}
-
-.mypost_btn {
-    float: right;
-    margin-right: 20px;
-}
-
-.delete_btn {
-    color: $red;
-}
-
-.edit_btn {
-    color: $charcoal;
-}
-.hr {
-    background-color: lightgrey;
-    border: none;
-    height: 1px;
-}
-
 .mypost {
     display: flex;
     align-items: center;
@@ -33,6 +8,31 @@
 }
 .mypost_title {
     flex: 50%;
+    margin-left: 2%;
     font-family: $playfair-display;
+    color: $charcoal;
+} 
+
+.mypost_title::selection, .mypost_btn::selection {
+    background-color: $green;
+}
+
+.hr {
+    background-color: lightgrey;
+    border: none;
+    height: 1px;
+}
+
+// buttons
+.mypost_btn {
+    float: right;
+    margin-right: 20px;
+}
+
+.delete_btn {
+    color: $red;
+}
+
+.edit_btn {
     color: $charcoal;
 }

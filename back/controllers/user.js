@@ -37,3 +37,4 @@ User.findOne({id: req.profile._id})
 // exports.listPostsBySignedInUser = (req, res) => {
 //    res.json('authenticated')
 //     }
+

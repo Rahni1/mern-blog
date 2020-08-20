@@ -6,6 +6,7 @@ import { isAuthenticated } from "../auth";
 import {Link} from 'react-router-dom'
 import UserDashboard from "../user/UserDashboard";
 import Moment from 'react-moment';
+import Diamond from '../img/diamond.png'
 
 
 const Post = props => {
@@ -34,7 +35,25 @@ const {user: {_id}} = isAuthenticated()
     loadSinglePost(id);
   }, [props]);
 
-  
+  const likePost = (id) => {
+    const {
+      user: { _id },
+    } = isAuthenticated();
+fetch(`/like/${_id}`, {
+  method: 'PUT',
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token}`
+  },
+  body: JSON.stringify({
+    id: id
+  })
+})
+.then(result => {
+  console.log(result)
+})
+}
+
   return (
     <div>
     <Navbar />
@@ -44,6 +63,8 @@ const {user: {_id}} = isAuthenticated()
          <p className="post-author">{post && post.author ? post.author.name : ""}</p> 
          <p className="post-date"><Moment className="post-date" format="D MMM YYYY">{post && post.date}</Moment></p></div>
          <p className="post-body">{post && post.body}</p>
+         <h5>{post && post.likes && post.likes.length} likes</h5>
+         <img src={Diamond} onClick={() => {likePost(post._id)}} width="5%" height="5%" alt="Diamond icon" />
         </div>
         </div>
   )
