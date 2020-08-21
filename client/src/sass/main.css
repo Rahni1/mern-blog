@@ -395,37 +395,6 @@
   color: #7fcd91;
 }
 
-.mypost_title {
-  margin-left: 20%;
-}
-
-.mypost_title::-moz-selection, .mypost_btn::-moz-selection {
-  background-color: #7fcd91;
-}
-
-.mypost_title::selection, .mypost_btn::selection {
-  background-color: #7fcd91;
-}
-
-.mypost_btn {
-  float: right;
-  margin-right: 20px;
-}
-
-.delete_btn {
-  color: red;
-}
-
-.edit_btn {
-  color: #4d4646;
-}
-
-.hr {
-  background-color: lightgrey;
-  border: none;
-  height: 1px;
-}
-
 .mypost {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -446,7 +415,35 @@
   -webkit-box-flex: 50%;
       -ms-flex: 50%;
           flex: 50%;
+  margin-left: 2%;
   font-family: "Playfair Display", serif;
+  color: #4d4646;
+}
+
+.mypost_title::-moz-selection, .mypost_btn::-moz-selection {
+  background-color: #7fcd91;
+}
+
+.mypost_title::selection, .mypost_btn::selection {
+  background-color: #7fcd91;
+}
+
+.hr {
+  background-color: lightgrey;
+  border: none;
+  height: 1px;
+}
+
+.mypost_btn {
+  float: right;
+  margin-right: 20px;
+}
+
+.delete_btn {
+  color: red;
+}
+
+.edit_btn {
   color: #4d4646;
 }
 

@@ -4,7 +4,8 @@
     margin: 0 auto;
     font-family: $roboto;
 }
-.post-title::selection, .post-body::selection {
+.post-title::selection,
+.post-body::selection {
     background-color: $green;
 }
 .post-title {
@@ -21,9 +22,8 @@
     float: center;
 }
 .author-date {
-   overflow: hidden;
+    overflow: hidden;
 }
-
 .post-author {
     font-size: 11px;
     float: left;

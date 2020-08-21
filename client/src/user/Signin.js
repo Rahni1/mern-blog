@@ -55,7 +55,7 @@ const togglePasswordVisiblity = () => {
     <h2 className="form-header">Sign In</h2>
       <div className="form-group">
      <span className="input-icon">
-       <i aria-hidden="true" class="user circle icon"></i>
+       <i aria-hidden="true" className="user circle icon"></i>
        </span>
         <input
           onChange={handleChange("email")}

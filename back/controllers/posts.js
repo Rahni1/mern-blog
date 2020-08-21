@@ -85,10 +85,10 @@ exports.deletePost = (req, res) => {
 }
 
 exports.like = (req, res) => {
-  Post.findByIdAndUpdate(req.body._id, {
+  Post.findByIdAndUpdate(req.params.id, {
     $push: {likes: req.profile._id}
   }, {new: true}).exec((err, result) => {
-    console.log(req.profile._id)
+    console.log(req.params.id)
     if (err) {
       return res.status(422).json({error: err})
     } else {

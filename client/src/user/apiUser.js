@@ -45,3 +45,4 @@ export const deletePost = (id, userId, token) => {
         })
         .catch(err => console.log(err));
 };
+
