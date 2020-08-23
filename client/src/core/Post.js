@@ -13,6 +13,7 @@ const Post = (props) => {
   const [error, setError] = useState(false);
   const id = props.match.params.id;
 
+
   const loadSinglePost = (id) => {
     read(id).then((data) => {
       if (error) {
@@ -29,12 +30,12 @@ const Post = (props) => {
     loadSinglePost(id);
   }, [props]);
 
-  const like = (id) => {
+  const diamond = (id) => {
     const {
       user: { _id },
       token,
     } = isAuthenticated();
-    fetch(`${API}/like/${_id}/${id}`, {
+    fetch(`${API}/diamond/${_id}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -45,49 +46,76 @@ const Post = (props) => {
       }),
     })
       .then((result) => {
+        const {user: {_id}} = isAuthenticated()
         let updatedPost = { ...post };
-        updatedPost.likes.push(id);
+      if (_id === post.author.id || post.diamonds && post.diamonds.includes(_id)){
+       return null
+      } else {
+        updatedPost.diamonds.push(id);
         setPost(updatedPost);
-      })
+      }})
       .catch((err) => {
         console.log(err);
       });
   };
+// const showDiamondIcon = () => {
+//   const {user: {_id}} = isAuthenticated()
+//   return (
+//     <div>
+//   {post.author && post.author.id === _id || post.diamonds && post.diamonds.includes(_id) ? "" :
+//       <img
+//       className="add-diamond"
+//       src={Diamond}
+//       onClick={() => {
+//         diamond(id);
+//       }}
+//       width="5%"
+//       height="5%"
+//       alt="Diamond icon"
+//     />}
+//     </div>
+//   )
+//   }
+ 
+  const {user: {_id}} = isAuthenticated()
   return (
     <div>
       <Navbar />
       <div className="post-container">
-        <h3 className="post-title">{post && post.title}</h3>
-        <div className="author-date">
-          <p className="post-author">
-            {post && post.author ? post.author.name : ""}
-          </p>
-          <p className="post-date">
-            <Moment className="post-date" format="D MMM YYYY">
-              {post && post.date}
-            </Moment>
-          </p>
-        </div>
-        <p className="post-body">{post && post.body}</p>
+      <h3 className="post-title">{post.title}</h3>
+      <div className="author-date">
+        <p className="post-author">
+          {post.author ? post.author.name : ""}
+        </p>
+        <p className="post-date">
+          <Moment className="post-date" format="D MMM YYYY">
+            {post.date}
+          </Moment>
+        </p>
       </div>
-      <div className="likes">
-        <h5 className="likes-length">
-          {post && post.likes && post.likes.length}{" "}
-          {post && post.likes && post.likes.length === 1
-            ? "diamond"
-            : "diamonds"}{" "}
-        </h5>
+      <p className="post-body">{post.body}</p>
+    <div className="diamonds">
+      <h5 className="diamonds-length">
+        {post.diamonds && post.diamonds.length}{" "}
+        {post.diamonds && post.diamonds.length === 1
+          ? "diamond"
+          : "diamonds"}{" "}
+      </h5>
+    </div>
+      <div>
+    {post.author && post.author.id === _id || post.diamonds && post.diamonds.includes(_id) ? "" :
         <img
-          className="add-diamond"
-          src={Diamond}
-          onClick={() => {
-            like(id);
-          }}
-          width="5%"
-          height="5%"
-          alt="Diamond icon"
-        />
+        className="add-diamond"
+        src={Diamond}
+        onClick={() => {
+          diamond(id);
+        }}
+        width="5%"
+        height="5%"
+        alt="Diamond icon"
+      />}
       </div>
+    </div>
     </div>
   );
 };

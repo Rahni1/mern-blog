@@ -49,7 +49,6 @@ const togglePasswordVisiblity = () => {
 
   const signInForm = () => (
     <>
-    <Navbar />
     <form className="form-container">
        <div>
     <h2 className="form-header">Sign In</h2>

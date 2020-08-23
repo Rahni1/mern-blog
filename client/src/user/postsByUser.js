@@ -6,7 +6,6 @@ import { deletePost } from "../user/apiUser";
 
 const PostsByUser = ({ history, match }) => {
   const [posts, setPosts] = useState([]);
-
   const {
     user: { _id },
   } = isAuthenticated();

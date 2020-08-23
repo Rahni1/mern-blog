@@ -53,8 +53,9 @@ const Signup = () => {
   const signUpForm = () => (
     <form className="form-container">
     <div>
-    <h2 className="form-header">Sign Up</h2>
-      <div className="form-group">
+    <div className="form-group">
+    <h2 className="form-header signup_header">Sign Up</h2>
+  
       <span className="input-icon">
        <i aria-hidden="true" class="user circle icon"></i>
        </span>

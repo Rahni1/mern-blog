@@ -31,8 +31,12 @@
 
 .delete_btn {
     color: $red;
+    cursor: pointer;
 }
 
 .edit_btn {
     color: $charcoal;
+    &:hover {
+        color: $charcoal;
+    }
 }

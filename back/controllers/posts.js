@@ -19,7 +19,7 @@ exports.list = (req, res) => {
   Post.find()
   .select("-photo")
   .sort(sort)
-// .limit(5)
+//  .limit(10)
  .exec((err, posts) => {
     if (err) {
       return res.send(err);
@@ -50,14 +50,13 @@ exports.edit = (req, res) => {
   const id = req.params.id
   if (!ObjectID.isValid(id))
         return res.status(400).send(`No post with given id: ${id}`)
-        console.log(id)
   const {title, body} = req.body
-console.log(id)
-  const updatedPost = {title, body}
 
+  const updatedPost = {title, body}
   Post.findByIdAndUpdate(id, {
-    $set: updatedPost
-  }, {new:true}, (error, data) => {1
+    $set: updatedPost,
+  }, {new:true}, (error, data) => {
+    console.log(id)
     if (error) {
       return error
     } else {
@@ -84,9 +83,9 @@ exports.deletePost = (req, res) => {
     );
 }
 
-exports.like = (req, res) => {
+exports.diamond = (req, res) => {
   Post.findByIdAndUpdate(req.params.id, {
-    $push: {likes: req.profile._id}
+    $push: {diamonds: req.profile._id}
   }, {new: true}).exec((err, result) => {
     console.log(req.params.id)
     if (err) {
