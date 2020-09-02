@@ -67,7 +67,7 @@ const togglePasswordVisiblity = () => {
 
       <div className="form-group">
       <span className="input-icon">
-       <i aria-hidden="true" class="lock icon"></i>
+       <i aria-hidden="true" className="lock icon"></i>
        </span>
         <input     
         placeholder="Password"    
@@ -76,7 +76,7 @@ const togglePasswordVisiblity = () => {
           className="form-input"
           value={password}
         />
-  <i onClick={togglePasswordVisiblity} aria-hidden="true" class="eye icon"></i>
+  <i onClick={togglePasswordVisiblity} aria-hidden="true" className="eye icon"></i>
       </div>
 
       <button onClick={clickSubmit} className="submit-auth">

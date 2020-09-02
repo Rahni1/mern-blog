@@ -290,6 +290,7 @@
   font-family: "Playfair Display", serif;
   font-weight: 500;
   margin-top: 1rem;
+  width: 50%;
 }
 
 .newpost_container {
@@ -336,7 +337,7 @@
   font-size: 16px;
   margin-top: 2rem;
   height: 190px;
-  width: 500px;
+  width: 50%;
 }
 
 .publish-post-btn {
@@ -397,6 +398,11 @@
 
 .create-post-success {
   color: #7fcd91;
+}
+
+.username {
+  text-align: center;
+  font-family: "Playfair Display", serif;
 }
 
 .mypost {
@@ -480,6 +486,16 @@
   font-family: "Playfair Display", serif;
 }
 
+.diamond {
+  margin-left: 2.5%;
+}
+
+.diamond-length {
+  margin-top: 0%;
+  font-weight: bold;
+  font-size: 12px;
+}
+
 .post-date {
   text-align: left;
   color: #5b5656;
@@ -504,6 +520,7 @@
 }
 
 .grid {
+  margin: 20px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[3];
@@ -534,6 +551,8 @@
 
 .posts-title {
   font-size: 20px;
+  font-family: "Playfair Display", serif;
+  color: #4d4646;
 }
 
 .list-date {

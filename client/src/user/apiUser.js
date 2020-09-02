@@ -1,48 +1,47 @@
-import {API} from '../config'
+import { API } from "../config";
 
 export const postsByUser = (userId, token) => {
-return fetch(`${API}/my/posts/${userId}`, {
+  return fetch(`${API}/my/posts/${userId}`, {
     method: "GET",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-        }
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
     })
-    .then(response => {
-        return response.json();
-    })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 };
 
 export const editPost = (userId, id, token, post) => {
-    return fetch(`${API}/${userId}/${id}/edit`, {
-        method: 'PUT',
-        headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(post)
+  return fetch(`${API}/${userId}/${id}/edit`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(post),
+  })
+    .then((response) => {
+      return response.json(post);
     })
-        .then(response => {
-            return response.json(post);
-            
-        })
-        .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 };
 
 export const deletePost = (id, userId, token) => {
-    return fetch(`${API}/post/${id}/${userId}`, {
-        method: 'DELETE',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-        }
+  return fetch(`${API}/post/${id}/${userId}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
     })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 };
-

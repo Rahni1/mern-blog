@@ -16,6 +16,7 @@ router.put('/diamond/:userId/:id', (requireSignin, diamond))
 
 router.delete('/post/:id/:userId', (isAuth, requireSignin, deletePost))
 
+
 router.param("userId", userById);
 
 module.exports = router

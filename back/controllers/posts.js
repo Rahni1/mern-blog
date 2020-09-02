@@ -13,7 +13,6 @@ exports.read = (req, res) => {
   return res.json(req.post)
 }
 
-
 exports.list = (req, res) => {
   const sort = { title: 1 };
   Post.find()
@@ -56,12 +55,13 @@ exports.edit = (req, res) => {
   Post.findByIdAndUpdate(id, {
     $set: updatedPost,
   }, {new:true}, (error, data) => {
-    console.log(id)
+   // console.log(id)
     if (error) {
       return error
     } else {
       res.send(data)
-      console.log(data)
+      console.log(updatedPost)
+      // console.log(data)
     }
   })
 }
@@ -87,7 +87,7 @@ exports.diamond = (req, res) => {
   Post.findByIdAndUpdate(req.params.id, {
     $push: {diamonds: req.profile._id}
   }, {new: true}).exec((err, result) => {
-    console.log(req.params.id)
+     console.log(req.params.id)
     if (err) {
       return res.status(422).json({error: err})
     } else {

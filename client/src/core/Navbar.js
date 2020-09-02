@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { signout, isAuthenticated } from "../auth";
 import logo from "../img/logo.png";
-import WritePostButton from "../user/WritePostLink";
+import WritePostLink from "../user/WritePostLink";
 
 const Navbar = ({ history, match }) => {
   return (
@@ -21,14 +21,14 @@ const Navbar = ({ history, match }) => {
       {isAuthenticated() && (
         <li className="nav-item">
           <Link className="nav-link left-link" to={`/user`}>
-            Dashboard
+          Dashboard
           </Link>
         </li>
       )}
       {/* CREATE A POST */}
       {isAuthenticated() && (
         <li className="nav-item">
-         <WritePostButton />
+         <WritePostLink />
         </li>
       )}
 

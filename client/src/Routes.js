@@ -12,7 +12,7 @@ import AdminDashboard from "./user/AdminDashboard";
 import CreatePost from "./core/CreatePost";
 // import UpdatePost from "./core/UpdatePost";
 import postsByUser from './user/postsByUser'
-import UserDashboard from "./user/UserDashboard";
+import Profile from "./user/Profile";
 
 const Routes = () => (
   <BrowserRouter>
@@ -22,9 +22,9 @@ const Routes = () => (
       <Route path="/signin" exact component={Signin} />
       <PrivateRoute path="/new-post/:userId" exact component={CreatePost} />
       <Route path="/post/:id" exact component={Post} />
-<PrivateRoute path="/my/posts/:userId" exact component={postsByUser} />
+      <PrivateRoute path="/my/posts/:userId" exact component={postsByUser} />
       <PrivateRoute exact path="/:userId/:id/edit" component={EditPost} />
-      <PrivateRoute path="/user" exact component={UserDashboard} />
+      <PrivateRoute path="/user" exact component={Profile} />
       <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
     </Switch>
   </BrowserRouter>

@@ -14,11 +14,10 @@ class ListPosts extends React.Component {
     }
 
     componentDidMount = () => {
-        this.getPost()
+        this.getPosts()
     }
 
-// fetch posts using axios
-    getPost = () => {
+    getPosts = () => {
         axios.get(`${API}`)
         .then((response) => {
             const data = response.data
@@ -30,14 +29,7 @@ class ListPosts extends React.Component {
     }
      
 
-    displayPost = (posts) => {
-// var hasValueLessThanTen = false;
-// for (var i = 0; i < myArray.length; i++) {
-//     if (myArray[i] < 10) {
-//       hasValueLessThanTen = true;
-//       break;
-//     }
-//   }
+    displayPosts = (posts) => {
         if (!posts.length) return null;
         return posts.map((post, index) => (
             <Link  className="card" to={`/post/${post._id}`}>
@@ -57,7 +49,7 @@ class ListPosts extends React.Component {
     render() {
         return (
          <div className="grid">
-           {this.displayPost(this.state.posts)}
+           {this.displayPosts(this.state.posts)}
            </div>
         )
     }

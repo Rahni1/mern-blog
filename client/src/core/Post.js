@@ -3,7 +3,7 @@ import { read } from "./apiCore";
 import Navbar from "./Navbar";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-import UserDashboard from "../user/UserDashboard";
+import UserDashboard from "../user/Profile";
 import Moment from "react-moment";
 import Diamond from "../img/diamond.png";
 import { API } from "../config";
@@ -26,7 +26,7 @@ const Post = (props) => {
     });
   };
 
-  useEffect(() => {
+  useEffect((_id) => {
     loadSinglePost(id);
   }, [props]);
 
@@ -35,6 +35,7 @@ const Post = (props) => {
       user: { _id },
       token,
     } = isAuthenticated();
+    
     fetch(`${API}/diamond/${_id}/${id}`, {
       method: "PUT",
       headers: {
@@ -48,7 +49,7 @@ const Post = (props) => {
       .then((result) => {
         const {user: {_id}} = isAuthenticated()
         let updatedPost = { ...post };
-      if (_id === post.author.id || post.diamonds && post.diamonds.includes(_id)){
+      if (post.diamonds && post.diamonds.includes(_id)){
        return null
       } else {
         updatedPost.diamonds.push(id);
@@ -58,35 +59,39 @@ const Post = (props) => {
         console.log(err);
       });
   };
-// const showDiamondIcon = () => {
-//   const {user: {_id}} = isAuthenticated()
-//   return (
-//     <div>
-//   {post.author && post.author.id === _id || post.diamonds && post.diamonds.includes(_id) ? "" :
-//       <img
-//       className="add-diamond"
-//       src={Diamond}
-//       onClick={() => {
-//         diamond(id);
-//       }}
-//       width="5%"
-//       height="5%"
-//       alt="Diamond icon"
-//     />}
-//     </div>
-//   )
-//   }
+const showDiamondIcon = () => {
+  const {user: {_id}} = isAuthenticated()
+  return (
+    <span className="diamond">
+     {/* if it's the users own post or authenticated user has already liked it*/}
+
+  {post.author && post.author.id === _id || post.diamonds && post.diamonds.includes(_id) ? "" :
+      <img
+      className="add-diamond"
+      src={Diamond}
+      onClick={() => {
+        diamond(id);
+      }}
+      width="22px"
+      height="22px"
+      alt="Diamond icon"
+    />}
+    </span>
+  )
+  }
  
   const {user: {_id}} = isAuthenticated()
   return (
-    <div>
+    <>
       <Navbar />
       <div className="post-container">
       <h3 className="post-title">{post.title}</h3>
+      
       <div className="author-date">
-        <p className="post-author">
-          {post.author ? post.author.name : ""}
-        </p>
+       <Link to='/user'> 
+       <p className="post-author">
+       {post.author ? post.author.name : ""}
+     </p></Link> 
         <p className="post-date">
           <Moment className="post-date" format="D MMM YYYY">
             {post.date}
@@ -94,29 +99,20 @@ const Post = (props) => {
         </p>
       </div>
       <p className="post-body">{post.body}</p>
-    <div className="diamonds">
-      <h5 className="diamonds-length">
+      
+<div className="diamonds">
+
+{showDiamondIcon()}
+
+      <h5 className="diamond-length">
         {post.diamonds && post.diamonds.length}{" "}
         {post.diamonds && post.diamonds.length === 1
-          ? "diamond"
-          : "diamonds"}{" "}
+          ? "Diamond"
+          : "Diamonds"}{" "}
       </h5>
     </div>
-      <div>
-    {post.author && post.author.id === _id || post.diamonds && post.diamonds.includes(_id) ? "" :
-        <img
-        className="add-diamond"
-        src={Diamond}
-        onClick={() => {
-          diamond(id);
-        }}
-        width="5%"
-        height="5%"
-        alt="Diamond icon"
-      />}
-      </div>
     </div>
-    </div>
+    </>
   );
 };
 
