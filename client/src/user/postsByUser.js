@@ -33,7 +33,11 @@ const PostsByUser = ({ history, match }) => {
   }, []);
 
   const displayPosts = (posts) => {
-    if (!posts.length) return null;
+    if (!posts.length) return <div className="no-posts">
+    
+    You haven't written any posts yet. 
+    <Link className="no-posts no-posts-link" to={`new-post/${_id}`}> Write your first post!</Link> 
+     </div>;
     return posts.map((post) => (
       <>
         <div className="mypost">

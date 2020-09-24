@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import axios from "axios";
 import { API } from "../config";
 import { isAuthenticated } from "../auth";
@@ -7,37 +7,32 @@ import Navbar from "./Navbar";
 class CreatePost extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       title: "",
       body: "",
-      success: false,
     };
   }
+
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
 
   submitHandler = (e) => {
     e.preventDefault();
     const {
       user: { _id },
     } = isAuthenticated();
+    const id = this.props.match.params.id
     axios({ url: `${API}/new-post/${_id}`, method: "POST", data: this.state })
       .then((response) => {
-        return response 
-        // && this.setState({ success: true });
+                return response
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error)
       });
   };
 
-  // showSuccess = (success) => {
-  //   const {success} = this.state(
-  //   <div style={{ display: success ? "" : "none" }}>New post is created.</div>
-  // );
-  //   }
 
   render() {
     const { title, body } = this.state;
@@ -74,4 +69,5 @@ class CreatePost extends React.Component {
     );
   }
 }
+
 export default CreatePost;

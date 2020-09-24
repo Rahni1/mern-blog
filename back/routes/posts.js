@@ -12,7 +12,7 @@ router.get('/post/:id', (readById))
 router.post('/new-post/:userId', (isAuth, requireSignin, create))
 
 router.put('/:userId/:id/edit', (isAuth, requireSignin, edit))
-router.put('/diamond/:userId/:id', (requireSignin, diamond))
+router.put('/diamond/:userId/:id', (diamond))
 
 router.delete('/post/:id/:userId', (isAuth, requireSignin, deletePost))
 
