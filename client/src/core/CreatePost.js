@@ -10,6 +10,8 @@ class CreatePost extends React.Component {
     this.state = {
       title: "",
       body: "",
+      createdPost: "",
+      error: ""
     };
   }
 
@@ -26,13 +28,36 @@ class CreatePost extends React.Component {
     const id = this.props.match.params.id
     axios({ url: `${API}/new-post/${_id}`, method: "POST", data: this.state })
       .then((response) => {
-                return response
+        this.setState({createdPost: this.state.title})
+        return response
       })
       .catch((error) => {
+        if (!this.state.title || !this.state.body) {
+        this.setState({error: "Your post must have a title and a body."})
+        }
         console.log(error)
       });
   };
 
+ showSuccess = () => {
+  const {createdPost} = this.state
+  return (
+    <div className="created-post"
+      style={{ display: createdPost ? "" : "none" }}>
+      <h2>{`${createdPost} has just been created!`}</h2>
+    </div>
+  ); 
+ }
+ showError = () => {
+  const {error} = this.state
+  
+  return (
+    <div className="post-error"
+      style={{ display: error ? "" : "none" }}>
+      <h2>{`${error}`}</h2>
+    </div>
+  ); 
+ }
 
   render() {
     const { title, body } = this.state;
@@ -63,6 +88,8 @@ class CreatePost extends React.Component {
             <button className="btn publish-post-btn" type="submit">
               Publish
             </button>
+            {this.showSuccess()}
+            {this.showError()}
           </form>
         </div>
       </>

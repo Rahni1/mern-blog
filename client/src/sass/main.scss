@@ -16,11 +16,11 @@
 @import 'layout/authForm';
 
 // styles for small, reusable parts of site e.g buttons, 
-@import 'components/createPost';
-@import 'components/myPosts';
- @import 'components/post';
-  @import 'components/postCards';
- @import 'components/home';
+
 
 // page-specific styles e.g: styles that are only used on about page
-// @import 'pages/home';
+@import 'pages/home';
+@import 'pages/createPost';
+@import 'pages/myPosts';
+ @import 'pages/post';
+  @import 'pages/postCards';
