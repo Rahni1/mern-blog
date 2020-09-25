@@ -8,8 +8,8 @@
     background-image: linear-gradient(-225deg, $grey 50%, $green 50%);
     @include flex;
     -webkit-justify-content: center;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
     margin: 60px auto;
@@ -120,6 +120,17 @@
     border-radius: 5px 0px 0px 5px;
 }
 /* buttons hover Animation */
+@-webkit-keyframes ani9 {
+    0% {
+        @include transform;
+    }
+    100% {
+        -webkit-transform: translateY(5px);
+        -ms-transform: translateY(5px);
+        transform: translateY(5px);
+    }
+}
+
 @keyframes ani9 {
     0% {
         @include transform;
@@ -138,7 +149,16 @@
     border-radius: 50%;
     width: 100px;
     height: 100px;
+    -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
+}
+@-webkit-keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {

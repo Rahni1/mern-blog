@@ -49,36 +49,9 @@ margin-left: 1rem;
     margin-right: 18rem;
     cursor: pointer;
 }
-
-.tooltip {
-    position: relative;
-    display: inline-block;
-  }
   
-  /* Tooltip text */
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 80px;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid $grey;
-    color: $grey;
-    text-align: center;
-    margin-top: 20px;
-    margin-left: 2px;
-    font-size: 10px;
-    position: absolute;
-    z-index: 1;
-  }
-
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
-
-  
-  .create-post-error, .create-post-success {
-    margin-top: -4rem;
-    margin-bottom: 1rem;
-    margin-left: 1rem;
+  .create-post-error, .created-post {
+    margin: -4rem 0 1rem 1rem;
   }
 
   .create-post-error {

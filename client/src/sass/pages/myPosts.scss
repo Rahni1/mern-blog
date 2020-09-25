@@ -3,10 +3,10 @@
     margin-left: 3.4%;
     font-family: $playfair-display;
     color: $charcoal;
-  }
+}
 
 .mypost {
-    display: flex;
+    @include flex;
     align-items: center;
     height: 70px;
     flex-wrap: wrap;
@@ -47,7 +47,8 @@
         color: $charcoal;
     }
 }
-.no-posts, .no-posts:hover {
+.no-posts,
+.no-posts:hover {
     font-size: 25px;
     color: $grey;
     font-weight: $bold;
@@ -57,7 +58,8 @@
     display: block;
 }
 
-.no-posts-link, .no-posts-link:hover {
+.no-posts-link,
+.no-posts-link:hover {
     margin-top: 50px;
     color: $green;
 }
