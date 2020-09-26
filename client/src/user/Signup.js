@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { signup } from "../auth";
+import diamond from '../img/diamond.jpg'
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -121,6 +122,7 @@ const Signup = () => {
 
   return (
  <div>
+ <img className="diamond-auth" src={diamond} alt="diamond" width="100px" height="100px" />
       {signUpForm()}
       </div>
   );

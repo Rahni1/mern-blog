@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../auth";
 import Navbar from '../core/Navbar'
+import diamond from '../img/diamond.jpg'
+
 
 const Signin = () => {
   const [values, setValues] = useState({
@@ -82,6 +84,7 @@ const togglePasswordVisiblity = () => {
       <button onClick={clickSubmit} className="submit-auth">
         Submit
       </button>
+    <p className="no-account">Don't have an account yet? <Link className="signup-link" to="/signup">Sign Up</Link></p>
           </div>
           {showLoading()}
           {showError()}
@@ -118,6 +121,7 @@ const togglePasswordVisiblity = () => {
 
   return (
       <div>
+      <img className="diamond-auth" src={diamond} alt="diamond" width="100px" height="100px" />
       {signInForm()}
       {redirectUser()}
     </div>

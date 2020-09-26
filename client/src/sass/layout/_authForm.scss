@@ -116,7 +116,7 @@
 .input-icon {
     background: $white;
     color: $charcoal;
-    padding: 15.4px 0px 15.4px 10px;
+    padding: 17.4px 0px 16px 10px;
     border-radius: 5px 0px 0px 5px;
 }
 /* buttons hover Animation */
@@ -181,4 +181,16 @@
         color: $white;
         text-decoration: underline;
     }
+}
+
+.diamond-auth {
+margin-bottom: -500px;
+margin-left: 80px;
+}
+.no-account, .signup-link, .signup-link:hover {
+    color: $white;
+    text-align: center;
+}
+.signup-link, .signup-link:hover {
+    text-decoration: underline;
 }
