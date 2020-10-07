@@ -21,6 +21,7 @@ exports.signup = (req, res) => {
     });
 };
 
+
 exports.signin = (req, res) => {
     // find the user based on email
     const { email, password } = req.body;

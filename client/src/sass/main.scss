@@ -1,26 +1,24 @@
 // 7-1 architecture pattern (without themes)
 
 // no styles, just mechanisms that help define styles
-@import 'abstracts/variables';
- @import 'abstracts/mixins';
+@import "abstracts/variables";
+@import "abstracts/mixins";
 
 // -- vendors --
 
 // boilerplate used throughout site
-@import 'base/typography';
-@import 'base/base';
+@import "base/typography";
+@import "base/base";
 
 // styles for parts of layout e.g navbar
-@import 'layout/navigation';
-// @import 'layout/footer';
-@import 'layout/authForm';
+@import "layout/navigation";
+@import "layout/authForm";
 
-// styles for small, reusable parts of site e.g buttons, 
-
+// styles for small, reusable parts of site e.g buttons,
 
 // page-specific styles e.g: styles that are only used on about page
-@import 'pages/home';
-@import 'pages/createPost';
-@import 'pages/myPosts';
- @import 'pages/post';
-  @import 'pages/postCards';
+@import "pages/home";
+@import "pages/createPost";
+@import "pages/myPosts";
+@import "pages/post";
+@import "pages/postCards";

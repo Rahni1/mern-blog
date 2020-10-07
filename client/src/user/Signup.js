@@ -98,6 +98,7 @@ const Signup = () => {
       <button onClick={clickSubmit} className="submit-auth">
         Submit
       </button>
+      <p className="account">Already have an account? <Link className="auth-link" to="/signin">Sign In</Link></p>
       </div>
       {showError()}
       {showSuccess()}
@@ -129,4 +130,3 @@ const Signup = () => {
 };
 
 export default Signup;
-

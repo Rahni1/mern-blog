@@ -10,6 +10,7 @@ const PostsByUser = ({ history, match }) => {
     user: { _id },
   } = isAuthenticated();
   const token = isAuthenticated().token;
+  
 
   const init = (userId, token) => {
     postsByUser(userId, token).then((data) => {
@@ -22,7 +23,12 @@ const PostsByUser = ({ history, match }) => {
     deletePost(id, _id, token).then((data) => {
       if (data.error) {
         console.log(data.error);
-      } else {
+      } else if (
+    
+        window.confirm(
+            "Are you sure you want to permanently delete this post?",
+        )
+    ) {
         init(_id, token);
       }
     });
@@ -31,6 +37,7 @@ const PostsByUser = ({ history, match }) => {
   useEffect(() => {
     init(_id, token);
   }, []);
+
 
   const displayPosts = (posts) => {
     if (!posts.length) return <div className="no-posts">
@@ -41,7 +48,7 @@ const PostsByUser = ({ history, match }) => {
     return posts.map((post) => (
       <>
         <div className="mypost">
-          <Link className="mypost_title" to={`/post/${post._id}`}>
+          <Link className="mypost_title" to={`/post/${post.slug}/${post._id}`}>
             <h2 className="mypost_title title1">{post.title}</h2>
           </Link>
           <Link className="mypost_btn edit_btn" to={`/${_id}/${post._id}/edit`}>

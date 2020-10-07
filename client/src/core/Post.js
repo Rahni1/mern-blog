@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Moment from "react-moment";
 
 import { read } from "./apiCore";
 import Navbar from "./Navbar";
 import { isAuthenticated } from "../auth";
-import UserDashboard from "../user/Profile";
 import Diamond from "../img/diamond.png";
 import { API } from "../config";
 
@@ -14,8 +12,8 @@ const Post = (props) => {
   const [error, setError] = useState(false);
   const id = props.match.params.id;
 
-  const loadSinglePost = (id) => {
-    read(id).then((data) => {
+  const loadSinglePost = (slug, id) => {
+    read(slug, id).then((data) => {
       if (error) {
         console.log(data.error);
         setError(data.error);
@@ -27,8 +25,9 @@ const Post = (props) => {
   };
 
   useEffect(() => {
-    const id = props.match.params.id;
-    loadSinglePost(id);
+    const slug = props.match.params.slug
+    const id = props.match.params.id
+    loadSinglePost(slug, id);
   }, [props]);
 
   const diamond = (id) => {
@@ -84,7 +83,6 @@ const Post = (props) => {
       <Navbar />
       <div className="post-container">
         <h3 className="post-title">{post.title}</h3>
-
         <div className="author-date">
             <p className="post-author">{post.author ? post.author.name : ""}</p>
           <p className="post-date">

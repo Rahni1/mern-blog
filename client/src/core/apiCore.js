@@ -1,13 +1,13 @@
 import {API} from '../config'
 
-export const read = id => {
-    return fetch(`${API}/post/${id}`, {
+export const read = (slug, id) => {
+    return fetch(`${API}/post/${slug}/${id}`, {
         method: 'GET',
         Accept: "application/json",
         "Content-Type": "application/json",
     })
     .then(response => {
-        return response.json()
+        return response.json() 
     })
     .catch(err => console.log(err))
 }

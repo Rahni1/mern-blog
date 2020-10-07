@@ -1,5 +1,5 @@
 .logo {
- @include flex;
+  @include flex;
   justify-content: center;
   align-items: center;
 }
@@ -8,7 +8,7 @@
   background-color: $charcoal;
   list-style-type: none;
   margin: 0px;
- @include flex;
+  @include flex;
   font-size: 12px;
   width: 100vw;
   align-items: center;
@@ -17,13 +17,13 @@
 
 .nav-link,
 .navbar-brand {
-   margin-right: 4rem;
-   margin-left: auto;
+  margin-right: 4rem;
+  margin-left: auto;
   color: $beige;
 }
 
 .navbar-brand {
- margin: 0 auto 0 0;
+  margin: 0 auto 0 0;
 }
 .nav-item {
   position: relative;
@@ -34,11 +34,11 @@
   font-weight: $bold;
   display: inline-block;
   position: relative;
+  outline: none;
+  &:hover {
+    color: $white;
+  }
 }
-.nav-link:hover {
-  color: $white;
-}
-
 
 // underline transition
 .nav-link:after {
@@ -54,7 +54,8 @@
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
-.nav-link:hover:after {
+.nav-link:hover:after,
+.nav-link:focus:after {
   width: 100%;
   left: 0;
 }

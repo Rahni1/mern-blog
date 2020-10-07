@@ -14,8 +14,8 @@ const EditPost = ({ match }) => {
   const { user, token } = isAuthenticated();
   const { title, body, error } = values;
 
-  const init = (id) => {
-    read(id).then((data) => {
+  const init = (slug, id) => {
+    read(slug, id).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -28,7 +28,8 @@ const EditPost = ({ match }) => {
 
   useEffect(() => {
     const id = match.params.id;
-    init(id);
+    const slug = match.params.slug
+    init(slug, id);
   }, []);
 
   // updates post whenever values change

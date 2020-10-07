@@ -33,7 +33,7 @@ class CreatePost extends React.Component {
       })
       .catch((error) => {
         if (!this.state.title || !this.state.body) {
-        this.setState({error: "Your post must have a title and a body."})
+        this.setState({error: "Your post must contain a title and a body."})
         }
         console.log(error)
       });
@@ -44,7 +44,7 @@ class CreatePost extends React.Component {
   return (
     <div className="created-post"
       style={{ display: createdPost ? "" : "none" }}>
-      <h2>{`${createdPost} has just been created!`}</h2>
+      <h2>{`Your post has just been published!`}</h2>
     </div>
   ); 
  }
