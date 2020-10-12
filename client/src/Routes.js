@@ -21,10 +21,10 @@ const Routes = () => (
       <Route path="/signup" exact component={Signup} />
       <Route path="/signin" exact component={Signin} />
       <PrivateRoute path="/new-post/:userId" exact component={CreatePost} />
-      <Route path="/post/:slug/:id" exact component={Post} />
+      <Route path="/:slug/:id" exact component={Post} />
       <Route path="/my/posts/:userId" exact component={postsByUser} />
       <PrivateRoute exact path="/:userId/:id/edit" component={EditPost} />
-      <PrivateRoute path="/user" exact component={Profile} />
+      <PrivateRoute path="/dashboard" exact component={Profile} />
       <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
     </Switch>
   </BrowserRouter>

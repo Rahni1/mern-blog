@@ -48,7 +48,7 @@ const PostsByUser = ({ history, match }) => {
     return posts.map((post) => (
       <>
         <div className="mypost">
-          <Link className="mypost_title" to={`/post/${post.slug}/${post._id}`}>
+          <Link className="mypost_title" to={`/${post.slug}/${post._id}`}>
             <h2 className="mypost_title title1">{post.title}</h2>
           </Link>
           <Link className="mypost_btn edit_btn" to={`/${_id}/${post._id}/edit`}>

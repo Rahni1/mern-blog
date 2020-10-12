@@ -7,7 +7,7 @@ const { userById, listPostsBySignedInUser } = require('../controllers/user')
 
 
 router.get('/', (list))
-router.get('/post/:slug/:id', (readBySlug)) 
+router.get('/:slug/:id', (readBySlug)) 
 
 router.post('/new-post/:userId', (isAuth, requireSignin, create))
 

@@ -25,15 +25,17 @@ const Post = (props) => {
   };
 
   useEffect(() => {
-    const slug = props.match.params.slug
-    const id = props.match.params.id
+    const slug = props.match.params.slug;
+    const id = props.match.params.id;
     loadSinglePost(slug, id);
   }, [props]);
 
   const diamond = (id) => {
     const { token } = isAuthenticated();
-
-    fetch(`${API}/diamond/${id}`, {
+    const {
+      user: { _id },
+    } = isAuthenticated();
+    fetch(`${API}/diamond/${_id}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -48,19 +50,19 @@ const Post = (props) => {
           user: { _id },
         } = isAuthenticated();
         let updatedPost = { ...post };
-        updatedPost.diamonds.push(id);
+        updatedPost.diamonds.push(_id);
         setPost(updatedPost);
       })
-
       .catch((err) => {
         console.log(err);
       });
   };
   const showDiamondIcon = () => {
+    const { user } = isAuthenticated();
     return (
       <span className="diamond">
-        {/* if user is not signed in, don't display like icon */}
-        {!isAuthenticated() ? (
+        {/* if user is not signed in or if it's their own post, hide like icon */}
+        {!user || (post.author && post.author.id === user._id) ? (
           ""
         ) : (
           <img
@@ -84,7 +86,7 @@ const Post = (props) => {
       <div className="post-container">
         <h3 className="post-title">{post.title}</h3>
         <div className="author-date">
-            <p className="post-author">{post.author ? post.author.name : ""}</p>
+          <p className="post-author">{post.author ? post.author.name : ""}</p>
           <p className="post-date">
             <Moment className="post-date" format="D MMM YYYY">
               {post.date}

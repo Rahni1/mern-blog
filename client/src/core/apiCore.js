@@ -1,7 +1,7 @@
 import {API} from '../config'
 
 export const read = (slug, id) => {
-    return fetch(`${API}/post/${slug}/${id}`, {
+    return fetch(`${API}/${slug}/${id}`, {
         method: 'GET',
         Accept: "application/json",
         "Content-Type": "application/json",

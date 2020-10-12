@@ -59,3 +59,23 @@
   width: 100%;
   left: 0;
 }
+
+// hamburger menu - phones
+@media only screen and (min-width: 600px) {
+.menu-icon {
+  display: none;
+}
+}
+
+@media only screen and (max-width: 768px) {
+  .menu-icon {
+color: $beige;
+float: right;
+  }
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+}
