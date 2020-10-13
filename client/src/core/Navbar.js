@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { signout, isAuthenticated } from "../auth";
 import logo from "../img/logo.png";
@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = ({ history, match }) => {
- 
+  const [openNavbar, setOpenNavbar] = useState(false)
   return (
     <ul className="navbar">
       <a className="navbar-brand" href="/">
@@ -19,24 +19,26 @@ const Navbar = ({ history, match }) => {
           height="70px"
         />
       </a>
-<span className="menu-icon">
-      <FontAwesomeIcon icon={faBars} />
+<span className="menu-icon" 
+onClick={() => setOpenNavbar(!openNavbar)}>
+      <FontAwesomeIcon size="lg" icon={faBars} />
       </span>
-      {/* My Posts */}
-      {isAuthenticated() && (
+      {<div className={`nav-links ${openNavbar ? 'open' : ''}`}>
+    {isAuthenticated() && (
         <li className="nav-item">
           <Link className="nav-link left-link" to={`/dashboard`}>
             Dashboard
           </Link>
         </li>
-      )}
+      )} 
+   
       {/* CREATE A POST */}
       {isAuthenticated() && (
         <li className="nav-item">
           <WritePostLink />
         </li>
       )}
-
+      
       {/* SIGNIN / SIGNUP */}
       {!isAuthenticated() && (
         <Fragment>
@@ -74,9 +76,11 @@ const Navbar = ({ history, match }) => {
             Sign Out
           </span>
         </li>
+           
       )}
-    </ul>
-  );
-};
-
-export default withRouter(Navbar);
+      </div>
+          }
+    </ul>     
+  )}
+        
+  export default withRouter(Navbar);
