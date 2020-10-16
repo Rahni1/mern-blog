@@ -1,10 +1,12 @@
 import React, { Fragment, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 import { signout, isAuthenticated } from "../auth";
 import logo from "../img/logo.png";
 import WritePostLink from "../user/WritePostLink";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 
 const Navbar = ({ history, match }) => {
   const [openNavbar, setOpenNavbar] = useState(false)
@@ -27,8 +29,6 @@ const Navbar = ({ history, match }) => {
 onClick={() => setOpenNavbar(!openNavbar)}>
       <FontAwesomeIcon size="lg" icon={faBars} />
       </span>
-      
-
       {<div className={`nav-links ${openNavbar ? 'open' : ''}`}>
     {isAuthenticated() && (
         <li className="nav-item">
@@ -89,5 +89,4 @@ onClick={() => setOpenNavbar(!openNavbar)}>
     </ul>     
   )}
         
-
-export default withRouter(Navbar);
+  export default withRouter(Navbar);

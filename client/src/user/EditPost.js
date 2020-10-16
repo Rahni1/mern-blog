@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
+
 import { isAuthenticated } from "../auth";
 import { editPost } from "./apiUser";
 import { read } from "../core/apiCore";
+import Navbar from '../core/Navbar'
 
 const EditPost = ({ match }) => {
   const [values, setValues] = useState({
     title: "",
     body: "",
     error: "",
+    updatedPost: "",
   });
 
   const [post, setPost] = useState({ title: values.title, body: values.body });
-  const { user, token } = isAuthenticated();
-  const { title, body, error } = values;
+  const { token } = isAuthenticated();
+  const { title, body, error, updatedPost } = values;
 
   const init = (slug, id) => {
     read(slug, id).then((data) => {
@@ -54,6 +57,7 @@ const EditPost = ({ match }) => {
           ...values,
           title: data.title,
           body: data.body,
+          updatedPost: data.title,
           error: false,
         });
 
@@ -89,15 +93,27 @@ const EditPost = ({ match }) => {
       </button>
     </form>
   );
+
+  const showSuccess = () => (
+      <div className="success-post update-success"
+        style={{ display: updatedPost ? "" : "none" }}>
+        <h2>{`Your post has been successfully updated!`}</h2>
+      </div>
+    ); 
+
   const showError = () => (
     <div style={{ display: error ? "" : "none" }}>{error}</div>
   );
 
   return (
+    <>
+    <Navbar />
     <div className="newpost_container">
       {showError()}
       {newPostForm()}
+      {showSuccess()}
     </div>
+    </>
   );
 };
 

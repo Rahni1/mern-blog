@@ -26,7 +26,6 @@ const Post = (props) => {
 
   useEffect(() => {
     const slug = props.match.params.slug;
-    const id = props.match.params.id;
     loadSinglePost(slug, id);
   }, [props]);
 
@@ -98,12 +97,12 @@ const Post = (props) => {
         <div className="diamonds">
           {showDiamondIcon()}
 
-          <h5 className="diamond-length">
+          <p className="diamond-length">
             {post.diamonds && post.diamonds.length}{" "}
             {post.diamonds && post.diamonds.length === 1
               ? "Diamond"
               : "Diamonds"}{" "}
-          </h5>
+          </p>
         </div>
       </div>
     </>

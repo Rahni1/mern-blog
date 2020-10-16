@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import axios from "axios";
 import { API } from "../config";
 import { isAuthenticated } from "../auth";
@@ -25,7 +25,6 @@ class CreatePost extends React.Component {
     const {
       user: { _id },
     } = isAuthenticated();
-    const id = this.props.match.params.id
     axios({ url: `${API}/new-post/${_id}`, method: "POST", data: this.state })
       .then((response) => {
         this.setState({createdPost: this.state.title})
@@ -33,7 +32,7 @@ class CreatePost extends React.Component {
       })
       .catch((error) => {
         if (!this.state.title || !this.state.body) {
-        this.setState({error: "Your post must contain a title and a body."})
+        this.setState({error: "This post must contain a title and a body."})
         }
         console.log(error)
       });
@@ -42,9 +41,9 @@ class CreatePost extends React.Component {
  showSuccess = () => {
   const {createdPost} = this.state
   return (
-    <div className="created-post"
+    <div className="success-post"
       style={{ display: createdPost ? "" : "none" }}>
-      <h2>{`Your post has just been published!`}</h2>
+      <h2>{`Your post has been successfully published!`}</h2>
     </div>
   ); 
  }

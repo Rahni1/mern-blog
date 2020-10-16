@@ -12,21 +12,26 @@
     align-items: center;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin: 60px auto;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .auth-error {
     color: $red;
     text-align: center;
-    margin-top: -70px;
+    margin-top: -20px;
     font-weight: 550;
 }
 
 // header
 .form-header {
+    font-size: 200%;
     margin: 0% auto 10% auto;
     text-align: center;
-    font-size: 200%;
     font-family: $playfair-display;
     color: $white;
 }
@@ -58,8 +63,8 @@
     height: 50px;
     margin-top: 4%;
     padding: 15px;
-    width: 240px;
     font-size: 16px;
+    width: 240px;
     font-family: $abel;
     color: $charcoal;
     outline: none;
@@ -103,9 +108,6 @@
 .sign-up {
     display: inline-block;
     margin-left: 2%;
-}
-
-.sign-up {
     background: #b8f2e6;
     &:hover {
         -webkit-animation: ani9 0.4s ease-in-out infinite alternate;
@@ -183,14 +185,23 @@
     }
 }
 
-.diamond-auth {
-margin-bottom: -500px;
-margin-left: 20%;
-}
-.no-account, .signup-link, .signup-link:hover {
+.no-account,
+.signup-link,
+.signup-link:hover {
     color: $white;
     text-align: center;
 }
-.signup-link, .signup-link:hover {
+.signup-link,
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+.account {
+    color: $white;
+    text-align: center;
+    margin-top: -2rem;
+}
+.signin-link, .signin-link:hover {
+    color: $white;
     text-decoration: underline;
 }

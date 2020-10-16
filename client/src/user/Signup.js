@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { signup } from "../auth";
-import diamond from '../img/diamond.jpg'
+import Navbar from '../core/Navbar'
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -98,7 +98,7 @@ const Signup = () => {
       <button onClick={clickSubmit} className="submit-auth">
         Submit
       </button>
-      <p className="account">Already have an account? <Link className="auth-link" to="/signin">Sign In</Link></p>
+      <p className="account">Already have an account? <Link className="signin-link" to="/signin">Sign In</Link></p>
       </div>
       {showError()}
       {showSuccess()}
@@ -123,7 +123,7 @@ const Signup = () => {
 
   return (
  <div>
- <img className="diamond-auth" src={diamond} alt="diamond" width="100px" height="100px" />
+ <Navbar />
       {signUpForm()}
       </div>
   );

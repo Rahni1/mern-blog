@@ -9,8 +9,8 @@
   list-style-type: none;
   margin: 0px;
   @include flex;
-  font-size: 12px;
   width: 100vw;
+  font-size: 12px;
   align-items: center;
   height: 4rem;
 }
@@ -60,39 +60,38 @@
   left: 0;
 }
 .nav-links {
- z-index: 9999;
- margin-right: 200px;
- display: inline-block;
+  z-index: 9999;
+  margin-right: 200px;
+  display: inline-block;
+}
+
+@media only screen and (min-width: 770px) {
+  .nav-links {
+    @include flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: -20px;
   }
-
-
-@media only screen and (min-width: 768px) {
-.nav-links {
-  @include flex;
-  flex-direction: row;
-  margin-left: auto;
- margin-right: -20px;
-}
-.menu-icon {
-  display: none;
-}
+  .menu-icon {
+    display: none;
+  }
 }
 
 // hamburger menu - phones
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 770px) {
   .menu-icon {
-  position: absolute;
-  right: 30px;
+    position: absolute;
+    right: 30px;
     cursor: pointer;
-    color: $beige; 
+    color: $beige;
   }
   .nav-links {
     margin-top: 130px;
     padding: 20px;
     background-color: $charcoal;
- margin: 0;
- margin-top: 140px;
- margin-left: auto;
+    margin: 0;
+    margin-top: 160px;
+    margin-left: auto;
   }
 
   .navbar {
@@ -105,7 +104,6 @@
   .nav-links:not(.open) {
     display: none;
   }
- 
   .nav-link {
     padding: 5px;
   }

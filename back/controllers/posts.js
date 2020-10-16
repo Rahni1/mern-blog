@@ -1,7 +1,6 @@
-const moment = require("moment");
-const Post = require("../models/Post");
-const User = require("../models/User");
 var ObjectID = require("mongoose").Types.ObjectId;
+
+const Post = require("../models/Post");
 const { errorHandler } = require("../helpers/dbErrorHandler");
 
 exports.read = (req, res) => {

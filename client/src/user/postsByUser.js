@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import { isAuthenticated } from "../auth";
 import { postsByUser } from "./apiUser";
-import { Link } from "react-router-dom";
 import { deletePost } from "../user/apiUser";
 
 const PostsByUser = ({ history, match }) => {
@@ -42,7 +43,7 @@ const PostsByUser = ({ history, match }) => {
   const displayPosts = (posts) => {
     if (!posts.length) return <div className="no-posts">
     
-    You haven't written any posts yet. 
+    <p>You haven't written any posts yet.</p>
     <Link className="no-posts no-posts-link" to={`new-post/${_id}`}> Write your first post!</Link> 
      </div>;
     return posts.map((post) => (

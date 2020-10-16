@@ -1,8 +1,9 @@
 .username {
     text-align: left;
     margin-left: 3.4%;
-    font-family: $playfair-display;
+    // font-family: $playfair-display;
     color: $charcoal;
+    text-decoration: underline;
 }
 
 .mypost {
@@ -49,8 +50,8 @@
 }
 .no-posts,
 .no-posts:hover {
-    font-size: 25px;
     color: $grey;
+    font-size: 25px;
     font-weight: $bold;
     margin-top: 170px;
     text-align: center;

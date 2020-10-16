@@ -1,8 +1,10 @@
 import React from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-import { API } from '../config'
 import Moment from 'react-moment';
+
+import { API } from '../config'
+
 
 
 class ListPosts extends React.Component {

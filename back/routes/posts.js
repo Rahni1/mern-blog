@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-const { list, create, readBySlug, read, edit, deletePost, diamond } = require('../controllers/posts')
+const { list, create, readBySlug, edit, deletePost, diamond } = require('../controllers/posts')
 const { requireSignin, isAuth } = require('../controllers/auth')
-const { userById, listPostsBySignedInUser } = require('../controllers/user')
+const { userById } = require('../controllers/user')
 
 
 router.get('/', (list))
