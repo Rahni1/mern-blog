@@ -10,7 +10,6 @@ import EditPost from './user/EditPost'
 import Post from "./core/Post";
 import AdminDashboard from "./user/AdminDashboard";
 import CreatePost from "./core/CreatePost";
-// import UpdatePost from "./core/UpdatePost";
 import postsByUser from './user/postsByUser'
 import Profile from "./user/Profile";
 
