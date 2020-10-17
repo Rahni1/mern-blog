@@ -32,22 +32,18 @@ app.use(cookieParser())
 app.use(expressValidator())
 app.use(cors())
 
-
-
 app.use(authRoutes)
 // routes middleware
 app.use(userRoutes)
 // app.use(userRoutes)
 app.use(postRoutes)
 
-// serve build folder to heroku
 if (process.env.NODE_ENV === 'production') {
 app.use(express.static( 'client/build' ))
 
 app.get('*', (req, res) => {
-res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
 })
-
 }
 
 const port = process.env.PORT || 8000
