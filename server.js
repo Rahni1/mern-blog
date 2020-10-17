@@ -17,7 +17,7 @@ const postRoutes = require('./routes/posts')
 const app = express()
 
 // connect db - first arg is url (specified in .env)
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/blog', {
+mongoose.connect(process.env.ORMONGO_RS_URL || 'mongodb://iad2-c4-0.mongo.objectrocket.com:53757,iad2-c4-1.mongo.objectrocket.com:53757,iad2-c4-2.mongo.objectrocket.com:53757/?replicaSet=f8a485ccf8a3425cbc73c284926362c5', {
 useNewUrlParser: true,
 useCreateIndex: true,
 useUnifiedTopology: true,
