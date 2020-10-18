@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
+    "start:dev": "nodemon server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "",
@@ -29,6 +30,7 @@
     "mongoose-slug-generator": "^1.0.4",
     "mongoose-url-slugs": "^1.0.2",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.5",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "react-router-dom": "^5.2.0",
