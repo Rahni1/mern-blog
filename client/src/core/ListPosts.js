@@ -20,7 +20,11 @@ class ListPosts extends React.Component {
     }
 
     getPosts = () => {
-        axios.get(`${API}`)
+        axios.get(`${API}`, {
+            method: 'GET',
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        })
         .then((response) => {
             const data = response.data
             this.setState({posts: data})

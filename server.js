@@ -33,6 +33,14 @@ mongoose.connection
   });
 
 // middlewares
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", '*');
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+  next();
+});
+app.use(express.static(path.join(__dirname, 'client', 'build')))
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 // used to save users credentials
@@ -54,7 +62,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 80;
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
