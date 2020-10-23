@@ -40,7 +40,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
   next();
 });
-app.use(express.static(path.join(__dirname, 'client', 'build')))
+app.use(express.static(path.join(__dirname, '/client/build')))
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 // used to save users credentials
@@ -55,10 +55,10 @@ app.use(userRoutes);
 app.use(postRoutes);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("/client/build"));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "/client/build/index.html"));
   });
 }
 

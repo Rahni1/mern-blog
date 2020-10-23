@@ -5,8 +5,6 @@ import Moment from 'react-moment';
 
 import { API } from '../config'
 
-
-
 class ListPosts extends React.Component {
     state = {
         title: '',
@@ -20,24 +18,20 @@ class ListPosts extends React.Component {
     }
 
     getPosts = () => {
-        axios.get(`${API}`, {
-            method: 'GET',
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        })
+        axios.get(`${API}`)
         .then((response) => {
             const data = response.data
             this.setState({posts: data})
         })
-        .catch(() => {
-            console.log('Error retrieving data')
+        .catch((error) => {
+            console.log(error)
         })
     }
      
 
     displayPosts = (posts) => {
         if (!posts.length) return null;
-        return posts.map((post, index) => (
+      posts.map((post, index) => (
             <Link  className="card" to={`/${post.slug}/${post._id}`}>
             <div key={index}>
             <h3 className="posts-title">{post.title}</h3>
