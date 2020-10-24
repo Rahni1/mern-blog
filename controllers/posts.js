@@ -23,7 +23,7 @@ exports.list = (req, res) => {
 
 exports.readBySlug = (req, res) => {
   const id = req.params.id;
-  const slug = req.params.slug
+  const slug = req.params.slug;
   Post.findById(id)
     .then((post) => res.json(post))
     .catch((err) => res.status(400).json("Error: " + err));

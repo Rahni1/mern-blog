@@ -1,21 +1,27 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const { list, create, readBySlug, edit, deletePost, diamond } = require('../controllers/posts')
-const { requireSignin, isAuth } = require('../controllers/auth')
-const { userById } = require('../controllers/user')
+const {
+  list,
+  create,
+  readBySlug,
+  edit,
+  deletePost,
+  diamond,
+} = require("../controllers/posts");
+const { requireSignin, isAuth } = require("../controllers/auth");
+const { userById } = require("../controllers/user");
 
+router.get("/", list);
+router.get("/:slug/:id", readBySlug);
 
-router.get('/', (list))
-router.get('/:slug/:id', (readBySlug)) 
+router.post("/new-post/:userId", (isAuth, requireSignin, create));
 
-router.post('/new-post/:userId', (isAuth, requireSignin, create))
+router.put("/:userId/:id/edit", (isAuth, requireSignin, edit));
+router.put("/diamond/:userId/:id", (diamond, requireSignin));
 
-router.put('/:userId/:id/edit', (isAuth, requireSignin, edit))
-router.put('/diamond/:userId/:id', (diamond, requireSignin))
-
-router.delete('/post/:id/:userId', (isAuth, requireSignin, deletePost))
+router.delete("/post/:id/:userId", (isAuth, requireSignin, deletePost));
 
 router.param("userId", userById);
 
-module.exports = router
+module.exports = router;

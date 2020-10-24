@@ -11,4 +11,3 @@ export const read = (slug, id) => {
     })
     .catch(err => console.log(err))
 }
-
