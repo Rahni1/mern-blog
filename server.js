@@ -17,7 +17,7 @@ const postRoutes = require("./routes/posts");
 const app = express();
 
 // connect db - first arg is url (specified in .env)
-const url = process.env.MONGODB_URI;
+const url = process.env.MONGODB_URI 
 mongoose.connect(url, {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -33,14 +33,11 @@ mongoose.connection
   });
 
 // middlewares
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", '*');
   res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json"
-  );
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
   next();
 });
 
@@ -50,8 +47,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(cors());
-
-// routes middleware
+ app.use(express.static(path.join(__dirname, '/client/build')))
+ // routes middleware
 app.use(authRoutes);
 app.use(userRoutes);
 app.use(postRoutes);
@@ -59,7 +56,7 @@ app.use(postRoutes);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-app.get("/", function (req, res) {
+app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
