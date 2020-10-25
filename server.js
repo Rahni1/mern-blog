@@ -48,7 +48,7 @@ app.use(cookieParser());
 app.use(expressValidator());
 app.use(cors());
  // routes middleware
- app.use(express.static(path.join(__dirname, '/client/build')))
+ app.use(express.static(path.join(__dirname, './client/build')))
 app.use(authRoutes);
 app.use(userRoutes);
 app.use(postRoutes);
@@ -57,7 +57,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "/client/build/index.html"));
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 const port = process.env.PORT || 80;
