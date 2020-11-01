@@ -57,7 +57,7 @@ app.use(authRoutes);
 app.use(userRoutes);
 app.use('/post', postRoutes);
 
-app.get("/*", function (req, res) {
+app.post("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
