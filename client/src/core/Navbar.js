@@ -13,7 +13,7 @@ const Navbar = ({ history, match }) => {
   return (
     <ul className="navbar">
     <li>
-      <a className="navbar-brand" href="/">
+      <a className="navbar-brand" href="/post/">
         <img
           className="logo"
           src={logo}
@@ -76,7 +76,7 @@ onClick={() => setOpenNavbar(!openNavbar)}>
             className="nav-link"
             onClick={() =>
               signout(() => {
-                history.push("/");
+                history.push("/post/");
               })
             }>
             Sign Out

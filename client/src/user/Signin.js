@@ -110,11 +110,11 @@ const togglePasswordVisiblity = () => {
       if (user && user.role === 1) {
         return <Redirect to="/admin/dashboard" />;
       } else {
-        return <Redirect to="/" />;
+        return <Redirect to="/post/" />;
       }
     }
     if (isAuthenticated()) {
-      return <Redirect to="/" />;
+      return <Redirect to="/post/" />;
     }
   };
 

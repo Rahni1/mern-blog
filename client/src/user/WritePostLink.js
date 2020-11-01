@@ -9,7 +9,7 @@ const WritePostLink = () => {
 
   return (
     <div>
-      <Link className="nav-link left-link" to={`/new-post/${_id}`}>
+      <Link className="nav-link left-link" to={`/post/new-post/${_id}`}>
         Write A Post
       </Link>
     </div>

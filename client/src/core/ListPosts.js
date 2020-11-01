@@ -19,10 +19,11 @@ class ListPosts extends React.Component {
 
   getPosts = () => {
     axios
-      .get(`${API}/`)
+      .get(`${API}/post/`)
       .then((response) => {
         const posts = response.data;
         this.setState({ posts });
+        console.log(posts)
       })
       .catch((error) => {
         console.log(error);
@@ -31,8 +32,8 @@ class ListPosts extends React.Component {
 
   displayPosts = (posts) => {
     if (!posts.length) return null;
-     posts.map((post, index) => (
-      <Link className="card" to={`/${post.slug}/${post._id}`}>
+     return posts.map((post, index) => (
+      <Link className="card" to={`/post/${post.slug}/${post._id}`}>
         <div key={index}>
           <h3 className="posts-title">{post.title}</h3>
           <p className="posts-body">

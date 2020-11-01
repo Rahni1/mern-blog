@@ -25,7 +25,7 @@ class CreatePost extends React.Component {
     const {
       user: { _id },
     } = isAuthenticated();
-    axios({ url: `${API}/new-post/${_id}`, method: "POST", data: this.state })
+    axios({ url: `${API}/post/new-post/${_id}`, method: "POST", data: this.state })
       .then((response) => {
         this.setState({createdPost: this.state.title})
         return response

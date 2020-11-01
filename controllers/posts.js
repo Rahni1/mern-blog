@@ -10,15 +10,11 @@ exports.read = (req, res) => {
 exports.list = (req, res) => {
   const sort = { title: 1 };
   Post.find()
-    .select("-photo")
+    // .select("-photo")
     .sort(sort)
     //  .limit(10)
-    .exec((err, posts) => {
-      if (err) {
-        return res.send(err);
-      }
-      return res.send(posts);
-    });
+    .then((posts) => res.json(posts))
+    .catch((err) => res.status(400).json("Error: " + err));
 };
 
 exports.readBySlug = (req, res) => {

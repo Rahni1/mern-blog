@@ -16,7 +16,7 @@ export const postsByUser = (userId, token) => {
 };
 
 export const editPost = (userId, id, token, post) => {
-  return fetch(`${API}/${userId}/${id}/edit`, {
+  return fetch(`${API}/post/${userId}/${id}/edit`, {
     method: "PUT",
     headers: {
       Accept: "application/json",

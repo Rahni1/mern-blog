@@ -18,9 +18,9 @@ router.get("/:slug/:id", readBySlug);
 router.post("/new-post/:userId", (isAuth, requireSignin, create));
 
 router.put("/:userId/:id/edit", (isAuth, requireSignin, edit));
-router.put("/diamond/:userId/:id", (diamond, requireSignin));
+router.put("/diamond/:userId/:id", (requireSignin, diamond));
 
-router.delete("/post/:id/:userId", (isAuth, requireSignin, deletePost));
+router.delete("/:id/:userId", (isAuth, requireSignin, deletePost));
 
 router.param("userId", userById);
 

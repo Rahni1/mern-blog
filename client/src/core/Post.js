@@ -34,7 +34,7 @@ const Post = (props) => {
     const {
       user: { _id },
     } = isAuthenticated();
-    fetch(`${API}/diamond/${_id}/${id}`, {
+    fetch(`${API}/post/diamond/${_id}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
