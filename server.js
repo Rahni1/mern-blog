@@ -49,14 +49,13 @@ app.use(expressValidator());
 app.use(cors());
  // routes middleware
 //  app.use(express.static(path.join(__dirname, './client/build')))
-
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build/index.html"));
-}
 app.use(authRoutes);
 app.use(userRoutes);
 app.use('/post', postRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
