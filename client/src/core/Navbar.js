@@ -13,7 +13,7 @@ const Navbar = ({ history, match }) => {
   return (
     <ul className="navbar">
     <li>
-      <a className="navbar-brand" href="/post/all">
+      <a className="navbar-brand" href="/posts/">
         <img
           className="logo"
           src={logo}
