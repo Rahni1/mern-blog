@@ -12,7 +12,7 @@ const {
 const { requireSignin, isAuth } = require("../controllers/auth");
 const { userById } = require("../controllers/user");
 
-router.get("/posts", list);
+router.get("/", list);
 router.get("/:slug/:id", readBySlug);
 
 router.post("/new-post/:userId", (isAuth, requireSignin, create));
