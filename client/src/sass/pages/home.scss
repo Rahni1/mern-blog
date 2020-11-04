@@ -15,30 +15,26 @@
 .about-app {
   margin: 40px 22em 25px 22em;
   border-radius: 20%;
+  display: inline-block;
 }
+
+.diamond-icon {
+margin-left: 8px;
+}
+
 .background {
   width: 100vw;
   background-color: rgba(127, 205, 145, .2);
   padding: .7em 0;
 }
-// .background {
-//   background-image: url("../../img/S3_Growth.jpg"); 
-//   height: 400px;
-//   background-position: right; 
-//   background-repeat: no-repeat; 
-//   background-size: 40%; 
-//   margin-right: 170px;
-//   z-index: -100;
-//   margin-top: -150px;
-// }
+
  .about-app h5 {
   text-align: justify;
   font-family: $playfair-display;
   font-size: 115%;
   color: $charcoal;
-  line-height: 1.5;
+  line-height: 1.8;
 }
-.about-app span {
-  //color: $beige;
+.about-app .keywords {
   font-weight: $bold;
 }
