@@ -15,7 +15,7 @@ return (
          where they're supported and encouraged to grow.
          Be a <span className="keywords">diamond</span> and get blogging!   
         <img className="diamond-icon" src={diamond} alt="diamond"
-         width="3.2%" height="3.2%" /> </h5>
+         width="18px" height="18px" /> </h5>
         </div>
         </div>
         <ListPosts />

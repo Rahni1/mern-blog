@@ -14,10 +14,15 @@
 
 .about-app {
   margin: 40px 22em 25px 22em;
-  border-radius: 20%;
-  display: inline-block;
+ // display: inline-block;
 }
-
+@media (max-width: 1024px) {
+  .about-app {
+    margin: 0 auto;
+    width: 60%;
+ 
+  }
+}
 .diamond-icon {
 margin-left: 8px;
 }
