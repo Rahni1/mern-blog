@@ -117,7 +117,7 @@ const Signup = () => {
     <div
       className="success"
       style={{ display: success ? "" : "none" }}>
-      New account is created. Please <Link className="success-link" to="/signin">Signin</Link>
+      New account is created. Please <Link className="success-link" to="/signin">Sign In</Link>
     </div>
   );
 
