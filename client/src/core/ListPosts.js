@@ -58,7 +58,7 @@ class ListPosts extends React.Component {
   };
 
   render() {
-    return <div className="grid">posts</div>;
+    return <div className="grid">{this.displayPosts(this.state.posts)}</div>;
   }
 }
 
