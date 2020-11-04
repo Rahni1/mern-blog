@@ -76,7 +76,7 @@ onClick={() => setOpenNavbar(!openNavbar)}>
             className="nav-link"
             onClick={() =>
               signout(() => {
-                history.push("/posts/");
+                history.push("/");
               })
             }>
             Sign Out
