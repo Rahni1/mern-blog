@@ -19,7 +19,11 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
-
+@media (max-width: 480px) {
+    .form-container {
+    width: 320px;
+    }
+}
 .auth-error {
     color: $red;
     text-align: center;
