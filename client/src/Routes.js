@@ -16,7 +16,7 @@ import Profile from "./user/Profile";
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/posts/" exact component={Home} />
+      <Route path="/" exact component={Home} />
       <Route path="/signup" exact component={Signup} />
       <Route path="/signin" exact component={Signin} />
       <PrivateRoute path="/post/new-post/:userId" exact component={CreatePost} />
