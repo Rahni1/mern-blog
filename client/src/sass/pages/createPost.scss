@@ -38,6 +38,28 @@
   width: 100%;
 }
 
+// text formatting
+.formatting-box {
+  border: 1px solid grey;
+  width: 50vw;
+  text-align: left;
+  padding: 10px;
+}
+
+.format-btn {
+  font-size: calc(8px + 2vmin);
+  margin: 0 2px;
+  width: 50px;
+  background-color: white;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.Selected {
+  background-color: lightgrey;
+  color: white;
+}
+
 .publish-post-btn {
   background-color: $green;
   border: 1px $green solid;
