@@ -1,4 +1,7 @@
 import React from "react";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+
 import axios from "axios";
 import { API } from "../config";
 import { isAuthenticated } from "../auth";
@@ -26,7 +29,6 @@ class CreatePost extends React.Component {
     this.onSubheadingClick = this.onSubheadingClick.bind(this);
     this.onLinkClick = this.onLinkClick.bind(this);
   }
-
   onBoldClick(event) {
     // checks whether turned on or off
     event.target.setAttribute("class", !this.state.bold ? "Selected" : "");
@@ -217,13 +219,19 @@ class CreatePost extends React.Component {
       </div>
     );
   };
-
+ 
   render() {
     const { title, body } = this.state;
     return (
       <>
         <Navbar />
-        <div className="newpost_container">
+        <Tabs>
+    <TabList>
+      <Tab>Default</Tab>
+      <Tab>Preview</Tab>
+    </TabList>
+    <TabPanel>
+        <div className="newpost_container">     
           <form className="newpost_form" onSubmit={this.submitHandler}>
             <div className="form-group">
               <input
@@ -282,10 +290,19 @@ class CreatePost extends React.Component {
             </button>
             {this.showSuccess()}
             {this.showError()}
-            <h1>{title}</h1>
-            <div ref={this.outputRef}></div>
+        
           </form>
+          </div>
+          </TabPanel>
+
+          <TabPanel>
+          <div>
+          <h1>Preview</h1>
+          <h1>{title}</h1>
+          <div ref={this.outputRef}></div>
         </div>
+        </TabPanel>
+        </Tabs>
       </>
     );
   }
