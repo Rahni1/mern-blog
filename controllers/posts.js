@@ -10,7 +10,6 @@ exports.read = (req, res) => {
 exports.list = (req, res) => {
   const sort = { title: 1 };
   Post.find()
-    // .select("-photo")
     .sort(sort)
     //  .limit(10)
     .then((posts) => res.json(posts))
@@ -60,13 +59,11 @@ exports.edit = (req, res) => {
     },
     { new: true },
     (error, data) => {
-      // console.log(id)
       if (error) {
         return error;
       } else {
         res.send(data);
         console.log(updatedPost);
-        // console.log(data)
       }
     }
   );
