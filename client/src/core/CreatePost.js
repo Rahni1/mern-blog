@@ -1,7 +1,7 @@
 import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-
+import {EditorState} from 'draft-js';
 import axios from "axios";
 import { API } from "../config";
 import { isAuthenticated } from "../auth";
@@ -13,7 +13,7 @@ class CreatePost extends React.Component {
     super(props);
     this.state = {
       title: "",
-      body: "",
+      body: EditorState.createEmpty(),
       createdPost: "",
       error: "",
     };
@@ -70,6 +70,7 @@ class CreatePost extends React.Component {
 
   render() {
     const { title, body } = this.state;
+    console.log(body)
     return (
       <>
         <Navbar />
@@ -91,8 +92,8 @@ class CreatePost extends React.Component {
                     value={title}
                   />
                 </div>
-                <div className="form-group">
-                <TextEditor />
+                <div className="form-group newpost_body">
+                <TextEditor onChange={(value) => this.setState({ body: value })} editorState={body} />
                 </div>
                 <button className="btn publish-post-btn" type="submit">
                   Publish

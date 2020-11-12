@@ -4,6 +4,15 @@
   margin-left: 8px;
   margin-top: 20px;
 }
+.DraftEditor-editorContainer {
+  width: 870px;
+  height: 300px;
+  margin-top: 10px;
+}
+.public-DraftEditor-content {
+  max-height: 300px;
+  overflow: auto;
+}
 
 .format-btn {
   font-size: calc(4px + 2vmin);
@@ -21,15 +30,10 @@
   @include flex;
   flex-direction: row;
 }
-// .Selected
 
 .material-icons.md-18 {
   font-size: 18px;
-  margin: 0 10px;
-}
-
-.mb-icon {
-  margin-top: -10px;
+  margin: 0px 10px;
 }
 
 .header-options {

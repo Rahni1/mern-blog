@@ -4,59 +4,50 @@ import BlockStyleToolbar, {
   getBlockStyle,
 } from "./blockStyles/BlockStyleToolbar";
 import addLinkPlugin from "../plugins/addLinkPlugin";
+import "draft-js/dist/Draft.css";
 
 class TextEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      editorState: EditorState.createEmpty(),
-    };
     this.plugins = [addLinkPlugin];
   }
   toggleBlockType = (blockType) => {
-    this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType));
+    this.props.onChange(RichUtils.toggleBlockType(this.props.editorState, blockType));
   };
-
-  onChange = (editorState) => {
-    this.setState({
-      editorState,
-    });
-  };
-
   handleKeyCommand = (command) => {
     const newState = RichUtils.handleKeyCommand(
-      this.state.editorState,
+      this.props.editorState,
       command
     );
     if (newState) {
-      this.onChange(newState);
+      this.props.onChange(newState);
       return "handled";
     }
     return "not-handled";
   };
 
   onUnderlineClick = () => {
-    this.onChange(
-      RichUtils.toggleInlineStyle(this.state.editorState, "UNDERLINE")
+    this.props.onChange(
+      RichUtils.toggleInlineStyle(this.props.editorState, "UNDERLINE")
     );
   };
 
   onBoldClick = (event) => {
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, "BOLD"));
+    this.props.onChange(RichUtils.toggleInlineStyle(this.props.editorState, "BOLD"));
   };
 
   onItalicClick = () => {
-    this.onChange(
-      RichUtils.toggleInlineStyle(this.state.editorState, "ITALIC")
+    this.props.onChange(
+      RichUtils.toggleInlineStyle(this.props.editorState, "ITALIC")
     );
   };
 
   onAddLink = () => {
-    const editorState = this.state.editorState;
+    const editorState = this.props.editorState;
     const selection = editorState.getSelection();
     const link = window.prompt("Paste the link -");
     if (!link) {
-      this.onChange(RichUtils.toggleLink(editorState, selection, null));
+      this.props.onChange(RichUtils.toggleLink(editorState, selection, null));
       return "handled";
     }
     const content = editorState.getCurrentContent();
@@ -69,11 +60,11 @@ class TextEditor extends React.Component {
       "create-entity"
     );
     const entityKey = contentWithEntity.getLastCreatedEntityKey();
-    this.onChange(RichUtils.toggleLink(newEditorState, selection, entityKey));
+    this.props.onChange(RichUtils.toggleLink(newEditorState, selection, entityKey));
   };
 
   toggleBlockType = (blockType) => {
-    this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType));
+    this.props.onChange(RichUtils.toggleBlockType(this.props.editorState, blockType));
   };
 
   render() {
@@ -81,7 +72,7 @@ class TextEditor extends React.Component {
       <div className="editorContainer">
         <div className="toolbar">
           <BlockStyleToolbar
-            editorState={this.state.editorState}
+            editorState={this.props.editorState}
             onToggle={this.toggleBlockType}
           />
           <button
@@ -105,18 +96,20 @@ class TextEditor extends React.Component {
 
           <i
             onClick={this.onAddLink}
-            className="format-btn mb-icon material-icons md-18">
+            className="format-btn material-icons md-18">
             attach_file
           </i>
         </div>
 
-        <div className="editors">
+        <div>
           <Editor
+            placeholder="Post Content"
             blockStyleFn={getBlockStyle}
-            editorState={this.state.editorState}
+            editorState={this.props.editorState}
             handleKeyCommand={this.handleKeyCommand}
-            onChange={this.onChange}
+            onChange={this.props.onChange}
             plugins={this.plugins}
+            placeholder="Post Content"
           />
         </div>
       </div>
