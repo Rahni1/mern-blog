@@ -1,4 +1,4 @@
-import {API} from '../config'
+import {API} from 'config'
 
 export const read = (slug, id) => {
     return fetch(`${API}/post/${slug}/${id}`, {

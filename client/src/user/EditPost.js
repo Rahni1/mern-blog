@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import { isAuthenticated } from "../auth";
+import { isAuthenticated } from "auth";
 import { editPost } from "./apiUser";
-import { read } from "../core/apiCore";
-import Navbar from '../core/Navbar'
+import { read } from "core/apiCore";
+import Navbar from 'core/Navbar'
 
 const EditPost = ({ match }) => {
   const [values, setValues] = useState({

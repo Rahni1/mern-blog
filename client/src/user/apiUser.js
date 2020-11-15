@@ -1,4 +1,4 @@
-import { API } from "../config";
+import { API } from "config";
 
 export const postsByUser = (userId, token) => {
   return fetch(`${API}/my/posts/${userId}`, {

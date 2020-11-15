@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { isAuthenticated } from "../auth";
+import { isAuthenticated } from "auth";
 import { postsByUser } from "./apiUser";
-import { deletePost } from "../user/apiUser";
+import { deletePost } from "user/apiUser";
 
 const PostsByUser = ({ history, match }) => {
   const [posts, setPosts] = useState([]);

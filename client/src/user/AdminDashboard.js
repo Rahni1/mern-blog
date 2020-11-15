@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../core/Navbar'
+import Navbar from 'core/Navbar'
 
 const AdminDashboard = () => (
     <div>

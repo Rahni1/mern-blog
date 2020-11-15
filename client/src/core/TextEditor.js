@@ -1,10 +1,12 @@
 import React from "react";
 import { Editor, EditorState, RichUtils } from "draft-js";
+import "draft-js/dist/Draft.css";
+
 import BlockStyleToolbar, {
   getBlockStyle,
 } from "./blockStyles/BlockStyleToolbar";
-import addLinkPlugin from "../plugins/addLinkPlugin";
-import "draft-js/dist/Draft.css";
+import addLinkPlugin from "plugins/addLinkPlugin";
+
 
 class TextEditor extends React.Component {
   constructor(props) {
@@ -75,6 +77,7 @@ class TextEditor extends React.Component {
             editorState={this.props.editorState}
             onToggle={this.toggleBlockType}
           />
+          <span className="row2">
           <button
             type="button"
             className="format-btn"
@@ -87,6 +90,7 @@ class TextEditor extends React.Component {
             onClick={this.onBoldClick}>
             <b>B</b>
           </button>
+
           <button
             type="button"
             className="format-btn"
@@ -99,17 +103,17 @@ class TextEditor extends React.Component {
             className="format-btn material-icons md-18">
             attach_file
           </i>
+          </span>
         </div>
 
         <div>
           <Editor
-            placeholder="Post Content"
-            blockStyleFn={getBlockStyle}
-            editorState={this.props.editorState}
-            handleKeyCommand={this.handleKeyCommand}
-            onChange={this.props.onChange}
-            plugins={this.plugins}
-            placeholder="Post Content"
+          blockStyleFn={getBlockStyle}
+          editorState={this.props.editorState}
+          handleKeyCommand={this.handleKeyCommand}
+          onChange={this.props.onChange}
+          plugins={this.plugins}
+          placeholder="Post Content"
           />
         </div>
       </div>

@@ -36,6 +36,7 @@ exports.create = (req, res) => {
   post
     .save()
     .then((response) => {
+      console.log('response' + response)
       res.send(response);
     })
     .catch((err) => {

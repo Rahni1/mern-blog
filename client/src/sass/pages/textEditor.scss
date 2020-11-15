@@ -26,15 +26,24 @@
   padding: 5px 0px;
 }
 
-.toolbar {
-  @include flex;
-  flex-direction: row;
-}
 
-.material-icons.md-18 {
-  font-size: 18px;
-  margin: 0px 10px;
+
+@media only screen and (max-width: 650px) {
+  .toolbar {
+    @include flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .row2 {
+    flex: 1 0 100%;
+    margin: 1% 0 0 14%;
+  }
+
 }
+// .material-icons.md-18 {
+//   font-size: 18px;
+//   margin: 0px 10px;
+// }
 
 .header-options {
   padding: 5px;

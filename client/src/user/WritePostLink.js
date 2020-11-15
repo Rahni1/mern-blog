@@ -1,6 +1,7 @@
 import React from "react";
-import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
+
+import { isAuthenticated } from "auth";
 
 const WritePostLink = () => {
   const {

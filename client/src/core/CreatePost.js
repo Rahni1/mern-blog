@@ -1,12 +1,13 @@
 import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import {EditorState} from 'draft-js';
+import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import axios from "axios";
-import { API } from "../config";
-import { isAuthenticated } from "../auth";
+
+import { API } from "config";
+import { isAuthenticated } from "auth";
 import Navbar from "./Navbar";
-import TextEditor from './TextEditor';
+import TextEditor from "./TextEditor";
 
 class CreatePost extends React.Component {
   constructor(props) {
@@ -31,10 +32,17 @@ class CreatePost extends React.Component {
     axios({
       url: `${API}/post/new-post/${_id}`,
       method: "POST",
-      data: this.state,
+      data: {
+        ...this.state,
+        body: JSON.stringify(convertToRaw(this.state.body.getCurrentContent()))
+          .blocks,
+      },
     })
       .then((response) => {
         this.setState({ createdPost: this.state.title });
+        this.state.body = EditorState.createWithContent(
+          convertFromRaw(JSON.parse(this.state.body))
+        );
         return response;
       })
       .catch((error) => {
@@ -46,9 +54,24 @@ class CreatePost extends React.Component {
         console.log(error);
       });
   };
+  renderText = () => {
+    const { body } = this.state;
+    // const result = body.map(block => (
+    // !block.text.trim() && '\n') || block.text
+    // ).join('\n');
+    // console.log(`result: ${result}`)
+    //  const res = body.forEach(block => (
+    //    !block.text.trim() && '\n') || block.text)
+    //   console.log(res)
+    for (var i = 0; i < body.length; i++) {
+      console.log(body);
+      //  return (<div> {body[i].text}</div>)
+    }
+  };
 
   showSuccess = () => {
     const { createdPost } = this.state;
+
     return (
       <div
         className="success-post"
@@ -70,7 +93,7 @@ class CreatePost extends React.Component {
 
   render() {
     const { title, body } = this.state;
-    console.log(body)
+
     return (
       <>
         <Navbar />
@@ -93,7 +116,10 @@ class CreatePost extends React.Component {
                   />
                 </div>
                 <div className="form-group newpost_body">
-                <TextEditor onChange={(value) => this.setState({ body: value })} editorState={body} />
+                  <TextEditor
+                    onChange={(value) => this.setState({ body: value })}
+                    editorState={body}
+                  />
                 </div>
                 <button className="btn publish-post-btn" type="submit">
                   Publish
@@ -107,7 +133,7 @@ class CreatePost extends React.Component {
           <TabPanel>
             <div>
               <h1>{title}</h1>
-              <div>{body}</div>
+              {this.renderText()}
             </div>
           </TabPanel>
         </Tabs>

@@ -1,8 +1,9 @@
 import React from 'react'
 
 import Navbar from './Navbar'
-import ListPosts from '../core/ListPosts';
-import diamond from "../img/diamond.png"
+import ListPosts from 'core/ListPosts';
+import diamond from "img/diamond.png"
+
 const Home = ({props, user}) => {
 return (
         <div>

@@ -3,9 +3,9 @@ import Moment from "react-moment";
 
 import { read } from "./apiCore";
 import Navbar from "./Navbar";
-import { isAuthenticated } from "../auth";
-import Diamond from "../img/diamond.png";
-import { API } from "../config";
+import { isAuthenticated } from "auth";
+import Diamond from "img/diamond.png";
+import { API } from "config";
 
 const Post = (props) => {
   const [post, setPost] = useState({});
@@ -18,7 +18,7 @@ const Post = (props) => {
         console.log(data.error);
         setError(data.error);
       } else {
-        setPost(data);
+        setPost(data)
         console.log(data);
       }
     });
@@ -91,8 +91,8 @@ const Post = (props) => {
               {post.date}
             </Moment>
           </p>
+          <p>{post.body}</p>
         </div>
-        <p className="post-body">{post.body}</p>
 
         <div className="diamonds">
           {showDiamondIcon()}
@@ -104,6 +104,7 @@ const Post = (props) => {
               : "Diamonds"}{" "}
           </p>
         </div>
+        
       </div>
     </>
   );
