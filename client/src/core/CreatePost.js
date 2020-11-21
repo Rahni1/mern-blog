@@ -1,8 +1,9 @@
 import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
+import { EditorState, convertToRaw } from "draft-js";
 import axios from "axios";
+import { stateToHTML } from "draft-js-export-html";
 
 import { API } from "config";
 import { isAuthenticated } from "auth";
@@ -19,6 +20,7 @@ class CreatePost extends React.Component {
       error: "",
     };
   }
+  
 
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -34,15 +36,14 @@ class CreatePost extends React.Component {
       method: "POST",
       data: {
         ...this.state,
-        body: JSON.stringify(convertToRaw(this.state.body.getCurrentContent()))
-          .blocks,
+        body: JSON.stringify(convertToRaw(this.state.body.getCurrentContent())),
       },
     })
       .then((response) => {
         this.setState({ createdPost: this.state.title });
-        this.state.body = EditorState.createWithContent(
-          convertFromRaw(JSON.parse(this.state.body))
-        );
+      //   this.state.body = EditorState.createWithContent(
+      //     convertFromRaw(JSON.parse(this.state.body))
+      //  );
         return response;
       })
       .catch((error) => {
@@ -56,6 +57,9 @@ class CreatePost extends React.Component {
   };
   renderText = () => {
     const { body } = this.state;
+        const {
+      user: { _id },
+    } = isAuthenticated();
     // const result = body.map(block => (
     // !block.text.trim() && '\n') || block.text
     // ).join('\n');
@@ -64,10 +68,11 @@ class CreatePost extends React.Component {
     //    !block.text.trim() && '\n') || block.text)
     //   console.log(res)
     for (var i = 0; i < body.length; i++) {
-      console.log(body);
-      //  return (<div> {body[i].text}</div>)
-    }
+      return (
+        <div> {body[i].text}</div>
+        )
   };
+  }
 
   showSuccess = () => {
     const { createdPost } = this.state;
@@ -91,9 +96,15 @@ class CreatePost extends React.Component {
     );
   };
 
+  getText = () => {
+    return stateToHTML(this.state.body.getCurrentContent());
+  };
+
   render() {
     const { title, body } = this.state;
-
+    const {
+      user: { _id },
+    } = isAuthenticated();
     return (
       <>
         <Navbar />
@@ -117,13 +128,13 @@ class CreatePost extends React.Component {
                 </div>
                 <div className="form-group newpost_body">
                   <TextEditor
-                    onChange={(value) => this.setState({ body: value })}
-                    editorState={body}
+                  onChange={(value) => this.setState({ body: value })}
+                  editorState={body}
                   />
-                </div>
+                </div> 
                 <button className="btn publish-post-btn" type="submit">
-                  Publish
-                </button>
+                Publish
+              </button>
                 {this.showSuccess()}
                 {this.showError()}
               </form>
@@ -133,7 +144,7 @@ class CreatePost extends React.Component {
           <TabPanel>
             <div>
               <h1>{title}</h1>
-              {this.renderText()}
+              <div dangerouslySetInnerHTML={{ __html: this.getText() }}></div>
             </div>
           </TabPanel>
         </Tabs>
