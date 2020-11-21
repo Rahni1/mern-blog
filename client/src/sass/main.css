@@ -430,22 +430,26 @@
   font-size: 30px;
 }
 
-.newpost_field::-webkit-input-placeholder, .public-DraftEditorPlaceholder-inner {
+.newpost_field::-webkit-input-placeholder,
+.public-DraftEditorPlaceholder-inner {
   color: #9e9e9e;
   font-family: "Playfair Display", serif;
 }
 
-.newpost_field:-ms-input-placeholder, .public-DraftEditorPlaceholder-inner {
+.newpost_field:-ms-input-placeholder,
+.public-DraftEditorPlaceholder-inner {
   color: #9e9e9e;
   font-family: "Playfair Display", serif;
 }
 
-.newpost_field::-ms-input-placeholder, .public-DraftEditorPlaceholder-inner {
+.newpost_field::-ms-input-placeholder,
+.public-DraftEditorPlaceholder-inner {
   color: #9e9e9e;
   font-family: "Playfair Display", serif;
 }
 
-.newpost_field::placeholder, .public-DraftEditorPlaceholder-inner {
+.newpost_field::placeholder,
+.public-DraftEditorPlaceholder-inner {
   color: #9e9e9e;
   font-family: "Playfair Display", serif;
 }
@@ -527,6 +531,10 @@
 
 .tab:hover {
   border-bottom: 2px solid #7fcd91;
+}
+
+.preview {
+  margin-top: -40px;
 }
 
 .formatting-box {

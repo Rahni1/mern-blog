@@ -142,7 +142,7 @@ class CreatePost extends React.Component {
           </TabPanel>
 
           <TabPanel>
-            <div>
+            <div className="newpost_container preview">
               <h1>{title}</h1>
               <div dangerouslySetInnerHTML={{ __html: this.getText() }}></div>
             </div>

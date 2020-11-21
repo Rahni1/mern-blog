@@ -14,7 +14,7 @@ const Post = (props) => {
   const id = props.match.params.id;
 
   const loadSinglePost = (slug, id) => {
-   props.read(slug, id).then((data) => {
+   read(slug, id).then((data) => {
       if (error) {
         console.log(data.error);
         setError(data.error);
@@ -94,8 +94,6 @@ const Post = (props) => {
           </p>
           <p dangerouslySetInnerHTML={{ __html: post.body }}></p>
         </div>
-
-        
         
       </div>
     </>

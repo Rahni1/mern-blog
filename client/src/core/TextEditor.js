@@ -73,6 +73,7 @@ class TextEditor extends React.Component {
     return (
       <div className="editorContainer">
         <div className="toolbar">
+        
           <BlockStyleToolbar
             editorState={this.props.editorState}
             onToggle={this.toggleBlockType}

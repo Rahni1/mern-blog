@@ -49,9 +49,9 @@ app.use(expressValidator());
 app.use(cors());
  // routes middleware
 //  app.use(express.static(path.join(__dirname, './client/build')))
-app.use(authRoutes);
-app.use(userRoutes);
-app.use('/post', postRoutes); 
+app.use('/api', authRoutes);
+app.use('/api', userRoutes);
+app.use('/api/post', postRoutes); 
 
 if (process.env.NODE_ENV === 'production') {  
 app.use(express.static(path.join(__dirname, "client/build")));   
