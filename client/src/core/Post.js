@@ -30,55 +30,55 @@ const Post = (props) => {
     loadSinglePost(slug, id);
   }, [props]);
 
-  // const diamond = (id) => {
-  //   const { token } = isAuthenticated();
-  //   const {
-  //     user: { _id },
-  //   } = isAuthenticated();
-  //   fetch(`${API}/post/diamond/${_id}/${id}`, {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     body: JSON.stringify({
-  //       id: id,
-  //     }),
-  //   })
-  //     .then((result) => {
-  //       const {
-  //         user: { _id },
-  //       } = isAuthenticated();
-  //       let updatedPost = { ...post };
-  //       updatedPost.diamonds.push(_id);
-  //       setPost(updatedPost);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-  // const showDiamondIcon = () => {
-  //   const { user } = isAuthenticated();
-  //   return (
-  //     <span className="diamond">
-  //       {/* if user is not signed in or if it's their own post, hide like icon */}
-  //       {!user || (post.author && post.author.id === user._id) ? (
-  //         ""
-  //       ) : (
-  //         <img
-  //           className="add-diamond"
-  //           src={Diamond}
-  //           onClick={() => {
-  //             diamond(id);
-  //           }}
-  //           width="22px"
-  //           height="22px"
-  //           alt="Diamond icon"
-  //         />
-  //       )}
-  //     </span>
-  //   );
-  // };
+  const diamond = (id) => {
+    const { token } = isAuthenticated();
+    const {
+      user: { _id },
+    } = isAuthenticated();
+    fetch(`${API}/api/post/diamond/${_id}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
+    })
+      .then((result) => {
+        const {
+          user: { _id },
+        } = isAuthenticated();
+        let updatedPost = { ...post };
+        updatedPost.diamonds.push(_id);
+        setPost(updatedPost);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const showDiamondIcon = () => {
+    const { user } = isAuthenticated();
+    return (
+      <span className="diamond">
+        {/* if user is not signed in or if it's their own post, hide like icon */}
+        {!user || (post.author && post.author.id === user._id) ? (
+          ""
+        ) : (
+          <img
+            className="add-diamond"
+            src={Diamond}
+            onClick={() => {
+              diamond(id);
+            }}
+            width="22px"
+            height="22px"
+            alt="Diamond icon"
+          />
+        )}
+      </span>
+    );
+  };
 
   return (
     <>

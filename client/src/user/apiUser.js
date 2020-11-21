@@ -1,7 +1,7 @@
 import { API } from "config";
 
 export const postsByUser = (userId, token) => {
-  return fetch(`${API}/my/posts/${userId}`, {
+  return fetch(`${API}/api/my/posts/${userId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -16,7 +16,7 @@ export const postsByUser = (userId, token) => {
 };
 
 export const editPost = (userId, id, token, post) => {
-  return fetch(`${API}/post/${userId}/${id}/edit`, {
+  return fetch(`${API}/api/post/${userId}/${id}/edit`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -32,7 +32,7 @@ export const editPost = (userId, id, token, post) => {
 };
 
 export const deletePost = (id, userId, token) => {
-  return fetch(`${API}/post/${id}/${userId}`, {
+  return fetch(`${API}/api/post/${id}/${userId}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",

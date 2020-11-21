@@ -32,7 +32,7 @@ class CreatePost extends React.Component {
       user: { _id },
     } = isAuthenticated();
     axios({
-      url: `${API}/post/new-post/${_id}`,
+      url: `${API}/api/post/new-post/${_id}`,
       method: "POST",
       data: {
         ...this.state,

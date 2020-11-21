@@ -19,7 +19,7 @@ class ListPosts extends React.Component {
 
   getPosts = () => {
     axios
-      .get(`${API}/post`, {headers: {
+      .get(`${API}/api/post`, {headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       }})
