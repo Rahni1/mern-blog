@@ -47,21 +47,6 @@
   cursor: pointer;
 }
 
-// errors & success messages
-.post-error,
-.success-post {
-  margin: 0 0 1rem 1rem;
-}
-.post-error {
-  color: $red;
-}
-
-.success-post {
-  margin-top: -1rem;
-  color: $green;
-  font-family: $playfair-display;
-}
-
 // smaller devices
 @media only screen and (max-width: 62em) {
   .publish-post-btn {
@@ -72,26 +57,15 @@
   }
   .post-error,
   .success-post {
+    padding-bottom: 1rem;
     margin-top: 1em;
   }
 }
 
-// Tabs
-.tabs {
-  @include flex;
-  flex-direction: row;
-  list-style-type: none;
-  cursor: pointer;
-}
-.tab {
-  margin: 0 10px;
-  font-family: $roboto;
-  font-size: 16px;
-  &:hover {
-    border-bottom: 2px solid $green;
-  }
-}
-
 .preview {
-  margin-top: -40px;
+  margin-top: 2em;
+  margin-left: 6rem;
+  // position: absolute;
+  display: block;
+  max-width: 300px;
 }

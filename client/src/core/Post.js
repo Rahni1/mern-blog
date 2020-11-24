@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
+import { convertFromRaw } from "draft-js";
 
 import { read } from "./apiCore";
 import Navbar from "./Navbar";
 import { isAuthenticated } from "auth";
 import Diamond from "img/diamond.png";
 import { API } from "config";
-import { stateToHTML } from "draft-js-export-html";
+import TextEditor from "./TextEditor";
 
 const Post = (props) => {
   const [post, setPost] = useState({});
@@ -14,12 +15,12 @@ const Post = (props) => {
   const id = props.match.params.id;
 
   const loadSinglePost = (slug, id) => {
-   read(slug, id).then((data) => {
+    read(slug, id).then((data) => {
       if (error) {
         console.log(data.error);
         setError(data.error);
       } else {
-        setPost(data)
+        setPost(data);
         console.log(data);
       }
     });
@@ -61,7 +62,7 @@ const Post = (props) => {
     const { user } = isAuthenticated();
     return (
       <span className="diamond">
-        {/* if user is not signed in or if it's their own post, hide like icon */}
+        {/* if user is not signed in or if it's their own post, hide diamond icon */}
         {!user || (post.author && post.author.id === user._id) ? (
           ""
         ) : (
@@ -80,6 +81,9 @@ const Post = (props) => {
     );
   };
 
+  const storedState = convertFromRaw(JSON.parse(post.body));
+  console.log("storedState:" + storedState);
+
   return (
     <>
       <Navbar />
@@ -92,9 +96,10 @@ const Post = (props) => {
               {post.date}
             </Moment>
           </p>
-          <p dangerouslySetInnerHTML={{ __html: post.body }}></p>
+          <TextEditor editorState={storedState} readOnly={true} />
         </div>
-        
+
+        {showDiamondIcon()}
       </div>
     </>
   );

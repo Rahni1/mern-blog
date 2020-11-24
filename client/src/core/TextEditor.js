@@ -7,14 +7,15 @@ import BlockStyleToolbar, {
 } from "./blockStyles/BlockStyleToolbar";
 import addLinkPlugin from "plugins/addLinkPlugin";
 
-
 class TextEditor extends React.Component {
   constructor(props) {
     super(props);
     this.plugins = [addLinkPlugin];
   }
   toggleBlockType = (blockType) => {
-    this.props.onChange(RichUtils.toggleBlockType(this.props.editorState, blockType));
+    this.props.onChange(
+      RichUtils.toggleBlockType(this.props.editorState, blockType)
+    );
   };
   handleKeyCommand = (command) => {
     const newState = RichUtils.handleKeyCommand(
@@ -35,7 +36,9 @@ class TextEditor extends React.Component {
   };
 
   onBoldClick = (event) => {
-    this.props.onChange(RichUtils.toggleInlineStyle(this.props.editorState, "BOLD"));
+    this.props.onChange(
+      RichUtils.toggleInlineStyle(this.props.editorState, "BOLD")
+    );
   };
 
   onItalicClick = () => {
@@ -62,59 +65,62 @@ class TextEditor extends React.Component {
       "create-entity"
     );
     const entityKey = contentWithEntity.getLastCreatedEntityKey();
-    this.props.onChange(RichUtils.toggleLink(newEditorState, selection, entityKey));
+    this.props.onChange(
+      RichUtils.toggleLink(newEditorState, selection, entityKey)
+    );
   };
 
   toggleBlockType = (blockType) => {
-    this.props.onChange(RichUtils.toggleBlockType(this.props.editorState, blockType));
+    this.props.onChange(
+      RichUtils.toggleBlockType(this.props.editorState, blockType)
+    );
   };
 
   render() {
     return (
       <div className="editorContainer">
         <div className="toolbar">
-        
           <BlockStyleToolbar
             editorState={this.props.editorState}
             onToggle={this.toggleBlockType}
           />
           <span className="row2">
-          <button
-            type="button"
-            className="format-btn"
-            onClick={this.onUnderlineClick}>
-            U
-          </button>
-          <button
-            type="button"
-            className="format-btn"
-            onClick={this.onBoldClick}>
-            <b>B</b>
-          </button>
+            <button
+              type="button"
+              className="format-btn"
+              onClick={this.onUnderlineClick}>
+              U
+            </button>
+            <button
+              type="button"
+              className="format-btn"
+              onClick={this.onBoldClick}>
+              <b>B</b>
+            </button>
 
-          <button
-            type="button"
-            className="format-btn"
-            onClick={this.onItalicClick}>
-            <em>I</em>
-          </button>
+            <button
+              type="button"
+              className="format-btn"
+              onClick={this.onItalicClick}>
+              <em>I</em>
+            </button>
 
-          <i
-            onClick={this.onAddLink}
-            className="format-btn material-icons md-18">
-            attach_file
-          </i>
+            <i
+              onClick={this.onAddLink}
+              className="format-btn material-icons md-18">
+              attach_file
+            </i>
           </span>
         </div>
 
         <div>
           <Editor
-          blockStyleFn={getBlockStyle}
-          editorState={this.props.editorState}
-          handleKeyCommand={this.handleKeyCommand}
-          onChange={this.props.onChange}
-          plugins={this.plugins}
-          placeholder="Post Content"
+            blockStyleFn={getBlockStyle}
+            editorState={this.props.editorState}
+            handleKeyCommand={this.handleKeyCommand}
+            onChange={this.props.onChange}
+            plugins={this.plugins}
+            placeholder="Write your content here..."
           />
         </div>
       </div>

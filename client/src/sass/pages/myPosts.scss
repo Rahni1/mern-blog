@@ -1,7 +1,6 @@
 .username {
     text-align: left;
     margin-left: 3.4%;
-    // font-family: $playfair-display;
     color: $charcoal;
     text-decoration: underline;
 }
@@ -31,23 +30,6 @@
     height: 1px;
 }
 
-// buttons
-.mypost_btn {
-    float: right;
-    margin-right: 20px;
-}
-
-.delete_btn {
-    color: $red;
-    cursor: pointer;
-}
-
-.edit_btn {
-    color: $charcoal;
-    &:hover {
-        color: $charcoal;
-    }
-}
 .no-posts,
 .no-posts:hover {
     color: $grey;

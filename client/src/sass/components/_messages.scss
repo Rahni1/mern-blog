@@ -1,0 +1,61 @@
+// error messages
+.auth-error {
+    color: $red;
+    text-align: center;
+    margin-top: -20px;
+    font-weight: 550;
+}
+
+.post-error {
+  color: $red;
+}
+
+.post-error,
+.success-post {
+  margin: .5rem 0 0 .5rem;
+  font-weight: $bold;
+  font-size: 18px;
+  font-family: $abel;
+}
+
+// success messages
+.success-post {
+  color: $green;
+}
+
+.success,
+.success-link {
+    color: $white;
+    margin-top: -30px;
+}
+
+.success-link {
+    text-decoration: underline;
+    &:hover {
+        color: $white;
+        text-decoration: underline;
+    }
+}
+
+// No account - sign up message
+.no-account,
+.signup-link,
+.signup-link:hover {
+    color: $white;
+    text-align: center;
+}
+.signup-link,
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+// Account already exists - sign in message
+.account {
+    color: $white;
+    text-align: center;
+    margin-top: -2rem;
+}
+.signin-link, .signin-link:hover {
+    color: $white;
+    text-decoration: underline;
+}

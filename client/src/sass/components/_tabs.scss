@@ -1,0 +1,14 @@
+.tabs {
+  @include flex;
+  flex-direction: row;
+  list-style-type: none;
+  cursor: pointer;
+}
+.tab {
+  margin: 0 10px;
+  font-family: $roboto;
+  font-size: 16px;
+  &:hover {
+    border-bottom: 2px solid $green;
+  }
+}

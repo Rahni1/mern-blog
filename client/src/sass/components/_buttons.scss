@@ -1,0 +1,31 @@
+
+// post buttons
+.mypost_btn {
+    float: right;
+    margin-right: 20px;
+}
+
+.delete_btn {
+    color: $red;
+    cursor: pointer;
+}
+
+.edit_btn {
+    color: $charcoal;
+    &:hover {
+        color: $charcoal;
+    }
+}
+
+.format-btn {
+  font-size: calc(4px + 2vmin);
+  margin: 0 10px;
+  width: 40px;
+  border: 1px solid $grey;
+  border-radius: 50%;
+  background-color: $white;
+  cursor: pointer;
+  text-align: center;
+  padding: 5px 0px;
+}
+// formatting buttons 

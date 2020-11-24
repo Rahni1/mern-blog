@@ -11,11 +11,10 @@ const PostsByUser = ({ history, match }) => {
     user: { _id },
   } = isAuthenticated();
   const token = isAuthenticated().token;
-  
 
   const init = (userId, token) => {
-    postsByUser(userId, token).then((data) => { 
-      const posts = data.posts 
+    postsByUser(userId, token).then((data) => {
+      const posts = data.posts;
       setPosts(posts);
     });
   };
@@ -25,11 +24,8 @@ const PostsByUser = ({ history, match }) => {
       if (data.error) {
         console.log(data.error);
       } else if (
-    
-        window.confirm(
-            "Are you sure you want to permanently delete this post?",
-        )
-    ) {
+        window.confirm("Are you sure you want to permanently delete this post?")
+      ) {
         init(_id, token);
       }
     });
@@ -37,24 +33,29 @@ const PostsByUser = ({ history, match }) => {
 
   useEffect(() => {
     init(_id, token);
-  }, []);
-
+  }, [_id, token]);
 
   const displayPosts = (posts) => {
-    if (!posts.length) return (
-    <div className="no-posts">
-    <p>You haven't written any posts yet.</p>
-    <Link className="no-posts no-posts-link" to={`post/new-post/${_id}`}> Write your first post!</Link> 
-     </div>
-    )
-   
+    if (!posts.length)
+      return (
+        <div className="no-posts">
+          <p>You haven't written any posts yet.</p>
+          <Link className="no-posts no-posts-link" to={`post/new-post/${_id}`}>
+            {" "}
+            Write your first post!
+          </Link>
+        </div>
+      );
+
     return posts.map((post) => (
       <>
         <div className="mypost">
           <Link className="mypost_title" to={`/post/${post.slug}/${post._id}`}>
             <h2 className="mypost_title title1">{post.title}</h2>
           </Link>
-          <Link className="mypost_btn edit_btn" to={`/post/${_id}/${post._id}/edit`}>
+          <Link
+            className="mypost_btn edit_btn"
+            to={`/post/${_id}/${post._id}/edit`}>
             Edit
           </Link>
           {post && isAuthenticated() ? (
@@ -72,7 +73,7 @@ const PostsByUser = ({ history, match }) => {
     ));
   };
 
-  return (<div>{displayPosts(posts)}</div>)
+  return <div>{displayPosts(posts)}</div>;
 };
 
 export default PostsByUser;

@@ -21,17 +21,10 @@
 }
 @media (max-width: 480px) {
     .form-container {
-    width: 320px;
+        width: 320px;
     }
 }
-.auth-error {
-    color: $red;
-    text-align: center;
-    margin-top: -20px;
-    font-weight: 550;
-}
 
-// header
 .form-header {
     font-size: 200%;
     margin: 0% auto 10% auto;
@@ -48,7 +41,7 @@
     box-shadow: 0 0 0 30px $white inset !important;
 }
 
-/* Show/hide password Icon */
+/* Show/hide password icon */
 .eye {
     background: $white;
     color: $charcoal;
@@ -62,7 +55,7 @@
     z-index: 5;
     cursor: pointer;
 }
-// input
+
 .form-input {
     height: 50px;
     margin-top: 4%;
@@ -146,66 +139,4 @@
         -ms-transform: translateY(5px);
         transform: translateY(5px);
     }
-}
-
-// loader
-.loader {
-    border: 12px solid $white;
-    border-top: 12px solid $grey;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-}
-@-webkit-keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-.success,
-.success-link {
-    color: $white;
-    margin-top: -30px;
-}
-
-.success-link {
-    text-decoration: underline;
-    &:hover {
-        color: $white;
-        text-decoration: underline;
-    }
-}
-
-.no-account,
-.signup-link,
-.signup-link:hover {
-    color: $white;
-    text-align: center;
-}
-.signup-link,
-.signup-link:hover {
-    text-decoration: underline;
-}
-
-.account {
-    color: $white;
-    text-align: center;
-    margin-top: -2rem;
-}
-.signin-link, .signin-link:hover {
-    color: $white;
-    text-decoration: underline;
 }

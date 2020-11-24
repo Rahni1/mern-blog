@@ -4,7 +4,7 @@ import "react-tabs/style/react-tabs.css";
 import { EditorState, convertToRaw } from "draft-js";
 import axios from "axios";
 import { stateToHTML } from "draft-js-export-html";
-
+import "draft-js/dist/Draft.css";
 import { API } from "config";
 import { isAuthenticated } from "auth";
 import Navbar from "./Navbar";
@@ -20,7 +20,6 @@ class CreatePost extends React.Component {
       error: "",
     };
   }
-  
 
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -41,9 +40,9 @@ class CreatePost extends React.Component {
     })
       .then((response) => {
         this.setState({ createdPost: this.state.title });
-      //   this.state.body = EditorState.createWithContent(
-      //     convertFromRaw(JSON.parse(this.state.body))
-      //  );
+        //   this.state.body = EditorState.createWithContent(
+        //     convertFromRaw(JSON.parse(this.state.body))
+        //  );
         return response;
       })
       .catch((error) => {
@@ -55,24 +54,6 @@ class CreatePost extends React.Component {
         console.log(error);
       });
   };
-  renderText = () => {
-    const { body } = this.state;
-        const {
-      user: { _id },
-    } = isAuthenticated();
-    // const result = body.map(block => (
-    // !block.text.trim() && '\n') || block.text
-    // ).join('\n');
-    // console.log(`result: ${result}`)
-    //  const res = body.forEach(block => (
-    //    !block.text.trim() && '\n') || block.text)
-    //   console.log(res)
-    for (var i = 0; i < body.length; i++) {
-      return (
-        <div> {body[i].text}</div>
-        )
-  };
-  }
 
   showSuccess = () => {
     const { createdPost } = this.state;
@@ -81,7 +62,7 @@ class CreatePost extends React.Component {
       <div
         className="success-post"
         style={{ display: createdPost ? "" : "none" }}>
-        <h2>{`Your post has been successfully published!`}</h2>
+        <h2 className="success-post">{`Your post has been successfully published!`}</h2>
       </div>
     );
   };
@@ -91,7 +72,7 @@ class CreatePost extends React.Component {
 
     return (
       <div className="post-error" style={{ display: error ? "" : "none" }}>
-        <h2>{`${error}`}</h2>
+        <h2 className="post-error">{`${error}`}</h2>
       </div>
     );
   };
@@ -102,9 +83,6 @@ class CreatePost extends React.Component {
 
   render() {
     const { title, body } = this.state;
-    const {
-      user: { _id },
-    } = isAuthenticated();
     return (
       <>
         <Navbar />
@@ -128,13 +106,13 @@ class CreatePost extends React.Component {
                 </div>
                 <div className="form-group newpost_body">
                   <TextEditor
-                  onChange={(value) => this.setState({ body: value })}
-                  editorState={body}
+                    onChange={(value) => this.setState({ body: value })}
+                    editorState={body}
                   />
-                </div> 
+                </div>
                 <button className="btn publish-post-btn" type="submit">
-                Publish
-              </button>
+                  Publish
+                </button>
                 {this.showSuccess()}
                 {this.showError()}
               </form>
@@ -142,9 +120,11 @@ class CreatePost extends React.Component {
           </TabPanel>
 
           <TabPanel>
-            <div className="newpost_container preview">
-              <h1>{title}</h1>
-              <div dangerouslySetInnerHTML={{ __html: this.getText() }}></div>
+            <div className="preview">
+              <h1 className="newpost_title preview">{title}</h1>
+              <div
+                className="preview"
+                dangerouslySetInnerHTML={{ __html: this.getText() }}></div>
             </div>
           </TabPanel>
         </Tabs>
