@@ -4,17 +4,17 @@ import { convertFromRaw } from "draft-js";
 
 import { read } from "./apiCore";
 import Navbar from "./Navbar";
-import { isAuthenticated } from "auth";
-import Diamond from "img/diamond.png";
-import { API } from "config";
+import { isAuthenticated } from "../auth";
+import Diamond from "../img/diamond.png";
+import { API } from "../config";
 import TextEditor from "./TextEditor";
 
-const Post: React.FC = (props) => {
-  const [post, setPost] = useState({});
-  const [error, setError] = useState(false);
-  const id = props.match.params.id;
+const Post = ({match}: {match: any}) => {
+  const [post, setPost] = useState<any>({});
+  const [error, setError] = useState<any>(false);
+  const id = match.params.id;
 
-  const loadSinglePost = (slug, id) => {
+  const loadSinglePost = (slug: string, id: any) => {
     read(slug, id).then((data) => {
       if (error) {
         console.log(data.error);
@@ -27,11 +27,11 @@ const Post: React.FC = (props) => {
   };
 
   useEffect(() => {
-    const slug = props.match.params.slug;
+    const slug = match.params.slug;
     loadSinglePost(slug, id);
-  }, [props]);
+  }, [match]);
 
-  const diamond = (id) => {
+  const diamond = (id: number) => {
     const { token } = isAuthenticated();
     const {
       user: { _id },
@@ -50,7 +50,7 @@ const Post: React.FC = (props) => {
         const {
           user: { _id },
         } = isAuthenticated();
-        let updatedPost = { ...post };
+        let updatedPost: any = { ...post };
         updatedPost.diamonds.push(_id);
         setPost(updatedPost);
       })
@@ -60,6 +60,7 @@ const Post: React.FC = (props) => {
   };
   const showDiamondIcon = () => {
     const { user } = isAuthenticated();
+    let post: any;
     return (
       <span className="diamond">
         {/* if user is not signed in or if it's their own post, hide diamond icon */}
@@ -81,8 +82,6 @@ const Post: React.FC = (props) => {
     );
   };
 
-  const storedState = convertFromRaw(JSON.parse(post.body));
-  console.log("storedState:" + storedState);
 
   return (
     <>
@@ -96,7 +95,6 @@ const Post: React.FC = (props) => {
               {post.date}
             </Moment>
           </p>
-          <TextEditor editorState={storedState} readOnly={true} />
         </div>
 
         {showDiamondIcon()}

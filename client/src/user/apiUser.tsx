@@ -1,6 +1,6 @@
-import { API } from "config";
+import { API } from "../config";
 
-export const postsByUser = (userId, token) => {
+export const postsByUser = (userId: number, token: number) => {
   return fetch(`${API}/api/my/posts/${userId}`, {
     method: "GET",
     headers: {
@@ -15,7 +15,7 @@ export const postsByUser = (userId, token) => {
     .catch((err) => console.log(err));
 };
 
-export const editPost = (userId, id, token, post) => {
+export const editPost = (userId: number, id: number, token: any, post: any) => {
   return fetch(`${API}/api/post/${userId}/${id}/edit`, {
     method: "PUT",
     headers: {
@@ -26,12 +26,12 @@ export const editPost = (userId, id, token, post) => {
     body: JSON.stringify(post),
   })
     .then((response) => {
-      return response.json(post);
+      return response.json();
     })
     .catch((err) => console.log(err));
 };
 
-export const deletePost = (id, userId, token) => {
+export const deletePost = (id: number, userId: number, token: any) => {
   return fetch(`${API}/api/post/${id}/${userId}`, {
     method: "DELETE",
     headers: {

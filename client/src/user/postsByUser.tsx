@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { isAuthenticated } from "auth";
+import { isAuthenticated } from "../auth";
 import { postsByUser } from "./apiUser";
-import { deletePost } from "user/apiUser";
+import { deletePost } from "../user/apiUser";
 
-const PostsByUser: React.FC = ({ history, match }) => {
+const PostsByUser = () => {
   const [posts, setPosts] = useState([]);
   const {
     user: { _id },
   } = isAuthenticated();
   const token = isAuthenticated().token;
 
-  const init = (userId, token) => {
+  const init = (userId: number, token: any) => {
     postsByUser(userId, token).then((data) => {
       const posts = data.posts;
       setPosts(posts);
     });
   };
 
-  const destroy = (id) => {
+  const destroy = (id: number) => {
     deletePost(id, _id, token).then((data) => {
       if (data.error) {
         console.log(data.error);
@@ -35,7 +35,7 @@ const PostsByUser: React.FC = ({ history, match }) => {
     init(_id, token);
   }, [_id, token]);
 
-  const displayPosts = (posts) => {
+  const displayPosts = (posts: any[]) => {
     if (!posts.length)
       return (
         <div className="no-posts">
@@ -47,7 +47,7 @@ const PostsByUser: React.FC = ({ history, match }) => {
         </div>
       );
 
-    return posts.map((post) => (
+    return posts.map((post: any) => (
       <>
         <div className="mypost">
           <Link className="mypost_title" to={`/post/${post.slug}/${post._id}`}>

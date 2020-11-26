@@ -6,13 +6,13 @@ import axios from "axios";
 import { stateToHTML } from "draft-js-export-html";
 import "draft-js/dist/Draft.css";
 
-import { API } from "config";
-import { isAuthenticated } from "auth";
+import { API } from "../config";
+import { isAuthenticated } from "../auth";
 import Navbar from "./Navbar";
 import TextEditor from "./TextEditor";
 
-class CreatePost extends React.Component {
-  constructor(props) {
+class CreatePost extends React.Component<any, any> {
+  constructor(props: any) {
     super(props);
     this.state = {
       title: "",
@@ -22,11 +22,11 @@ class CreatePost extends React.Component {
     };
   }
 
-  changeHandler = (e) => {
+  changeHandler = (e: any) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  submitHandler = (e) => {
+  submitHandler = (e: any) => {
     e.preventDefault();
     const {
       user: { _id },
@@ -107,7 +107,7 @@ class CreatePost extends React.Component {
                 </div>
                 <div className="form-group newpost_body">
                   <TextEditor
-                    onChange={(value) => this.setState({ body: value })}
+                    onChange={(value: any) => this.setState({ body: value })}
                     editorState={body}
                   />
                 </div>

@@ -1,26 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { signup } from "auth";
-import Navbar from 'core/Navbar'
+import { signup } from "../auth";
+import Navbar from '../core/Navbar'
 
 const Signup: React.FC = () => {
   const [values, setValues] = useState({
     name: "",
     email: "",
     password: "",
-    error: "",
+    error: false,
     success: false,
   });
   const [passwordShown, setPasswordShown] = useState(false);
   const { name, email, password, success, error } = values;
 
-  const handleChange = (name) => (event) => {
+  const handleChange = (name: any) => (event: any) => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
   // Signup.js
-  const clickSubmit = (event) => {
+  const clickSubmit = (event: any) => {
     event.preventDefault();
     setValues({ ...values, error: false });
     signup({ name, email, password })
@@ -37,7 +37,7 @@ const Signup: React.FC = () => {
             name: "",
             email: "",
             password: "",
-            error: "",
+            error: false,
             success: true,
           });
         }

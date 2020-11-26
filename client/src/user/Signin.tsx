@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 
-import { signin, authenticate, isAuthenticated } from "auth";
-import Navbar from 'core/Navbar'
+import { signin, authenticate, isAuthenticated } from "../auth";
+import Navbar from '../core/Navbar'
 
 
 const Signin: React.FC = () => {
@@ -19,13 +19,13 @@ const Signin: React.FC = () => {
   const { user } = isAuthenticated();
 
   // higher order function
-  const handleChange = name => event => {
-    setValues({ ...values, error: false, [name]: event.target.value });
+  const handleChange = (name: any) => (event: any) => {
+    setValues({ ...values, error: "", [name]: event.target.value });
   };
 
-  const clickSubmit = event => {
+  const clickSubmit = (event: any) => {
     event.preventDefault();
-    setValues({ ...values, error: false, loading: true });
+    setValues({ ...values, error: "", loading: true });
     signin({ email, password })
       .then(data => {
         if (data.error) {

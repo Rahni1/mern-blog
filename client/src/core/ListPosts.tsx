@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 
-import { API } from "config";
+import { API } from "../config";
 
 class ListPosts extends React.Component {
   state = {
@@ -33,9 +33,9 @@ class ListPosts extends React.Component {
       });
   };
 
-  displayPosts = (posts) => {
+  displayPosts = (posts: any[]) => {
     if (!posts.length) return null;
-     return posts.map((post, index) => (
+     return posts.map((post: any, index: number) => (
       <Link className="card" to={`/post/${post.slug}/${post._id}`}>
         <div key={index}>
           <h3 className="posts-title">{post.title}</h3>

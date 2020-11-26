@@ -5,7 +5,7 @@ import "draft-js/dist/Draft.css";
 import BlockStyleToolbar, {
   getBlockStyle,
 } from "./blockStyles/BlockStyleToolbar";
-import addLinkPlugin from "plugins/addLinkPlugin";
+import addLinkPlugin from "../plugins/addLinkPlugin";
 
 class TextEditor extends React.Component {
   constructor(props) {
@@ -67,12 +67,6 @@ class TextEditor extends React.Component {
     const entityKey = contentWithEntity.getLastCreatedEntityKey();
     this.props.onChange(
       RichUtils.toggleLink(newEditorState, selection, entityKey)
-    );
-  };
-
-  toggleBlockType = (blockType) => {
-    this.props.onChange(
-      RichUtils.toggleBlockType(this.props.editorState, blockType)
     );
   };
 

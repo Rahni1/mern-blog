@@ -1,8 +1,8 @@
 import React from 'react'
 
 import PostsByUser from './postsByUser'
-import { isAuthenticated } from 'auth'
-import Navbar from 'core/Navbar'
+import { isAuthenticated } from '../auth'
+import Navbar from '../core/Navbar'
 
  const Profile: React.FC = () => {
      const {user: {name}} = isAuthenticated()
