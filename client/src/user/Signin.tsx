@@ -5,7 +5,7 @@ import { signin, authenticate, isAuthenticated } from "auth";
 import Navbar from 'core/Navbar'
 
 
-const Signin = () => {
+const Signin: React.FC = () => {
   const [values, setValues] = useState({
     email: "",
     password: "",

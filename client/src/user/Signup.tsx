@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { signup } from "auth";
 import Navbar from 'core/Navbar'
 
-const Signup = () => {
+const Signup: React.FC = () => {
   const [values, setValues] = useState({
     name: "",
     email: "",

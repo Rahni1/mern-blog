@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import { isAuthenticated } from "auth";
+import { isAuthenticated } from "../auth";
 import { editPost } from "./apiUser";
-import { read } from "core/apiCore";
-import Navbar from 'core/Navbar'
+import { read } from "../core/apiCore";
+import Navbar from '../core/Navbar'
 
-const EditPost = ({ match }) => {
+const EditPost = ({ match } : { match: any }) => {
   const [values, setValues] = useState({
     title: "",
     body: "",
@@ -17,7 +17,7 @@ const EditPost = ({ match }) => {
   const { token } = isAuthenticated();
   const { title, body, error, updatedPost } = values;
 
-  const init = (slug, id) => {
+  const init = (slug: string, id: number) => {
     read(slug, id).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
@@ -40,11 +40,11 @@ const EditPost = ({ match }) => {
     setPost({ ...values });
   }, [values.title, values.body]);
 
-  const handleChange = (name) => (event) => {
+  const handleChange = (name: string) => (event: any) => {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  const clickSubmit = (event) => {
+  const clickSubmit = (event: any) => {
     event.preventDefault();
     setValues({ ...values, error: "" });
     setPost({ title: values.title, body: values.body });
@@ -58,7 +58,7 @@ const EditPost = ({ match }) => {
           title: data.title,
           body: data.body,
           updatedPost: data.title,
-          error: false,
+          error: "",
         });
 
         console.log(post);

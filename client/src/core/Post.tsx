@@ -9,7 +9,7 @@ import Diamond from "img/diamond.png";
 import { API } from "config";
 import TextEditor from "./TextEditor";
 
-const Post = (props) => {
+const Post: React.FC = (props) => {
   const [post, setPost] = useState({});
   const [error, setError] = useState(false);
   const id = props.match.params.id;

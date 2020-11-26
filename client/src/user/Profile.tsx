@@ -4,7 +4,7 @@ import PostsByUser from './postsByUser'
 import { isAuthenticated } from 'auth'
 import Navbar from 'core/Navbar'
 
- const Profile = () => {
+ const Profile: React.FC = () => {
      const {user: {name}} = isAuthenticated()
      return (
             <div>

@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { isAuthenticated } from "auth";
+import { isAuthenticated } from "../auth";
 
-const WritePostLink = () => {
+const WritePostLink: React.FC = () => {
   const {
     user: { _id },
   } = isAuthenticated();

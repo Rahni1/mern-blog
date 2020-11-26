@@ -5,7 +5,7 @@ import { isAuthenticated } from "auth";
 import { postsByUser } from "./apiUser";
 import { deletePost } from "user/apiUser";
 
-const PostsByUser = ({ history, match }) => {
+const PostsByUser: React.FC = ({ history, match }) => {
   const [posts, setPosts] = useState([]);
   const {
     user: { _id },
