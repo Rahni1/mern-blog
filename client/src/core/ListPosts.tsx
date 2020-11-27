@@ -19,14 +19,16 @@ class ListPosts extends React.Component {
 
   getPosts = () => {
     axios
-      .get(`${API}/api/post`, {headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }})
+      .get(`${API}/api/post`, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
       .then((response) => {
         const posts = response.data;
         this.setState({ posts });
-        console.log(posts)
+        console.log(posts);
       })
       .catch((error) => {
         console.log(error);
@@ -35,13 +37,11 @@ class ListPosts extends React.Component {
 
   displayPosts = (posts: any[]) => {
     if (!posts.length) return null;
-     return posts.map((post: any, index: number) => (
+    return posts.map((post: any, index: number) => (
       <Link className="card" to={`/post/${post.slug}/${post._id}`}>
         <div key={index}>
           <h3 className="posts-title">{post.title}</h3>
-          <p className="posts-body">
-            {post && post.body && post.body.substring(0, 50)}...
-          </p>
+          <div dangerouslySetInnerHTML={{ __html: post.sanitizedHtml }}></div>
           <span className="author-date">
             <p className="post-author">
               {post && post.author ? post.author.name : ""}

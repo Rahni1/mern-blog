@@ -25,18 +25,19 @@ exports.readBySlug = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  const { title, body, date } = req.body;
+  const { title, date, body, sanitizedHtml } = req.body;
   const post = new Post({
     title,
     body,
     date,
+    sanitizedHtml,
     "author.id": req.profile._id,
     "author.name": req.profile.name,
   });
   post
     .save()
     .then((response) => {
-      console.log('response' + response)
+      console.log("response" + response);
       res.send(response);
     })
     .catch((err) => {

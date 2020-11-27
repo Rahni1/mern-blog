@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema.Types;
-const slugify = require('slugify');
+const slugify = require("slugify");
+const marked = require("marked");
+const createDomPurify = require("dompurify");
+const { JSDOM } = require("jsdom");
+const domPurify = createDomPurify(new JSDOM().window);
 const postSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -28,13 +32,21 @@ const postSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  sanitizedHtml: {
+    type: String,
+    required: true,
+  },
 });
 // Create slug from post title
-postSchema.pre('validate', function(next) {
+postSchema.pre("validate", function (next) {
   if (this.title) {
-    this.slug = slugify(this.title, { lower: true, strict: true })
+    this.slug = slugify(this.title, { lower: true, strict: true });
   }
-  next()
-})
+  // markdown - sanitize and convert to html
+  if (this.body) {
+    this.sanitizedHtml = domPurify.sanitize(marked(this.body));
+  }
+  next();
+});
 
 module.exports = mongoose.model("Post", postSchema);

@@ -1,22 +1,18 @@
 import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { EditorState, convertToRaw } from "draft-js";
 import axios from "axios";
-import { stateToHTML } from "draft-js-export-html";
-import "draft-js/dist/Draft.css";
-
 import { API } from "../config";
 import { isAuthenticated } from "../auth";
 import Navbar from "./Navbar";
-import TextEditor from "./TextEditor";
 
 class CreatePost extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
       title: "",
-      body: EditorState.createEmpty(),
+      body: "",
+      sanitizedHtml: "",
       createdPost: "",
       error: "",
     };
@@ -36,7 +32,6 @@ class CreatePost extends React.Component<any, any> {
       method: "POST",
       data: {
         ...this.state,
-        body: JSON.stringify(convertToRaw(this.state.body.getCurrentContent())),
       },
     })
       .then((response) => {
@@ -78,12 +73,9 @@ class CreatePost extends React.Component<any, any> {
     );
   };
 
-  getText = () => {
-    return stateToHTML(this.state.body.getCurrentContent());
-  };
-
   render() {
-    const { title, body } = this.state;
+    const { title, body, sanitizedHtml } = this.state;
+    console.log(sanitizedHtml);
     return (
       <>
         <Navbar />
@@ -106,10 +98,12 @@ class CreatePost extends React.Component<any, any> {
                   />
                 </div>
                 <div className="form-group newpost_body">
-                  <TextEditor
-                    onChange={(value: any) => this.setState({ body: value })}
-                    editorState={body}
-                  />
+                  <textarea
+                    placeholder="Markdown content"
+                    name="body"
+                    className="newpost_field newpost_body"
+                    onChange={this.changeHandler}
+                    value={body}></textarea>
                 </div>
                 <button className="btn publish-post-btn" type="submit">
                   Publish
@@ -123,9 +117,7 @@ class CreatePost extends React.Component<any, any> {
           <TabPanel>
             <div className="preview">
               <h1 className="newpost_title preview">{title}</h1>
-              <div
-                className="preview"
-                dangerouslySetInnerHTML={{ __html: this.getText() }}></div>
+              <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }}></div>
             </div>
           </TabPanel>
         </Tabs>

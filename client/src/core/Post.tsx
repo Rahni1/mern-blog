@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
-import { convertFromRaw } from "draft-js";
 
 import { read } from "./apiCore";
 import Navbar from "./Navbar";
 import { isAuthenticated } from "../auth";
 import Diamond from "../img/diamond.png";
 import { API } from "../config";
-import TextEditor from "./TextEditor";
 
-const Post = ({match}: {match: any}) => {
+const Post = (props: any) => {
   const [post, setPost] = useState<any>({});
   const [error, setError] = useState<any>(false);
-  const id = match.params.id;
+  const id = props.match.params.id;
 
   const loadSinglePost = (slug: string, id: any) => {
     read(slug, id).then((data) => {
@@ -27,9 +25,9 @@ const Post = ({match}: {match: any}) => {
   };
 
   useEffect(() => {
-    const slug = match.params.slug;
+    const slug = props.match.params.slug;
     loadSinglePost(slug, id);
-  }, [match]);
+  }, [props]);
 
   const diamond = (id: number) => {
     const { token } = isAuthenticated();
@@ -60,7 +58,6 @@ const Post = ({match}: {match: any}) => {
   };
   const showDiamondIcon = () => {
     const { user } = isAuthenticated();
-    let post: any;
     return (
       <span className="diamond">
         {/* if user is not signed in or if it's their own post, hide diamond icon */}
@@ -81,8 +78,6 @@ const Post = ({match}: {match: any}) => {
       </span>
     );
   };
-
-
   return (
     <>
       <Navbar />
@@ -95,6 +90,7 @@ const Post = ({match}: {match: any}) => {
               {post.date}
             </Moment>
           </p>
+          <div dangerouslySetInnerHTML={{ __html: post.sanitizedHtml }}></div>
         </div>
 
         {showDiamondIcon()}
