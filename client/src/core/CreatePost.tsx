@@ -1,6 +1,8 @@
 import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+
+import MarkdownCard from "./MarkdownCard";
 import axios from "axios";
 import { API } from "../config";
 import { isAuthenticated } from "../auth";
@@ -97,7 +99,7 @@ class CreatePost extends React.Component<any, any> {
                     value={title}
                   />
                 </div>
-                <div className="form-group newpost_body">
+                <div className="form-group">
                   <textarea
                     placeholder="Markdown content"
                     name="body"
@@ -112,6 +114,7 @@ class CreatePost extends React.Component<any, any> {
                 {this.showError()}
               </form>
             </div>
+           <MarkdownCard />
           </TabPanel>
 
           <TabPanel>

@@ -3,17 +3,17 @@
     margin: 2rem auto 0 auto;
     padding-bottom: 2em;
 }
-
+.post-title {
+    font-size: 26px;
+}
+.post-body {
+    color: $charcoal;
+}
 .post-title::selection,
 .post-body::selection {
     background-color: $green;
 }
-.post-title {
-    font-size: 30px;
-    padding-top: 1.5rem;
-    color: $charcoal;
-    font-family: $playfair-display;
-}
+
 
 .diamond {
     margin-left: 2.5%;
@@ -25,7 +25,7 @@
     font-weight: bold;
 }
 .post-date {
-    font-size: 11px;
+    font-size: 12px;
     text-align: left;
     color: $grey;
     float: center;
@@ -35,7 +35,7 @@
 }
 .post-author {
     float: left;
-    font-size: 11px;
+    font-size: 12px;
     color: $green;
     font-weight: $bold;
     margin-right: 1rem;

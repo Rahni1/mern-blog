@@ -82,7 +82,7 @@ const Post = (props: any) => {
     <>
       <Navbar />
       <div className="post-container">
-        <h3 className="post-title">{post.title}</h3>
+        <h3 className="posts-title post-title">{post.title}</h3>
         <div className="author-date">
           <p className="post-author">{post.author ? post.author.name : ""}</p>
           <p className="post-date">
@@ -90,7 +90,7 @@ const Post = (props: any) => {
               {post.date}
             </Moment>
           </p>
-          <div dangerouslySetInnerHTML={{ __html: post.sanitizedHtml }}></div>
+          <div className="post-body" dangerouslySetInnerHTML={{ __html: post.sanitizedHtml }}></div>
         </div>
 
         {showDiamondIcon()}

@@ -1,0 +1,41 @@
+.markdown-card {
+  @include flex;
+  flex-direction: column;
+  width: 22%;
+  margin-right: 10px;
+  float: right;
+  height: 100%;
+  padding: 10px;
+}
+.markdown-card h3 {
+  text-align: center;
+  color: $charcoal;
+}
+table {
+  border: 1px solid lightgrey;
+  border-radius: 5%;
+}
+td:not(.last-td) {
+  border-bottom: 1px solid lightgrey;
+  display: table-cell;
+  vertical-align: inherit;
+}
+
+td {
+  padding: 10px;
+}
+.markdown-td {
+  color: $green;
+  font-weight: $bold;
+}
+td:not(.markdown-td) {
+  margin-right: 20px;
+   }
+   .one-line {
+    margin-left: -20px;
+   }
+ @media only screen and (max-width: 1170px) {
+.markdown-card {
+  display: none;
+}
+ }

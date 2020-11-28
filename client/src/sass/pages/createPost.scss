@@ -1,6 +1,6 @@
 .newpost_container {
   margin-left: 10.8rem;
-  margin-top: 4rem;
+  margin-top: 5rem;
   position: absolute;
   top: 30%;
   -ms-transform: translateY(-30%);
@@ -10,7 +10,7 @@
 .newpost_title {
   font-family: $playfair-display;
   font-weight: 500;
-  margin-top: 1.2rem;
+  margin-top: -4rem;
   margin-bottom: 0.8rem;
   width: 100%;
   font-size: 30px;
@@ -46,7 +46,19 @@
   margin: 2rem 0 0 1rem;
   cursor: pointer;
 }
+.newpost_body {
+  resize: none;
+    font-size: 16px;
+    margin-top: 2rem;
+    height: 270px;
+    width: 750px;
+}
 
+@media only screen and (max-width: 790px) {
+.newpost_body {
+  width: 400px;
+}
+}
 // smaller devices
 @media only screen and (max-width: 62em) {
   .publish-post-btn {
@@ -69,3 +81,4 @@
   display: block;
   max-width: 300px;
 }
+

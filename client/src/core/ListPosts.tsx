@@ -41,7 +41,6 @@ class ListPosts extends React.Component {
       <Link className="card" to={`/post/${post.slug}/${post._id}`}>
         <div key={index}>
           <h3 className="posts-title">{post.title}</h3>
-          <div dangerouslySetInnerHTML={{ __html: post.sanitizedHtml }}></div>
           <span className="author-date">
             <p className="post-author">
               {post && post.author ? post.author.name : ""}
@@ -52,8 +51,9 @@ class ListPosts extends React.Component {
               </Moment>
             </p>
           </span>
-        </div>
+          </div>
       </Link>
+
     ));
   };
 
