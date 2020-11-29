@@ -7,6 +7,7 @@ import axios from "axios";
 import { API } from "../config";
 import { isAuthenticated } from "../auth";
 import Navbar from "./Navbar";
+let marked = require("marked");
 
 class CreatePost extends React.Component<any, any> {
   constructor(props: any) {
@@ -14,9 +15,9 @@ class CreatePost extends React.Component<any, any> {
     this.state = {
       title: "",
       body: "",
-      sanitizedHtml: "",
       createdPost: "",
       error: "",
+      sanitizedHtml: "",
     };
   }
 
@@ -38,9 +39,9 @@ class CreatePost extends React.Component<any, any> {
     })
       .then((response) => {
         this.setState({ createdPost: this.state.title });
-        //   this.state.body = EditorState.createWithContent(
-        //     convertFromRaw(JSON.parse(this.state.body))
-        //  );
+        // const html = response.data.sanitizedHtml
+        // console.log(html)
+        this.setState({sanitizedHtml: this.state.body})
         return response;
       })
       .catch((error) => {
@@ -55,7 +56,7 @@ class CreatePost extends React.Component<any, any> {
 
   showSuccess = () => {
     const { createdPost } = this.state;
-
+console.log(createdPost)
     return (
       <div
         className="success-post"
@@ -77,7 +78,7 @@ class CreatePost extends React.Component<any, any> {
 
   render() {
     const { title, body, sanitizedHtml } = this.state;
-    console.log(sanitizedHtml);
+    console.log(sanitizedHtml)
     return (
       <>
         <Navbar />
@@ -119,8 +120,8 @@ class CreatePost extends React.Component<any, any> {
 
           <TabPanel>
             <div className="preview">
-              <h1 className="newpost_title preview">{title}</h1>
-              <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }}></div>
+              <h1 className="newpost_title preview">{title}</h1>  
+              <div dangerouslySetInnerHTML={{ __html: marked(body) }}></div>
             </div>
           </TabPanel>
         </Tabs>

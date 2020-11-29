@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 
 import { isAuthenticated } from "../auth";
 import { editPost } from "./apiUser";
+import MarkdownCard from "../core/MarkdownCard";
 import { read } from "../core/apiCore";
-import Navbar from '../core/Navbar'
+import Navbar from "../core/Navbar";
+let marked = require("marked");
 
-const EditPost = ({ match } : { match: any }) => {
+const EditPost = ({ match }: { match: any }) => {
   const [values, setValues] = useState({
     title: "",
     body: "",
@@ -13,7 +15,7 @@ const EditPost = ({ match } : { match: any }) => {
     updatedPost: "",
   });
 
-  const [post, setPost] = useState({ title: values.title, body: values.body });
+  const [post, setPost] = useState({ title: values.title, body: values.body, sanitizedHtml: marked(values.body) });
   const { token } = isAuthenticated();
   const { title, body, error, updatedPost } = values;
 
@@ -24,20 +26,21 @@ const EditPost = ({ match } : { match: any }) => {
       } else {
         // populate the state
         setValues({ ...values, title: data.title, body: data.body });
-        setPost({ title: values.title, body: values.body });
+        setPost({ title: values.title, body: values.body, sanitizedHtml: marked(values.body) });
+        console.log(marked(post.body));
       }
     });
   };
 
   useEffect(() => {
     const id = match.params.id;
-    const slug = match.params.slug
+    const slug = match.params.slug;
     init(slug, id);
   }, []);
 
   // updates post whenever values change
   useEffect(() => {
-    setPost({ ...values });
+    setPost({ ...values, sanitizedHtml: (marked(values.body)) });
   }, [values.title, values.body]);
 
   const handleChange = (name: string) => (event: any) => {
@@ -47,7 +50,7 @@ const EditPost = ({ match } : { match: any }) => {
   const clickSubmit = (event: any) => {
     event.preventDefault();
     setValues({ ...values, error: "" });
-    setPost({ title: values.title, body: values.body });
+    setPost({ title: values.title, body: values.body, sanitizedHtml: marked(values.body) });
 
     editPost(match.params.userId, match.params.id, token, post).then((data) => {
       if (data.error) {
@@ -60,8 +63,8 @@ const EditPost = ({ match } : { match: any }) => {
           updatedPost: data.title,
           error: "",
         });
-
-        console.log(post);
+        console.log("TEST: " + post.sanitizedHtml)
+        console.log(marked(post.body));
         console.log(data);
       }
     });
@@ -82,12 +85,11 @@ const EditPost = ({ match } : { match: any }) => {
       <div className="form-group">
         <textarea
           onChange={handleChange("body")}
-          className="newpost_field newpost_textarea"
+          className="newpost_field newpost_body"
           value={body}
           name="body"
         />
       </div>
-
       <button className="btn publish-post-btn" type="submit">
         Publish
       </button>
@@ -95,11 +97,12 @@ const EditPost = ({ match } : { match: any }) => {
   );
 
   const showSuccess = () => (
-      <div className="success-post update-success"
-        style={{ display: updatedPost ? "" : "none" }}>
-        <h2>{`Your post has been successfully updated!`}</h2>
-      </div>
-    ); 
+    <div
+      className="success-post update-success"
+      style={{ display: updatedPost ? "" : "none" }}>
+      <h2>{`Your post has been successfully updated!`}</h2>
+    </div>
+  );
 
   const showError = () => (
     <div style={{ display: error ? "" : "none" }}>{error}</div>
@@ -107,12 +110,15 @@ const EditPost = ({ match } : { match: any }) => {
 
   return (
     <>
-    <Navbar />
-    <div className="newpost_container">
-      {showError()}
-      {newPostForm()}
-      {showSuccess()}
-    </div>
+      <Navbar />
+      <div className="edit-markdown">
+        <MarkdownCard />
+      </div>
+      <div className="newpost_container">
+        {showError()}
+        {newPostForm()}
+        {showSuccess()}
+      </div>
     </>
   );
 };

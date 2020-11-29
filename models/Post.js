@@ -37,8 +37,9 @@ const postSchema = new mongoose.Schema({
     required: true,
   },
 });
-// Create slug from post title
+
 postSchema.pre("validate", function (next) {
+  // Create slug from post title
   if (this.title) {
     this.slug = slugify(this.title, { lower: true, strict: true });
   }

@@ -78,6 +78,7 @@ const Post = (props: any) => {
       </span>
     );
   };
+
   return (
     <>
       <Navbar />
@@ -90,7 +91,7 @@ const Post = (props: any) => {
               {post.date}
             </Moment>
           </p>
-          <div className="post-body" dangerouslySetInnerHTML={{ __html: post.sanitizedHtml }}></div>
+          <div className="post-body" dangerouslySetInnerHTML={{ __html: post.sanitizedHtml }}></div> 
         </div>
 
         {showDiamondIcon()}

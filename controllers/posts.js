@@ -51,9 +51,9 @@ exports.edit = (req, res) => {
   const id = req.params.id;
   if (!ObjectID.isValid(id))
     return res.status(400).send(`No post with given id: ${id}`);
-  const { title, body } = req.body;
+  const { title, body, sanitizedHtml } = req.body;
 
-  const updatedPost = { title, body };
+  const updatedPost = { title, body, sanitizedHtml };
   Post.findByIdAndUpdate(
     id,
     {
@@ -65,7 +65,7 @@ exports.edit = (req, res) => {
         return error;
       } else {
         res.send(data);
-        console.log(updatedPost);
+        console.log(data);
       }
     }
   );
