@@ -59,12 +59,7 @@ const MarkdownCard = () => {
         </tr>
         <tr>
           <td className="markdown-td">
-            `inline code` <br />
-            ```
-            <br />
-            code block
-            <br />
-            ```
+            `code`
           </td>
           <td>
             <code>the code</code>

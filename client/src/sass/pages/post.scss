@@ -1,8 +1,12 @@
 .post-container {
     width: 70%;
-    word-wrap: break-word;
     margin: 2rem auto 0 auto;
     padding-bottom: 2em;
+}
+@media only screen and (max-width: 900px) {
+    .post-container {
+        width: 90%;
+    }
 }
 .post-title {
     font-size: 26px;
