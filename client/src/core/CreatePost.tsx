@@ -79,7 +79,6 @@ class CreatePost extends React.Component<any, any> {
 
   render() {
     const { title, body, sanitizedHtml } = this.state;
-    console.log(sanitizedHtml);
     return (
       <>
         <Navbar />

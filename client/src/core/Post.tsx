@@ -19,7 +19,6 @@ const Post = (props: any) => {
         setError(data.error);
       } else {
         setPost(data);
-        console.log(data);
       }
     });
   };

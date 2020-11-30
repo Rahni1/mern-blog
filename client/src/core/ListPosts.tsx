@@ -28,7 +28,6 @@ class ListPosts extends React.Component {
       .then((response) => {
         const posts = response.data;
         this.setState({ posts });
-        console.log(posts);
       })
       .catch((error) => {
         console.log(error);
