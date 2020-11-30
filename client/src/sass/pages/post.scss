@@ -8,15 +8,11 @@
 }
 .post-body {
     color: $charcoal;
+    margin-bottom: 1rem;
 }
 .post-title::selection,
 .post-body::selection {
     background-color: $green;
-}
-
-
-.diamond {
-    margin-left: 2.5%;
 }
 
 .diamond-length {

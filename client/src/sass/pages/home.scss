@@ -17,20 +17,19 @@
   .about-app {
     margin: 0 auto;
     width: 60%;
- 
   }
 }
 .diamond-icon {
-margin-left: 8px;
+  margin-left: 8px;
 }
 
 .background {
   width: 100vw;
-  background-color: rgba(127, 205, 145, .2);
-  padding: .7em 0;
+  background-color: rgba(127, 205, 145, 0.2);
+  padding: 0.7em 0;
 }
 
- .about-app h5 {
+.about-app h5 {
   text-align: justify;
   font-family: $playfair-display;
   font-size: 115%;

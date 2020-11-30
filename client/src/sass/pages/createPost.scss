@@ -74,11 +74,15 @@
   }
 }
 
-.preview {
+.preview-title, .preview-body {
   margin-top: 2em;
-  margin-left: 6rem;
-  // position: absolute;
-  display: block;
-  max-width: 300px;
+  width: 80%;
+  word-wrap: break-word;
+  margin-left: 10.8rem;
+  margin-bottom: 2rem;
 }
-
+@media only screen and (max-width: 900px) {
+  .preview-title, .preview-body {
+    width: 65%;
+  }
+}

@@ -70,8 +70,8 @@ const Post = (props: any) => {
             onClick={() => {
               diamond(id);
             }}
-            width="22px"
-            height="22px"
+            width="24px"
+            height="24px"
             alt="Diamond icon"
           />
         )}
@@ -93,8 +93,16 @@ const Post = (props: any) => {
           </p>
           <div className="post-body" dangerouslySetInnerHTML={{ __html: post.sanitizedHtml }}></div> 
         </div>
+        <div className="diamonds">
+          {showDiamondIcon()}
 
-        {showDiamondIcon()}
+          <h5 className="diamond-length">
+            {post.diamonds && post.diamonds.length}{" "}
+            {post.diamonds && post.diamonds.length === 1
+              ? "Diamond"
+              : "Diamonds"}{" "}
+          </h5>
+        </div>
       </div>
     </>
   );

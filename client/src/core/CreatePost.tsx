@@ -7,6 +7,7 @@ import axios from "axios";
 import { API } from "../config";
 import { isAuthenticated } from "../auth";
 import Navbar from "./Navbar";
+
 let marked = require("marked");
 
 class CreatePost extends React.Component<any, any> {
@@ -41,7 +42,7 @@ class CreatePost extends React.Component<any, any> {
         this.setState({ createdPost: this.state.title });
         // const html = response.data.sanitizedHtml
         // console.log(html)
-        this.setState({sanitizedHtml: this.state.body})
+        this.setState({ sanitizedHtml: this.state.body });
         return response;
       })
       .catch((error) => {
@@ -56,7 +57,7 @@ class CreatePost extends React.Component<any, any> {
 
   showSuccess = () => {
     const { createdPost } = this.state;
-console.log(createdPost)
+    console.log(createdPost);
     return (
       <div
         className="success-post"
@@ -78,7 +79,7 @@ console.log(createdPost)
 
   render() {
     const { title, body, sanitizedHtml } = this.state;
-    console.log(sanitizedHtml)
+    console.log(sanitizedHtml);
     return (
       <>
         <Navbar />
@@ -115,13 +116,14 @@ console.log(createdPost)
                 {this.showError()}
               </form>
             </div>
-           <MarkdownCard />
+            <MarkdownCard />
           </TabPanel>
 
           <TabPanel>
-            <div className="preview">
-              <h1 className="newpost_title preview">{title}</h1>  
-              <div dangerouslySetInnerHTML={{ __html: marked(body) }}></div>
+            <div>
+              <h1 className="preview-title">{title}</h1>
+              <div className="preview-body"
+                dangerouslySetInnerHTML={{ __html: marked(body) }}></div>
             </div>
           </TabPanel>
         </Tabs>
