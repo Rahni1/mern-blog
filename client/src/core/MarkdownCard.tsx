@@ -66,12 +66,18 @@ const MarkdownCard = () => {
           </td>
         </tr>
         <tr>
-          <td className="markdown-td last-td">
+          <td className="markdown-td">
             ___ <br /> 3 underscores on new line
           </td>
-          <td className="last-td">
+          <td>
             <hr />
             horizontal line
+          </td>
+        </tr>
+        <tr>
+          <td className="markdown-td last-td">\ (backslash)</td>
+          <td className="last-td">
+            escapes markdown characters
           </td>
         </tr>
       </table>

@@ -57,7 +57,6 @@ class CreatePost extends React.Component<any, any> {
 
   showSuccess = () => {
     const { createdPost } = this.state;
-    console.log(createdPost);
     return (
       <div
         className="success-post"
