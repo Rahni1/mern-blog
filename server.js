@@ -43,7 +43,7 @@ app.use(function(req, res, next) {
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
-// used to save users credentials
+// saves users credentials
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(cors());
