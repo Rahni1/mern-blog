@@ -5,7 +5,7 @@ import { signin, authenticate, isAuthenticated } from "../auth";
 import Navbar from '../core/Navbar'
 
 
-const Signin: React.FC = () => {
+const Signin = () => {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -19,11 +19,11 @@ const Signin: React.FC = () => {
   const { user } = isAuthenticated();
 
   // higher order function
-  const handleChange = (name: any) => (event: any) => {
+  const handleChange = (name) => (event) => {
     setValues({ ...values, error: "", [name]: event.target.value });
   };
 
-  const clickSubmit = (event: any) => {
+  const clickSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: "", loading: true });
     signin({ email, password })

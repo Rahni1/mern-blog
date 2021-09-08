@@ -34,9 +34,9 @@ class ListPosts extends React.Component {
       });
   };
 
-  displayPosts = (posts: any[]) => {
+  displayPosts = (posts) => {
     if (!posts.length) return null;
-    return posts.map((post: any, index: number) => (
+    return posts.map((post, index) => (
       <Link className="card" to={`/post/${post.slug}/${post._id}`}>
         <div key={index}>
           <h3 className="posts-title">{post.title}</h3>

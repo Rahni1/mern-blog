@@ -7,7 +7,7 @@ import { read } from "../core/apiCore";
 import Navbar from "../core/Navbar";
 let marked = require("marked");
 
-const EditPost = ({ match }: { match: any }) => {
+const EditPost = ({ match }) => {
   const [values, setValues] = useState({
     title: "",
     body: "",
@@ -19,7 +19,7 @@ const EditPost = ({ match }: { match: any }) => {
   const { token } = isAuthenticated();
   const { title, body, error, updatedPost } = values;
 
-  const init = (slug: string, id: number) => {
+  const init = (slug, id) => {
     read(slug, id).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
@@ -43,11 +43,11 @@ const EditPost = ({ match }: { match: any }) => {
     setPost({ ...values, sanitizedHtml: (marked(values.body)) });
   }, [values.title, values.body]);
 
-  const handleChange = (name: string) => (event: any) => {
+  const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  const clickSubmit = (event: any) => {
+  const clickSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: "" });
     setPost({ title: values.title, body: values.body, sanitizedHtml: marked(values.body) });

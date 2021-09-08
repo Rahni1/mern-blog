@@ -12,14 +12,14 @@ const PostsByUser = () => {
   } = isAuthenticated();
   const token = isAuthenticated().token;
 
-  const init = (userId: number, token: any) => {
+  const init = (userId, token) => {
     postsByUser(userId, token).then((data) => {
       const posts = data.posts;
       setPosts(posts);
     });
   };
 
-  const destroy = (id: number) => {
+  const destroy = (id) => {
     deletePost(id, _id, token).then((data) => {
       if (data.error) {
         console.log(data.error);
@@ -35,7 +35,7 @@ const PostsByUser = () => {
     init(_id, token);
   }, [_id, token]);
 
-  const displayPosts = (posts: any[]) => {
+  const displayPosts = (posts) => {
     if (!posts.length)
       return (
         <div className="no-posts">
@@ -47,7 +47,7 @@ const PostsByUser = () => {
         </div>
       );
 
-    return posts.map((post: any) => (
+    return posts.map((post) => (
       <>
         <div className="mypost">
           <Link className="mypost_title" to={`/post/${post.slug}/${post._id}`}>

@@ -10,8 +10,8 @@ import Navbar from "./Navbar";
 
 let marked = require("marked");
 
-class CreatePost extends React.Component<any, any> {
-  constructor(props: any) {
+class CreatePost extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       title: "",
@@ -22,11 +22,11 @@ class CreatePost extends React.Component<any, any> {
     };
   }
 
-  changeHandler = (e: any) => {
+  changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  submitHandler = (e: any) => {
+  submitHandler = (e) => {
     e.preventDefault();
     const {
       user: { _id },

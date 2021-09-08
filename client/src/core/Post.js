@@ -7,12 +7,12 @@ import { isAuthenticated } from "../auth";
 import Diamond from "../img/diamond.png";
 import { API } from "../config";
 
-const Post = (props: any) => {
-  const [post, setPost] = useState<any>({});
-  const [error, setError] = useState<any>(false);
+const Post = (props) => {
+  const [post, setPost] = useState({});
+  const [error, setError] = useState(false);
   const id = props.match.params.id;
 
-  const loadSinglePost = (slug: string, id: any) => {
+  const loadSinglePost = (slug, id) => {
     read(slug, id).then((data) => {
       if (error) {
         console.log(data.error);
@@ -28,7 +28,7 @@ const Post = (props: any) => {
     loadSinglePost(slug, id);
   }, [props]);
 
-  const diamond = (id: number) => {
+  const diamond = (id) => {
     const { token } = isAuthenticated();
     const {
       user: { _id },
@@ -47,7 +47,7 @@ const Post = (props: any) => {
         const {
           user: { _id },
         } = isAuthenticated();
-        let updatedPost: any = { ...post };
+        let updatedPost = { ...post };
         updatedPost.diamonds.push(_id);
         setPost(updatedPost);
       })

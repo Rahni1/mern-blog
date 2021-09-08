@@ -7,7 +7,7 @@ import { signout, isAuthenticated } from "../auth";
 import logo from "../img/logo.png";
 import WritePostLink from "../user/WritePostLink";
 
-const Navbar = ({ history, match } : {history: any, match: any}) => {
+const Navbar = ({ history, match }) => {
   const [openNavbar, setOpenNavbar] = useState(false);
   return (
     <ul className="navbar">

@@ -1,6 +1,6 @@
 import { API } from "../config";
 
-export const read = (slug: string, id: number) => {
+export const read = (slug, id) => {
   return fetch(`${API}/api/post/${slug}/${id}`, {
     method: "GET",
   })

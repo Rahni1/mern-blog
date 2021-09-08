@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { signup } from "../auth";
 import Navbar from '../core/Navbar'
 
-const Signup: React.FC = () => {
+const Signup = () => {
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -15,12 +15,12 @@ const Signup: React.FC = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const { name, email, password, success, error } = values;
 
-  const handleChange = (name: any) => (event: any) => {
+  const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
   // Signup.js
-  const clickSubmit = (event: any) => {
+  const clickSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false });
     signup({ name, email, password })
